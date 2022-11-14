@@ -55,8 +55,13 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
+        $user->save();
+        //assigning roles at sign up
+        $auth = \Yii::$app->authManager;
+        $utilizadorRole = $auth->getRole('utilizador');
+        $auth->assign($utilizadorRole,$user->getId());
 
-        return $user->save() && $this->sendEmail($user);
+        return $this->sendEmail($user);
     }
 
     /**

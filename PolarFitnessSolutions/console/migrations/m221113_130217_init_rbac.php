@@ -31,15 +31,24 @@ class m221113_130217_init_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
-        //add
+        //roles
+        //add "utilizador" role
+        $utilizador = $auth->createRole('utilizador');
+        $auth->add($utilizador);
+        //add "funcionario" role
+        $funcionario = $auth->createRole('funcionario');
+        $auth->add($funcionario);
+        //add "administrador" role
+        $administrador = $auth->createRole('administrador');
+        $auth->add($administrador);
 
     }
 
     public function down()
     {
-        echo "m221113_130217_init_rbac cannot be reverted.\n";
+        $auth = Yii::$app->authManager;
 
-        return false;
+        $auth->removeAll();
     }
 
 }
