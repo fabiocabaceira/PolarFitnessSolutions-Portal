@@ -33,35 +33,78 @@ class m221113_130217_init_rbac extends Migration
 
         // Criação de permissions
 
-        // add "criarassets" permission
-        $createAsset = $auth->createPermission('createAsset');
-        $createAsset->description = 'Create Asset';
-        $auth->add($createAsset);
+        $verFuncionario = $auth->createPermission('verFuncionario');
+        $verFuncionario->description = 'Ver Funcionarios';
+        $auth->add($verFuncionario);
 
-        //Permission to view all dashboards
-        $viewDashboards = $auth->createPermission('viewDashboards');
-        $viewDashboards->description = 'View Dashboards';
-        $auth->add($viewDashboards);
+        $criarFuncionario = $auth->createPermission('criarFuncionario');
+        $criarFuncionario->description = 'Criar Funcionarios';
+        $auth->add($criarFuncionario);
+
+        $editarFuncionario = $auth->createPermission('editarFuncionario');
+        $editarFuncionario->description = 'Editar Funcionarios';
+        $auth->add($verFuncionario);
+
+        $apagarFuncionario = $auth->createPermission('apagarFuncionario');
+        $apagarFuncionario->description = 'Apagar Funcionarios';
+        $auth->add($apagarFuncionario);
+
+        $criarConta = $auth->createPermission('criarConta');
+        $criarConta->description = 'criar conta no ginásio';
+        $auth->add($criarConta);
+
+        $editarDetalhesConta = $auth->createPermission('editarDetalhesConta');
+        $editarDetalhesConta->description = 'Editar Detalhes da conta';
+        $auth->add($editarDetalhesConta);
+
+        $gerirUtilizadores = $auth->createPermission('gerirUtilizadores');
+        $gerirUtilizadores->description = 'Gerir utilizadores';
+        $auth->add($gerirUtilizadores);
+
+        $increverNoGinasio = $auth->createPermission('inscreverNoGinasio');
+        $increverNoGinasio->description = 'Inscrever No Ginasio';
+        $auth->add($increverNoGinasio);
+
+        $trocarMensagens = $auth->createPermission('trocarMensagens');
+        $trocarMensagens->description = 'trocar mensagens';
+        $auth->add($trocarMensagens);
+
+        $criarPlanosTreino = $auth->createPermission('criarPlanoTreino');
+        $criarPlanosTreino->description = 'Criar Planos de treino';
+        $auth->add($criarPlanosTreino);
+
+        $atribuirPlanosTreino = $auth->createPermission('atribuirPlanoTreino');
+        $atribuirPlanosTreino->description = 'Atribuir Planos de treino a utilizadores';
+        $auth->add($atribuirPlanosTreino);
+
+        $gerirUtilizadores = $auth->createPermission('gerirUtilizadores');
+        $gerirUtilizadores->description = 'Gerir os utilizadores';
+        $auth->add($gerirUtilizadores);
+
+        $acederCalendarioAvaliacoes = $auth->createPermission('acederCalendarioAvaliacoes');
+        $acederCalendarioAvaliacoes->description = 'Aceder ao Calendario de avaliacoes';
+        $auth->add($acederCalendarioAvaliacoes);
+
+
+        //Criação de Roles
 
         //Utilizador
         $utilizador = $auth->createRole('utilizador');
         $auth->add($utilizador);
-        $auth->addChild($utilizador, $createAsset);
+
 
         //Funcionário
         $funcionario = $auth->createRole('funcionario');
         $auth->add($funcionario);
-        $auth->addChild($funcionario, $createAsset);
+
 
         //Administrador
         $administrador = $auth->createRole('administrador');
         $auth->add($administrador);
-        $auth->addChild($administrador, $viewDashboards);
 
         //Assign de roles
         $auth->assign($administrador, 1);
-        $auth->assign($funcionario, 4);
-        $auth->assign($utilizador, 5);
+
 
     }
 
