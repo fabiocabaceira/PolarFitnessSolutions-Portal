@@ -8,6 +8,7 @@ return [
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],

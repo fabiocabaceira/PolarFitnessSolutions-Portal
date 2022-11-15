@@ -31,16 +31,37 @@ class m221113_130217_init_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
-        //roles
-        //add "utilizador" role
+        // Criação de permissions
+
+        // add "criarassets" permission
+        $createAsset = $auth->createPermission('createAsset');
+        $createAsset->description = 'Create Asset';
+        $auth->add($createAsset);
+
+        //Permission to view all dashboards
+        $viewDashboards = $auth->createPermission('viewDashboards');
+        $viewDashboards->description = 'View Dashboards';
+        $auth->add($viewDashboards);
+
+        //Utilizador
         $utilizador = $auth->createRole('utilizador');
         $auth->add($utilizador);
-        //add "funcionario" role
+        $auth->addChild($utilizador, $createAsset);
+
+        //Funcionário
         $funcionario = $auth->createRole('funcionario');
         $auth->add($funcionario);
-        //add "administrador" role
+        $auth->addChild($funcionario, $createAsset);
+
+        //Administrador
         $administrador = $auth->createRole('administrador');
         $auth->add($administrador);
+        $auth->addChild($administrador, $viewDashboards);
+
+        //Assign de roles
+        $auth->assign($administrador, 1);
+        $auth->assign($funcionario, 4);
+        $auth->assign($utilizador, 5);
 
     }
 
