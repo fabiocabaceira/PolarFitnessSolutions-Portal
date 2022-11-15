@@ -57,6 +57,7 @@ class SignupForm extends Model
         $user->generateEmailVerificationToken();
         $user->save();
         //assigning roles at sign up
+        Bom DIA
         $auth = \Yii::$app->authManager;
         $utilizadorRole = $auth->getRole('utilizador');
         $auth->assign($utilizadorRole,$user->getId());
