@@ -18,7 +18,7 @@ use yii\helpers\Url;
                 <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block"><?=Yii::$app->user->identity->username ?> </a>
             </div>
         </div>
 
