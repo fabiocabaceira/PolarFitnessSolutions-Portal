@@ -40,7 +40,7 @@ use yii\helpers\Url;
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['/gii']],
+                    ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['/user/index']],
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['/gii']],
                     ['label' => 'Calendário',  'icon' => 'fa-solid fa-calendar-days', 'url' => ['/gii']],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['/gii']],
