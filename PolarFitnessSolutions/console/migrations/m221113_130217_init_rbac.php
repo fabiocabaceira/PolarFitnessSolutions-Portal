@@ -31,7 +31,7 @@ class m221113_130217_init_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
-        // Criação de permissions
+       // Criação de permissions
 
         $verFuncionario = $auth->createPermission('verFuncionario');
         $verFuncionario->description = 'Ver Funcionarios';
@@ -43,7 +43,7 @@ class m221113_130217_init_rbac extends Migration
 
         $editarFuncionario = $auth->createPermission('editarFuncionario');
         $editarFuncionario->description = 'Editar Funcionarios';
-        $auth->add($verFuncionario);
+        $auth->add($editarFuncionario);
 
         $apagarFuncionario = $auth->createPermission('apagarFuncionario');
         $apagarFuncionario->description = 'Apagar Funcionarios';
@@ -77,9 +77,6 @@ class m221113_130217_init_rbac extends Migration
         $atribuirPlanosTreino->description = 'Atribuir Planos de treino a utilizadores';
         $auth->add($atribuirPlanosTreino);
 
-        $gerirUtilizadores = $auth->createPermission('gerirUtilizadores');
-        $gerirUtilizadores->description = 'Gerir os utilizadores';
-        $auth->add($gerirUtilizadores);
 
         $acederCalendarioAvaliacoes = $auth->createPermission('acederCalendarioAvaliacoes');
         $acederCalendarioAvaliacoes->description = 'Aceder ao Calendario de avaliacoes';
