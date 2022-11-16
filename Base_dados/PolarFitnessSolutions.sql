@@ -10,7 +10,7 @@ CREATE TABLE ginasio(
     PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE sala_de_exercicio(
+CREATE TABLE salaDeExercicio(
     id          INT             UNSIGNED   AUTO_INCREMENT,   
     lotacao     TINYINT         NOT NULL,
     nome        VARCHAR(50)     NOT NULL,
@@ -19,23 +19,23 @@ CREATE TABLE sala_de_exercicio(
     FOREIGN KEY (ginasio_id) REFERENCES ginasio(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE cliente(
+CREATE TABLE user(
     id                      INT             UNSIGNED   AUTO_INCREMENT,
     username                VARCHAR(50)     NOT NULL,
     password_hash           VARCHAR(255)    NOT NULL,
     email                   VARCHAR(70)     NOT NULL,
     auth_key                VARCHAR(32)     NOT NULL,
-    password_reset_token    VARCHAR(255)    NOT NULL    UNIQUE,    
+    password_reset_token    VARCHAR(255)    NULL    UNIQUE,    
     created_at              INT             NOT NULL,
     updated_at              INT             NOT NULL,
     verification_token      VARCHAR(255)    NOT NULL,
     `status`                SMALLINT(6)     NOT NULL     DEFAULT '9',
-    rua                     VARCHAR(200)    NOT NULL,
-    codigo_postal           VARCHAR(5)      NOT NULL,
-    localidade              VARCHAR(50)     NOT NULL,
-    telefone                INT             NOT NULL,
-    nif                     INT             NOT NULL,
-    genero                  ENUM('Masculino', 'Feminimo', 'Outro')  NOT NULL,
+    rua                     VARCHAR(200)    NULL,
+    codigo_postal           VARCHAR(5)      NULL,
+    localidade              VARCHAR(50)     NULL,
+    telefone                INT             NULL,
+    nif                     INT             NULL,
+    genero                  ENUM('Masculino', 'Feminimo', 'Outro')  NULL,
     ginasio_id              INT				UNSIGNED,
     FOREIGN KEY (ginasio_id) REFERENCES ginasio(id),
     PRIMARY KEY(id)
@@ -47,7 +47,7 @@ CREATE TABLE funcionario(
     password_hash           VARCHAR(255)    NOT NULL,
     email                   VARCHAR(70)     NOT NULL,
     auth_key                VARCHAR(32)     NOT NULL,
-    password_reset_token    VARCHAR(255)    NOT NULL    UNIQUE,    
+    password_reset_token    VARCHAR(255)    NULL,    
     created_at              INT             NOT NULL,
     updated_at              INT             NOT NULL,
     verification_token      VARCHAR(255)    NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE funcionario(
     nif                     INT             NOT NULL,
     genero                  ENUM('Masculino', 'Feminimo', 'Outro')  NOT NULL,
     cliente_id              INT				UNSIGNED,
-    FOREIGN KEY (cliente_id) REFERENCES cliente(id),
+    FOREIGN KEY (cliente_id) REFERENCES user(id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -67,39 +67,39 @@ CREATE TABLE inscricao(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     horadata                DATETIME    NOT NULL,
     id_user                 INT			UNSIGNED,
-    FOREIGN KEY (id_user) REFERENCES cliente(id),
+    FOREIGN KEY (id_user) REFERENCES user(id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE mensagens(
+CREATE TABLE mensagem(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     conteudo                VARCHAR(225)            NOT NULL,
     createdate              DATETIME    NOT NULL,
     id_user                 INT			UNSIGNED,
     id_funcionario          INT			UNSIGNED,
-    FOREIGN KEY(id_user) REFERENCES cliente(id),
+    FOREIGN KEY(id_user) REFERENCES user(id),
     FOREIGN KEY(id_funcionario) REFERENCES funcionario(id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE plano_nutricional(
+CREATE TABLE planoNutricional(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     conteudo                LONGTEXT    NOT NULL,
     createdate              DATETIME    NOT NULL,
     id_user                 INT			UNSIGNED,
     id_funcionario          INT			UNSIGNED,
-    FOREIGN KEY(id_user) REFERENCES cliente(id),
+    FOREIGN KEY(id_user) REFERENCES user(id),
     FOREIGN KEY(id_funcionario) REFERENCES funcionario(id),
     PRIMARY KEY(id)      
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE plano_de_treino(
+CREATE TABLE planoDeTreino(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     nome                    VARCHAR(30) NOT NULL,
     createdate              DATETIME,
     id_user                 INT			UNSIGNED,
     id_funcionario          INT			UNSIGNED,
-    FOREIGN KEY(id_user) REFERENCES cliente(id),
+    FOREIGN KEY(id_user) REFERENCES user(id),
     FOREIGN KEY(id_funcionario) REFERENCES funcionario(id),
     PRIMARY KEY(id)    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -109,13 +109,10 @@ CREATE TABLE exercicio(
     nome                    VARCHAR(30)         	NOT NULL,
     max_rep                 INT,
     min_rep                 INT,
-    id_planotreino          INT			UNSIGNED,
-    id_set                  INT			UNSIGNED,
-    FOREIGN KEY(id_planotreino) REFERENCES plano_de_treino(id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE set_(
+CREATE TABLE setCorrente(
     id                      INT         UNSIGNED    AUTO_INCREMENT,            
     reps                    INT,
     peso                    FLOAT,
@@ -124,18 +121,18 @@ CREATE TABLE set_(
     PRIMARY KEY(id)  
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE sessao_de_treino(
+CREATE TABLE sessaoDeTreino(
     id                      INT         UNSIGNED     AUTO_INCREMENT,
     inicio                  DATETIME,
     fim                     DATETIME,
     id_set                  INT			UNSIGNED,
     id_user                 INT			UNSIGNED,
-    FOREIGN KEY(id_set) REFERENCES set_(id),
-    FOREIGN KEY(id_user) REFERENCES cliente(id),
+    FOREIGN KEY(id_set) REFERENCES setCorrente(id),
+    FOREIGN KEY(id_user) REFERENCES user(id),
     PRIMARY KEY(id)    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE avaliacoes_fisicas(
+CREATE TABLE avaliacaoFisica(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     imc                     FLOAT,
     fc_repouso              INT,
@@ -151,7 +148,7 @@ CREATE TABLE avaliacoes_fisicas(
     percentagem_de_gordura  FLOAT,
     id_user                 INT			UNSIGNED,
     id_funcionario          INT			UNSIGNED,
-    FOREIGN KEY(id_user) REFERENCES funcionario(id),
-    FOREIGN KEY(id_user) REFERENCES cliente(id),
+    FOREIGN KEY(id_funcionario) REFERENCES funcionario(id),
+    FOREIGN KEY(id_user) REFERENCES user(id),
     PRIMARY KEY(id)            
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
