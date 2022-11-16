@@ -31,6 +31,11 @@ class m221113_130217_init_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
+        //rules
+        $rule = new \yii\rbac\AdministradorRule;
+        $auth->add($rule);
+
+
        // Criação de permissions
 
         $verFuncionario = $auth->createPermission('verFuncionario');
@@ -84,6 +89,7 @@ class m221113_130217_init_rbac extends Migration
 
         $acederBackOffice =$auth->createPermission('acederBackOffice');
         $acederBackOffice->description = 'Aceder ao Back-Office';
+        $acederBackOffice->ruleName = $rule->name;
         $auth->add($acederBackOffice);
 
 
@@ -110,9 +116,11 @@ class m221113_130217_init_rbac extends Migration
         $auth->add($administrador);
         $auth->addChild($administrador,$acederBackOffice);
 
-        //Assign de roles
-        $auth->assign($administrador, 1);
-        $auth->assign($funcionario, 3);
+
+
+
+
+
 
 
     }
