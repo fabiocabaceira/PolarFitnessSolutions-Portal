@@ -62,7 +62,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->can('acederBackOffice')){
+            return $this->render('index');
+        }
+        else{
+            Yii::$app->user->logout();
+            return $this->goHome();
+        }
+
     }
 
     /**

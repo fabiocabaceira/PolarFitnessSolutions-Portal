@@ -82,6 +82,10 @@ class m221113_130217_init_rbac extends Migration
         $acederCalendarioAvaliacoes->description = 'Aceder ao Calendario de avaliacoes';
         $auth->add($acederCalendarioAvaliacoes);
 
+        $acederBackOffice =$auth->createPermission('acederBackOffice');
+        $acederBackOffice->description = 'Aceder ao Back-Office';
+        $auth->add($acederBackOffice);
+
 
         //Criação de Roles
 
@@ -98,6 +102,7 @@ class m221113_130217_init_rbac extends Migration
         //Administrador
         $administrador = $auth->createRole('administrador');
         $auth->add($administrador);
+        $auth->addChild($administrador,$acederBackOffice);
 
         //Assign de roles
         $auth->assign($administrador, 1);

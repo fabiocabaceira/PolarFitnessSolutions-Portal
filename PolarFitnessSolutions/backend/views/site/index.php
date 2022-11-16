@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Starter Page';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
+Yii::$app->user->getId()
 ?>
 <div class="container-fluid">
     <div class="row">
