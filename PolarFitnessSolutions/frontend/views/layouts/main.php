@@ -34,14 +34,16 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Signup', 'url' => ['/site/signup']],
-    ];
-
-
+        $menuItems = [
+            ['label' => 'Criar conta', 'url' => ['/site/signup']],
+            ['label' => 'Detalhes conta', 'url' => ['/site/signup']],
+            ['label' => 'Inscreva-se', 'url' => ['/site/signup']],
+            ['label' => 'Mensagens', 'url' => ['/site/signup']],
+            ['label' => 'Gerir Planos de treino', 'url' => ['/site/signup']],
+            ['label' => 'Clientes', 'url' => ['/site/signup']],
+            ['label' => 'Atribuir planos de treino', 'url' => ['/site/signup']],
+        ];
+        
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
         'items' => $menuItems,

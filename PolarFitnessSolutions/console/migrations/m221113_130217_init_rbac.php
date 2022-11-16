@@ -92,11 +92,17 @@ class m221113_130217_init_rbac extends Migration
         //Utilizador
         $utilizador = $auth->createRole('utilizador');
         $auth->add($utilizador);
+        $auth->addChild($utilizador, $editarDetalhesConta);
+        $auth->addChild($utilizador, $acederCalendarioAvaliacoes);
+        $auth->addChild($utilizador, $criarConta);
+        $auth->addChild($utilizador, $trocarMensagens);
+        $auth->addChild($utilizador, $criarPlanosTreino);
 
 
         //Funcionário
         $funcionario = $auth->createRole('funcionario');
         $auth->add($funcionario);
+        $auth->addChild($funcionario, $gerirUtilizadores);
 
 
         //Administrador
@@ -106,6 +112,7 @@ class m221113_130217_init_rbac extends Migration
 
         //Assign de roles
         $auth->assign($administrador, 1);
+        $auth->assign($funcionario, 3);
 
 
     }
