@@ -76,7 +76,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if(Yii::$app->user->can('administrador')){
-            return $this->render('error.php');
+            Yii::$app->user->logout();
+            return $this->goHome();
         } else {
             return $this->render('index');
         }
