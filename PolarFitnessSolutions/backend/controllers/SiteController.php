@@ -68,7 +68,7 @@ class SiteController extends Controller
         }
         else{
             Yii::$app->user->logout();
-            return $this->render('error');
+            return $this->goHome();
         }
 
     }
