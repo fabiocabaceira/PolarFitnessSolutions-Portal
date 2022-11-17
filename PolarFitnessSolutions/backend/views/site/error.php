@@ -6,8 +6,9 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
-
+$name = 'PolarFitnessSolutions';
 $this->title = $name;
+
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
 <div class="error-page">

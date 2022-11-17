@@ -64,12 +64,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        if(!Yii::$app->user->can('acederBackOffice')){
+        if(Yii::$app->user->can('administrador')){
             return $this->render('index');
         }
         else{
             Yii::$app->user->logout();
-            return $this->goHome();
+            return $this->render('error');
         }
 
     }
