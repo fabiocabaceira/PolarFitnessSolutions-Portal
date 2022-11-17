@@ -59,7 +59,7 @@ class SignupForm extends Model
 
         //assigning roles at sign up
         $auth = \Yii::$app->authManager;
-        $utilizadorRole = $auth->getRole('utilizador');
+        $utilizadorRole = $auth->getRole('funcionario');
         $auth->assign($utilizadorRole, $user->getId());
         return $this->sendEmail($user);
     }

@@ -92,7 +92,6 @@ class m221113_130217_init_rbac extends Migration
         $acederBackOffice->ruleName = $rule->name;
         $auth->add($acederBackOffice);
 
-
         //Criação de Roles
 
         //Utilizador
@@ -104,23 +103,15 @@ class m221113_130217_init_rbac extends Migration
         $auth->addChild($utilizador, $trocarMensagens);
         $auth->addChild($utilizador, $criarPlanosTreino);
 
-
         //Funcionário
         $funcionario = $auth->createRole('funcionario');
         $auth->add($funcionario);
         $auth->addChild($funcionario, $gerirUtilizadores);
 
-
         //Administrador
         $administrador = $auth->createRole('administrador');
         $auth->add($administrador);
         $auth->addChild($administrador,$acederBackOffice);
-
-
-
-
-
-
 
 
     }

@@ -36,14 +36,28 @@ AppAsset::register($this);
     ]);
         $menuItems = [
             ['label' => 'Criar conta', 'url' => ['/site/signup']],
-            ['label' => 'Detalhes conta', 'url' => ['/site/signup']],
-            ['label' => 'Inscreva-se', 'url' => ['/site/signup']],
-            ['label' => 'Mensagens', 'url' => ['/site/signup']],
-            ['label' => 'Gerir Planos de treino', 'url' => ['/site/signup']],
-            ['label' => 'Clientes', 'url' => ['/site/signup']],
-            ['label' => 'Atribuir planos de treino', 'url' => ['/site/signup']],
         ];
-        
+
+        if(Yii::$app->user->can('funcionario')){
+            $menuItems = [
+                ['label' => 'Detalhes conta', 'url' => ['/site/signup']],
+                ['label' => 'Mensagens', 'url' => ['/site/signup']],
+                ['label' => 'Gerir Planos de treino', 'url' => ['/site/signup']],
+                ['label' => 'Clientes', 'url' => ['/site/signup']],
+                ['label' => 'Atribuir planos de treino', 'url' => ['/site/signup']]
+            ];
+        } else if(Yii::$app->user->can('utilizador')){
+            $menuItems = [
+                ['label' => 'Detalhes conta', 'url' => ['/site/signup']],
+                ['label' => 'Inscreva-se', 'url' => ['/site/signup']],
+                ['label' => 'Mensagens', 'url' => ['/site/signup']],
+            ];
+        }
+
+
+
+
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
         'items' => $menuItems,

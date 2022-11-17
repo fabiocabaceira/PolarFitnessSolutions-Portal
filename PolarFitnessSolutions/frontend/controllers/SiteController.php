@@ -75,7 +75,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->can('administrador')){
+            return $this->render('error.php');
+        } else {
+            return $this->render('index');
+        }
+
     }
 
     /**

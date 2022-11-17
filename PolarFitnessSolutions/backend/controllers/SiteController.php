@@ -64,7 +64,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        if(Yii::$app->user->can('acederBackOffice')){
+        if(!Yii::$app->user->can('acederBackOffice')){
             return $this->render('index');
         }
         else{
