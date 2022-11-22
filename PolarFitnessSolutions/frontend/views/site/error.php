@@ -6,7 +6,8 @@
 /** @var Exception $exception */
 
 use yii\helpers\Html;
-
+$name = 'PolarFitnessSolutions';
+$message = 'Erro de acesso';
 $this->title = $name;
 ?>
 <div class="site-error">

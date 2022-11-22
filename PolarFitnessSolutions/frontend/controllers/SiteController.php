@@ -75,7 +75,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->can('administrador')){
+            Yii::$app->user->logout();
+            return $this->goHome();
+        } else {
+            return $this->render('index');
+        }
+
     }
 
     /**
