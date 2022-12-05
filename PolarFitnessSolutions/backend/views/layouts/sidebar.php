@@ -42,7 +42,7 @@ use yii\helpers\Url;
                 'items' => [
                     ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['/user/index']],
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['/funcionario/index']],
-                    ['label' => 'Planos de Treino',  'icon' => 'fa-solid fa-file', 'url' => ['']],
+                    ['label' => 'Planos de Treino',  'icon' => 'fa-solid fa-file', 'url' => ['/planodetreino/index']],
                     ['label' => 'Planos Alimentares',  'icon' => 'fa-solid fa-file', 'url' => ['']],
                     ['label' => 'Calendário',  'icon' => 'fa-solid fa-calendar-days', 'url' => ['']],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
