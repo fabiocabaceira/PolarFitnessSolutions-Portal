@@ -5,7 +5,7 @@ use yii\helpers\Url;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="" class="brand-link">
         <img src="<?= URL::to("@web/imgs/Polar_logo.jpeg")?>" alt="PolarFitnessSolutions Logo" class="brand-image elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Polar Fitness</span>
     </a>
