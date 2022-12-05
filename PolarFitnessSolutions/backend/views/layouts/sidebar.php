@@ -18,7 +18,7 @@ use yii\helpers\Url;
                 <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?=Yii::$app->user->identity->username ?> </a>
+                <a href="" class="d-block"><?=Yii::$app->user->identity->username ?> </a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@ use yii\helpers\Url;
                     ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['/user/index']],
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['/funcionario/index']],
                     ['label' => 'Planos de Treino',  'icon' => 'fa-solid fa-file', 'url' => ['/planodetreino/index']],
-                    ['label' => 'Planos Alimentares',  'icon' => 'fa-solid fa-file', 'url' => ['']],
+                    ['label' => 'Planos Alimentares',  'icon' => 'fa-solid fa-file', 'url' => ['/planonutricional/index']],
                     ['label' => 'Calendário',  'icon' => 'fa-solid fa-calendar-days', 'url' => ['']],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
