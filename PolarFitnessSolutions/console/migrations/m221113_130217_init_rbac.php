@@ -8,6 +8,13 @@ use yii\db\Migration;
 class m221113_130217_init_rbac extends Migration
 {
     /**
+     * Table name
+     *
+     * @var string
+     */
+    private $_user = "{{%user}}";
+
+    /**
      * {@inheritdoc}
      */
     public function safeUp()
@@ -25,10 +32,45 @@ class m221113_130217_init_rbac extends Migration
         return false;
     }
 
-
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
+
+        //Criação de utilizadores default na base de dados (admin, utilizador e funcionário)
+        $password_hash = Yii::$app->getSecurity()->generatePasswordHash('12345678');
+        $auth_key = Yii::$app->security->generateRandomString();
+        $table = $this->_user;
+        $time = time();
+
+        //admin
+        $sql1 = <<<SQL
+        INSERT INTO {$table}
+        (`username`, `password_hash`,`email`, `auth_key`, `created_at`, `updated_at`)
+        VALUES
+        ('admin', '$password_hash',  'admin@email.com', '$auth_key', {$time}, {$time})
+        SQL;
+
+        //utilizador
+        $sql2 = <<<SQL
+        INSERT INTO {$table}
+        (`username`, `password_hash`,`email`, `auth_key`, `created_at`, `updated_at`)
+        VALUES
+        ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key', {$time}, {$time})
+        SQL;
+
+        //funcionario
+        $sql3 = <<<SQL
+        INSERT INTO {$table}
+        (`username`, `password_hash`,`email`, `auth_key`, `created_at`, `updated_at`)
+        VALUES
+        ('Joao', '$password_hash',  'Joao@email.com', '$auth_key', {$time}, {$time})
+        SQL;
+
+        Yii::$app->db->createCommand($sql1)->execute();
+        Yii::$app->db->createCommand($sql2)->execute();
+        Yii::$app->db->createCommand($sql3)->execute();
+
+        //authManager
         $auth = Yii::$app->authManager;
 
         //rules
@@ -113,6 +155,10 @@ class m221113_130217_init_rbac extends Migration
         $auth->add($administrador);
         $auth->addChild($administrador,$acederBackOffice);
 
+        //Assign de roles
+        $auth->assign($administrador, 1);
+        $auth->assign($utilizador, 2);
+        $auth->assign($funcionario, 3);
 
     }
 
