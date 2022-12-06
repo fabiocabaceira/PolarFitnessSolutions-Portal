@@ -25,6 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
+            <?= $form->field($model, 'rua')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'codigo_postal')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'localidade')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'telefone')->textInput() ?>
+
+            <?= $form->field($model, 'nif')->textInput() ?>
+
+            <?= $form->field($model, 'genero')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
+
+
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
