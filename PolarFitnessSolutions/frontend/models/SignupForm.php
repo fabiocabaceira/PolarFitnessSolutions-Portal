@@ -41,6 +41,14 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            ['rua', 'required'],
+            ['codigo_postal', 'required'],
+            ['localidade', 'required'],
+            ['telefone', 'required'],
+            ['nif', 'required'],
+            ['genero', 'required'],
+
         ];
     }
 
