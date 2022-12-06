@@ -7,15 +7,6 @@ use Yii;
 /**
  * This is the model class for table "user".
  *
- * @property int $id
- * @property string $username
- * @property string $password_hash
- * @property string $email
- * @property string $auth_key
- * @property string|null $password_reset_token
- * @property int $created_at
- * @property int $updated_at
- * @property string $verification_token
  * @property int $status
  * @property string|null $rua
  * @property string|null $codigo_postal
@@ -34,7 +25,7 @@ use Yii;
  * @property PlanoNutricional[] $planoNutricionals
  * @property SessaoDeTreino[] $sessaoDeTreinos
  */
-class User extends \yii\db\ActiveRecord
+class User extends \common\models\User
 {
     /**
      * {@inheritdoc}
