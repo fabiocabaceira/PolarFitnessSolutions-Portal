@@ -6,14 +6,14 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\User $model */
 
-$this->title = $model->id;
+$this->title ='Cliente: '. $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -31,20 +31,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'password_hash',
             'email:email',
-            'auth_key',
-            'password_reset_token',
-            'created_at',
-            'updated_at',
-            'verification_token',
-            'status',
+            [
+                'attribute'=>'status',
+                'value'=> function ($model){
+                    if($model->status ==0){
+                        return 'Apagado';
+                    }
+                    if ($model->status ==9){
+                        return 'Inativo';
+                    }
+                    if ($model->status ==10){
+                        return 'Ativo';
+                    }
+                    else{
+                        return 'Invalido';
+                    }
+                },
+            ],
             'rua',
             'codigo_postal',
             'localidade',
             'telefone',
             'nif',
             'genero',
+            'password_hash',
+            'auth_key',
+            'password_reset_token',
+            'created_at',
+            'updated_at',
+            'verification_token',
             'ginasio_id',
         ],
     ]) ?>
