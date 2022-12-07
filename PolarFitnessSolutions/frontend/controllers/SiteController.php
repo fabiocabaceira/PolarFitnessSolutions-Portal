@@ -29,7 +29,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'user'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -147,9 +147,11 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionConta()
     {
-        return $this->render('about');
+        return $this->render('conta');
+        $model = new Profile();
+        if($model->load(Yii::$app->request->post()) && $model->profileSave());
     }
 
     /**

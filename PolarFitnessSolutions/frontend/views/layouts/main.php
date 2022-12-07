@@ -12,7 +12,7 @@ use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
 ?>
-<?php $this->beginPage() ?>
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
@@ -28,7 +28,7 @@ AppAsset::register($this);
 <header>
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Yii::$app->name = 'Polar Fitness Solutions',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
@@ -40,7 +40,7 @@ AppAsset::register($this);
 
         if(Yii::$app->user->can('funcionario')){
             $menuItems = [
-                ['label' => 'Detalhes conta', 'url' => ['/site/signup']],
+                ['label' => 'Conta', 'url' => ['/site/conta']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
                 ['label' => 'Gerir Planos de treino', 'url' => ['/site/signup']],
                 ['label' => 'Clientes', 'url' => ['/site/signup']],
@@ -48,7 +48,7 @@ AppAsset::register($this);
             ];
         } else if(Yii::$app->user->can('utilizador')){
             $menuItems = [
-                ['label' => 'Detalhes conta', 'url' => ['/site/signup']],
+                ['label' => 'Conta', 'url' => ['site/conta']],
                 ['label' => 'Inscreva-se', 'url' => ['/site/signup']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
             ];
