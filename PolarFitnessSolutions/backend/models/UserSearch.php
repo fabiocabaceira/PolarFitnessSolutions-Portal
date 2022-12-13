@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\User;
+use backend\models\User;
 
 /**
  * UserSearch represents the model behind the search form of `app\models\User`.
@@ -17,7 +17,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'status', 'telefone', 'nif', 'ginasio_id'], 'integer'],
+            [['id', 'created_at', 'updated_at', 'status', 'telefone', 'nif', 'role'], 'integer'],
             [['username', 'password_hash', 'email', 'auth_key', 'password_reset_token', 'verification_token', 'rua', 'codigo_postal', 'localidade', 'genero'], 'safe'],
         ];
     }
@@ -64,7 +64,7 @@ class UserSearch extends User
             'status' => $this->status,
             'telefone' => $this->telefone,
             'nif' => $this->nif,
-            'ginasio_id' => $this->ginasio_id,
+            'role' => $this->role,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])

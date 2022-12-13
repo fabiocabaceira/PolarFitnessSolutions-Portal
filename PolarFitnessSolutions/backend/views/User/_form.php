@@ -14,7 +14,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'created_at')->textInput() ?>
+
+    <?= $form->field($model, 'updated_at')->textInput() ?>
+
+    <?= $form->field($model, 'verification_token')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'rua')->textInput(['maxlength' => true]) ?>
 
@@ -28,7 +42,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'genero')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'ginasio_id')->textInput() ?>
+    <?= $form->field($model, 'role')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

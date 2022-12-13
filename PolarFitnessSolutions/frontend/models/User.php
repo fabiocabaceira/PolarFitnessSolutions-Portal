@@ -7,25 +7,37 @@ use Yii;
 /**
  * This is the model class for table "user".
  *
+ * @property int $id
+ * @property string $username
+ * @property string $password_hash
+ * @property string $email
+ * @property string $auth_key
+ * @property string|null $password_reset_token
+ * @property int $created_at
+ * @property int $updated_at
+ * @property string|null $verification_token
  * @property int $status
- * @property string|null $rua
- * @property string|null $codigo_postal
- * @property string|null $localidade
- * @property int|null $telefone
- * @property int|null $nif
+ * @property string $rua
+ * @property string $codigo_postal
+ * @property string $localidade
+ * @property int $telefone
+ * @property int $nif
  * @property string|null $genero
- * @property int|null $ginasio_id
+ * @property int $role
  *
  * @property AvaliacaoFisica[] $avaliacaoFisicas
- * @property Funcionario[] $funcionarios
- * @property Ginasio $ginasio
+ * @property AvaliacaoFisica[] $avaliacaoFisicas0
  * @property Inscricao[] $inscricaos
  * @property Mensagem[] $mensagems
+ * @property Mensagem[] $mensagems0
  * @property PlanoDeTreino[] $planoDeTreinos
+ * @property PlanoDeTreino[] $planoDeTreinos0
  * @property PlanoNutricional[] $planoNutricionals
+ * @property PlanoNutricional[] $planoNutricionals0
+ * @property SalaDeExercicio[] $salaDeExercicios
  * @property SessaoDeTreino[] $sessaoDeTreinos
  */
-class User extends \common\models\User
+class User extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -41,17 +53,16 @@ class User extends \common\models\User
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'email', 'auth_key', 'created_at', 'updated_at', 'verification_token'], 'required'],
-            [['created_at', 'updated_at', 'status', 'telefone', 'nif', 'ginasio_id'], 'integer'],
+            [['username', 'password_hash', 'email', 'auth_key', 'created_at', 'updated_at', 'rua', 'codigo_postal', 'localidade', 'telefone', 'nif', 'role'], 'required'],
+            [['created_at', 'updated_at', 'status', 'telefone', 'nif', 'role'], 'integer'],
             [['genero'], 'string'],
             [['username', 'localidade'], 'string', 'max' => 50],
             [['password_hash', 'password_reset_token', 'verification_token'], 'string', 'max' => 255],
             [['email'], 'string', 'max' => 70],
             [['auth_key'], 'string', 'max' => 32],
             [['rua'], 'string', 'max' => 200],
-            [['codigo_postal'], 'string', 'max' => 5],
+            [['codigo_postal'], 'string', 'max' => 8],
             [['password_reset_token'], 'unique'],
-            [['ginasio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ginasio::class, 'targetAttribute' => ['ginasio_id' => 'id']],
         ];
     }
 
@@ -77,7 +88,7 @@ class User extends \common\models\User
             'telefone' => 'Telefone',
             'nif' => 'Nif',
             'genero' => 'Genero',
-            'ginasio_id' => 'Ginasio ID',
+            'role' => 'Role',
         ];
     }
 
@@ -88,27 +99,17 @@ class User extends \common\models\User
      */
     public function getAvaliacaoFisicas()
     {
+        return $this->hasMany(AvaliacaoFisica::class, ['id_funcionario' => 'id']);
+    }
+
+    /**
+     * Gets query for [[AvaliacaoFisicas0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAvaliacaoFisicas0()
+    {
         return $this->hasMany(AvaliacaoFisica::class, ['id_user' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Funcionarios]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFuncionarios()
-    {
-        return $this->hasMany(Funcionario::class, ['cliente_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Ginasio]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGinasio()
-    {
-        return $this->hasOne(Ginasio::class, ['id' => 'ginasio_id']);
     }
 
     /**
@@ -132,6 +133,16 @@ class User extends \common\models\User
     }
 
     /**
+     * Gets query for [[Mensagems0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMensagems0()
+    {
+        return $this->hasMany(Mensagem::class, ['id_funcionario' => 'id']);
+    }
+
+    /**
      * Gets query for [[PlanoDeTreinos]].
      *
      * @return \yii\db\ActiveQuery
@@ -142,6 +153,16 @@ class User extends \common\models\User
     }
 
     /**
+     * Gets query for [[PlanoDeTreinos0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlanoDeTreinos0()
+    {
+        return $this->hasMany(PlanoDeTreino::class, ['id_funcionario' => 'id']);
+    }
+
+    /**
      * Gets query for [[PlanoNutricionals]].
      *
      * @return \yii\db\ActiveQuery
@@ -149,6 +170,26 @@ class User extends \common\models\User
     public function getPlanoNutricionals()
     {
         return $this->hasMany(PlanoNutricional::class, ['id_user' => 'id']);
+    }
+
+    /**
+     * Gets query for [[PlanoNutricionals0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlanoNutricionals0()
+    {
+        return $this->hasMany(PlanoNutricional::class, ['id_funcionario' => 'id']);
+    }
+
+    /**
+     * Gets query for [[SalaDeExercicios]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSalaDeExercicios()
+    {
+        return $this->hasMany(SalaDeExercicio::class, ['user_id' => 'id']);
     }
 
     /**
