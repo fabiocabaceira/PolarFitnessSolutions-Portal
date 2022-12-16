@@ -101,3 +101,93 @@ a.desc:after {
 {
     text-decoration: none;
 }
+
+.image-login{
+    width: 350px;
+    /*these 3 lines make the image centered */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* ************************************ */
+}
+
+.bg-custom-2 {
+    height: 55px;
+    background-image: linear-gradient(15deg, #007bff 0%, #00b3ff 100%);
+}
+
+a.my-btn:hover{
+    color: #00b3ff;
+}
+
+a.nav-link{
+    text-decoration: none;
+    color: white;
+}
+
+/*a.nav-link:hover{
+
+    color: black;
+}*/
+
+.my-btn{
+    color: white;
+}
+a.my-btn:hover{
+    color:black;
+}
+a.navbar-brand:hover{
+    color:black;
+}
+/* stroke */
+nav.stroke li a.nav-link,
+nav.fill li a.nav-link {
+    position: relative;
+}
+nav.stroke li a.nav-link:after,
+nav.fill li a.nav-link:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+}
+nav.stroke li a.nav-link:hover:after {
+    width: 100%;
+}
+
+nav.fill li a.nav-link {
+    transition: all 2s;
+}
+
+nav.fill li a.nav-link:after {
+    text-align: left;
+    content: '.';
+    margin: 0;
+    opacity: 0;
+}
+nav.fill li a.nav-link:hover {
+    color: #fff;
+    z-index: 1;
+}
+nav.fill li a.nav-link:hover:after {
+    z-index: -10;
+    animation: fill 1s forwards;
+    -webkit-animation: fill 1s forwards;
+    -moz-animation: fill 1s forwards;
+    opacity: 1;
+}
+
+.image-nav{
+    width: 35px;
+    /*these 3 lines make the image centered */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* ************************************ */
+}
