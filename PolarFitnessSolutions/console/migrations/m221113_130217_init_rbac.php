@@ -36,34 +36,36 @@ class m221113_130217_init_rbac extends Migration
     public function up()
     {
 
-        //Criação de utilizadores default na base de dados (admin, utilizador e funcionário)
+        //Criação de utilizadores default na base de dados (admin, utilizador e funcionario)
         $password_hash = Yii::$app->getSecurity()->generatePasswordHash('12345678');
         $auth_key = Yii::$app->security->generateRandomString();
         $table = $this->_user;
-        $time = time();
+        $verification_token = Yii::$app->getSecurity()->generateRandomString();
+        $now1 = touch('created_at');
+        $now2 = touch('updated_at');
 
         //admin
         $sql1 = <<<SQL
         INSERT INTO {$table}
-        (`username`, `password_hash`,`email`, `auth_key`, `created_at`, `updated_at`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`,`role`)
+        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
         VALUES
-        ('admin', '$password_hash',  'admin@email.com', '$auth_key', {$time}, {$time}, 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro', '1')
+        ('admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
         SQL;
 
         //utilizador
         $sql2 = <<<SQL
         INSERT INTO {$table}
-        (`username`, `password_hash`,`email`, `auth_key`, `created_at`, `updated_at`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`,`role`)
+        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
         VALUES
-        ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key', {$time}, {$time}, 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro', '2')
+        ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', '$now1', '$now2','10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
         SQL;
 
         //funcionario
         $sql3 = <<<SQL
         INSERT INTO {$table}
-        (`username`, `password_hash`,`email`, `auth_key`, `created_at`, `updated_at`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`,`role`)
+        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
         VALUES
-        ('Joao', '$password_hash',  'Joao@email.com', '$auth_key', {$time}, {$time}, 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino', '3')
+        ('Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino')
         SQL;
 
         Yii::$app->db->createCommand($sql1)->execute();
@@ -74,12 +76,10 @@ class m221113_130217_init_rbac extends Migration
         $auth = Yii::$app->authManager;
 
         //rules
-        $rule = new \yii\rbac\AdministradorRule;
+        $rule = new \console\rules\AdministradorRule;
         $auth->add($rule);
 
-
        // Criação de permissions
-
         $verFuncionario = $auth->createPermission('verFuncionario');
         $verFuncionario->description = 'Ver Funcionarios';
         $auth->add($verFuncionario);
