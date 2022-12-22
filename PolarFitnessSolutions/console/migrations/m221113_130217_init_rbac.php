@@ -42,15 +42,12 @@ class m221113_130217_init_rbac extends Migration
         $table = $this->_user;
         $verification_token = Yii::$app->getSecurity()->generateRandomString();
 
-        $timezone = new DateTimeZone("Europe/Lisbon");
-        $Now = DateTime::createFromFormat('YYYY-mm-dd ', time(), $timezone);
-
         //admin
         $sql1 = <<<SQL
         INSERT INTO {$table}
         (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
         VALUES
-        ('admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', '$Now', '$Now', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
+        ('admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', 'time()', 'time()', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
         SQL;
 
         //utilizador
@@ -58,7 +55,7 @@ class m221113_130217_init_rbac extends Migration
         INSERT INTO {$table}
         (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
         VALUES
-        ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', '$Now', '$Now','10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
+        ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', 'time()', 'time()','10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
         SQL;
 
         //funcionario
@@ -66,7 +63,7 @@ class m221113_130217_init_rbac extends Migration
         INSERT INTO {$table}
         (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
         VALUES
-        ('Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', '$Now', '$Now', '10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino')
+        ('Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', 'time()', 'time()', '10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino')
         SQL;
 
         Yii::$app->db->createCommand($sql1)->execute();
