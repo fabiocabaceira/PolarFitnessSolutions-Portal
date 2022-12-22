@@ -102,6 +102,13 @@ a.desc:after {
     text-decoration: none;
 }
 
+.carousel-1{
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .image-login{
     width: 350px;
     /*these 3 lines make the image centered */
@@ -114,10 +121,6 @@ a.desc:after {
 .bg-custom-2 {
     height: 55px;
     background-image: linear-gradient(15deg, #007bff 0%, #00b3ff 100%);
-}
-
-a.my-btn:hover{
-    color: #00b3ff;
 }
 
 a.nav-link{
@@ -136,6 +139,7 @@ a.nav-link{
 a.my-btn:hover{
     color:black;
 }
+
 a.navbar-brand:hover{
     color:black;
 }
