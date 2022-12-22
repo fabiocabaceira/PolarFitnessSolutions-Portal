@@ -97,8 +97,7 @@ h3{
 }
 
 .image-login{
-    width: 320px;
-    height: 320px;
+    width: 350px;
     /*these 3 lines make the image centered */
     display: block;
     margin-left: auto;
