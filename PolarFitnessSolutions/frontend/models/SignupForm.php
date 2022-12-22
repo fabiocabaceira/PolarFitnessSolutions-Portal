@@ -20,8 +20,6 @@ class SignupForm extends Model
     public $nif;
     public $genero;
     public $password;
-    public $role;
-
 
     /**
      * {@inheritdoc}
@@ -49,7 +47,6 @@ class SignupForm extends Model
             ['telefone', 'required'],
             ['nif', 'required'],
             ['genero', 'required'],
-            ['role', 'required'],
 
         ];
     }
@@ -77,12 +74,11 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        $user->role = $this->role;
         $user->save();
 
         //assigning roles at sign up
         $auth = \Yii::$app->authManager;
-        $utilizadorRole = $auth->getRole('administrador');
+        $utilizadorRole = $auth->getRole('utilizador');
         $auth->assign($utilizadorRole, $user->getId());
         return $this->sendEmail($user);
     }
