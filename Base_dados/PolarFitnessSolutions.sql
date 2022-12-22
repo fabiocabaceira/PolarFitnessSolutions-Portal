@@ -11,7 +11,6 @@ CREATE TABLE ginasio(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-
 CREATE TABLE user(
     id                      INT             UNSIGNED   AUTO_INCREMENT,
     username                VARCHAR(50)     NOT NULL,
@@ -19,8 +18,8 @@ CREATE TABLE user(
     email                   VARCHAR(70)     NOT NULL,
     auth_key                VARCHAR(32)     NOT NULL,
     password_reset_token    VARCHAR(255)    NULL    UNIQUE,    
-    created_at              INT             NOT NULL,
-    updated_at              INT             NOT NULL,
+    created_at              DATETIME             NOT NULL,
+    updated_at              DATETIME             NOT NULL,
     verification_token      VARCHAR(255)    NULL,
     `status`                SMALLINT(6)     NOT NULL     DEFAULT '9',
     rua                     VARCHAR(200)    NOT NULL,
@@ -29,7 +28,6 @@ CREATE TABLE user(
     telefone                INT             NOT NULL,
     nif                     INT             NOT NULL,
     genero                  ENUM('Masculino', 'Feminimo', 'Outro')  NULL,
-    role					INT				NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

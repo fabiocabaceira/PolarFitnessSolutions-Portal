@@ -88,7 +88,6 @@ class User extends \yii\db\ActiveRecord
             'telefone' => 'Telefone',
             'nif' => 'Nif',
             'genero' => 'Genero',
-            'role' => 'Role',
         ];
     }
 

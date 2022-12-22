@@ -37,9 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'genero')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
-                <?= $form->field($model, 'role')->dropDownList([ 1 => 'Admin', 2 => 'Funcionario', 3 => 'Cliente', ], ['prompt' => '']) ?>
-
-
             <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
