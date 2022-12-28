@@ -18,6 +18,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -55,7 +56,7 @@ AppAsset::register($this);
         } else if(Yii::$app->user->can('utilizador')){
             $menuItems = [
                 ['label' => 'Conta', 'url' => ['site/conta']],
-                ['label' => 'Inscreva-se', 'url' => ['/site/signup']],
+                ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
             ];
         }

@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
+use frontend\models\BookingForm;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -73,15 +75,26 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+
     public function actionIndex()
     {
+
         if(Yii::$app->user->can('administrador')){
             Yii::$app->user->logout();
-            return $this->goHome();
+            Yii::$app->session->setFlash('error', 'Invalid User Type');
+            return $this->redirect(['site/login']);
         } else {
             return $this->render('index');
         }
 
+    }
+
+    public function actionBooking(){
+        $model = new BookingForm();
+        if($model->load(Yii::$app->request->post()) && $model->booking());
+        return $this->render('booking', [
+            'model' => $model,
+        ]);
     }
 
     /**

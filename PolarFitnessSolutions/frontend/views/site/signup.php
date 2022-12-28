@@ -44,7 +44,6 @@ use yii\bootstrap5\ActiveForm;
 
                             <?= $form->field($model, 'genero')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
-                            <?= $form->field($model, 'role')->dropDownList([ 1 => 'Admin', 2 => 'Funcionario', 3 => 'Cliente', ], ['prompt' => '']) ?>
                         </div>
                         <spacer type="horizontal" width="100" height="100"> ㅤ </spacer>
                         <div class="d-grid gap-2 col-8 mx-auto">
