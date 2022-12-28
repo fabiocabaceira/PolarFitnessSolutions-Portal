@@ -17,25 +17,26 @@ use Yii;
  * @property int $updated_at
  * @property string|null $verification_token
  * @property int $status
- * @property string $rua
- * @property string $codigo_postal
- * @property string $localidade
- * @property int $telefone
+ * @property string $street
+ * @property string $zip_code
+ * @property string $area
+ * @property int $phone_number
  * @property int $nif
- * @property string|null $genero
- * @property int $role
+ * @property string|null $gender
  *
- * @property AvaliacaoFisica[] $avaliacaoFisicas
- * @property AvaliacaoFisica[] $avaliacaoFisicas0
- * @property Inscricao[] $inscricaos
- * @property Mensagem[] $mensagems
- * @property Mensagem[] $mensagems0
- * @property PlanoDeTreino[] $planoDeTreinos
- * @property PlanoDeTreino[] $planoDeTreinos0
- * @property PlanoNutricional[] $planoNutricionals
- * @property PlanoNutricional[] $planoNutricionals0
- * @property SalaDeExercicio[] $salaDeExercicios
- * @property SessaoDeTreino[] $sessaoDeTreinos
+ * @property Booking[] $bookings
+ * @property Client $client
+ * @property GymArea[] $gymAreas
+ * @property Messages[] $messages
+ * @property Messages[] $messages0
+ * @property NutritionPlan[] $nutritionPlans
+ * @property NutritionPlan[] $nutritionPlans0
+ * @property PhysicalEvaluation[] $physicalEvaluations
+ * @property PhysicalEvaluation[] $physicalEvaluations0
+ * @property Worker $worker
+ * @property WorkoutPlan[] $workoutPlans
+ * @property WorkoutPlan[] $workoutPlans0
+ * @property WorkoutSession[] $workoutSessions
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -53,15 +54,15 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'email', 'auth_key', 'created_at', 'updated_at', 'rua', 'codigo_postal', 'localidade', 'telefone', 'nif', 'role'], 'required'],
-            [['created_at', 'updated_at', 'status', 'telefone', 'nif', 'role'], 'integer'],
-            [['genero'], 'string'],
-            [['username', 'localidade'], 'string', 'max' => 50],
+            [['username', 'password_hash', 'email', 'auth_key', 'created_at', 'updated_at', 'street', 'zip_code', 'area', 'phone_number', 'nif'], 'required'],
+            [['created_at', 'updated_at', 'status', 'phone_number', 'nif'], 'integer'],
+            [['gender'], 'string'],
+            [['username', 'area'], 'string', 'max' => 50],
             [['password_hash', 'password_reset_token', 'verification_token'], 'string', 'max' => 255],
             [['email'], 'string', 'max' => 70],
             [['auth_key'], 'string', 'max' => 32],
-            [['rua'], 'string', 'max' => 200],
-            [['codigo_postal'], 'string', 'max' => 8],
+            [['street'], 'string', 'max' => 200],
+            [['zip_code'], 'string', 'max' => 8],
             [['password_reset_token'], 'unique'],
         ];
     }
@@ -82,122 +83,142 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
             'status' => 'Status',
-            'rua' => 'Rua',
-            'codigo_postal' => 'Codigo Postal',
-            'localidade' => 'Localidade',
-            'telefone' => 'Telefone',
+            'street' => 'Street',
+            'zip_code' => 'Zip Code',
+            'area' => 'Area',
+            'phone_number' => 'Phone Number',
             'nif' => 'Nif',
-            'genero' => 'Genero',
+            'gender' => 'Gender',
         ];
     }
 
     /**
-     * Gets query for [[AvaliacaoFisicas]].
+     * Gets query for [[Bookings]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getAvaliacaoFisicas()
+    public function getBookings()
     {
-        return $this->hasMany(AvaliacaoFisica::class, ['id_funcionario' => 'id']);
+        return $this->hasMany(Booking::class, ['user_id' => 'id']);
     }
 
     /**
-     * Gets query for [[AvaliacaoFisicas0]].
+     * Gets query for [[Client]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getAvaliacaoFisicas0()
+    public function getClient()
     {
-        return $this->hasMany(AvaliacaoFisica::class, ['id_user' => 'id']);
+        return $this->hasOne(Client::class, ['client_id' => 'id']);
     }
 
     /**
-     * Gets query for [[Inscricaos]].
+     * Gets query for [[GymAreas]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getInscricaos()
+    public function getGymAreas()
     {
-        return $this->hasMany(Inscricao::class, ['id_user' => 'id']);
+        return $this->hasMany(GymArea::class, ['user_id' => 'id']);
     }
 
     /**
-     * Gets query for [[Mensagems]].
+     * Gets query for [[Messages]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMensagems()
+    public function getMessages()
     {
-        return $this->hasMany(Mensagem::class, ['id_user' => 'id']);
+        return $this->hasMany(Messages::class, ['user_id' => 'id']);
     }
 
     /**
-     * Gets query for [[Mensagems0]].
+     * Gets query for [[Messages0]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMensagems0()
+    public function getMessages0()
     {
-        return $this->hasMany(Mensagem::class, ['id_funcionario' => 'id']);
+        return $this->hasMany(Messages::class, ['worker_id' => 'id']);
     }
 
     /**
-     * Gets query for [[PlanoDeTreinos]].
+     * Gets query for [[NutritionPlans]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPlanoDeTreinos()
+    public function getNutritionPlans()
     {
-        return $this->hasMany(PlanoDeTreino::class, ['id_user' => 'id']);
+        return $this->hasMany(NutritionPlan::class, ['user_id' => 'id']);
     }
 
     /**
-     * Gets query for [[PlanoDeTreinos0]].
+     * Gets query for [[NutritionPlans0]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPlanoDeTreinos0()
+    public function getNutritionPlans0()
     {
-        return $this->hasMany(PlanoDeTreino::class, ['id_funcionario' => 'id']);
+        return $this->hasMany(NutritionPlan::class, ['worker_id' => 'id']);
     }
 
     /**
-     * Gets query for [[PlanoNutricionals]].
+     * Gets query for [[PhysicalEvaluations]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPlanoNutricionals()
+    public function getPhysicalEvaluations()
     {
-        return $this->hasMany(PlanoNutricional::class, ['id_user' => 'id']);
+        return $this->hasMany(PhysicalEvaluation::class, ['worker_id' => 'id']);
     }
 
     /**
-     * Gets query for [[PlanoNutricionals0]].
+     * Gets query for [[PhysicalEvaluations0]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPlanoNutricionals0()
+    public function getPhysicalEvaluations0()
     {
-        return $this->hasMany(PlanoNutricional::class, ['id_funcionario' => 'id']);
+        return $this->hasMany(PhysicalEvaluation::class, ['user_id' => 'id']);
     }
 
     /**
-     * Gets query for [[SalaDeExercicios]].
+     * Gets query for [[Worker]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSalaDeExercicios()
+    public function getWorker()
     {
-        return $this->hasMany(SalaDeExercicio::class, ['user_id' => 'id']);
+        return $this->hasOne(Worker::class, ['worker_id' => 'id']);
     }
 
     /**
-     * Gets query for [[SessaoDeTreinos]].
+     * Gets query for [[WorkoutPlans]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSessaoDeTreinos()
+    public function getWorkoutPlans()
     {
-        return $this->hasMany(SessaoDeTreino::class, ['id_user' => 'id']);
+        return $this->hasMany(WorkoutPlan::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[WorkoutPlans0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getWorkoutPlans0()
+    {
+        return $this->hasMany(WorkoutPlan::class, ['worker_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[WorkoutSessions]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getWorkoutSessions()
+    {
+        return $this->hasMany(WorkoutSession::class, ['user_id' => 'id']);
     }
 }

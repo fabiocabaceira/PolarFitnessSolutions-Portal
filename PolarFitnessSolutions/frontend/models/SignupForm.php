@@ -7,19 +7,19 @@ use yii\base\Model;
 use common\models\User;
 
 /**
- * Signup form
+ * Signup forms
  */
 class SignupForm extends Model
 {
     public $username;
     public $email;
-    public $rua;
-    public $codigo_postal;
-    public $localidade;
-    public $telefone;
-    public $nif;
-    public $genero;
+    public $street;
+    public $zip_code;
+    public $area;
+    public $phone_number;
+    public $gender;
     public $password;
+    public $nif;
 
     /**
      * {@inheritdoc}
@@ -41,12 +41,12 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
-            ['rua', 'required'],
-            ['codigo_postal', 'required'],
-            ['localidade', 'required'],
-            ['telefone', 'required'],
+            ['street', 'required'],
+            ['zip_code', 'required'],
+            ['area', 'required'],
+            ['phone_number', 'required'],
             ['nif', 'required'],
-            ['genero', 'required'],
+            ['gender', 'required'],
 
         ];
     }
@@ -65,16 +65,20 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->rua = $this->rua;
-        $user->codigo_postal = $this->codigo_postal;
-        $user->telefone = $this->telefone;
-        $user->localidade = $this->localidade;
+        $user->street = $this->street;
+        $user->zip_code = $this->zip_code;
+        $user->phone_number = $this->phone_number;
+        $user->area = $this->area;
         $user->nif = $this->nif;
-        $user->genero = $this->genero;
+        $user->gender = $this->gender;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         $user->save();
+
+        $client = new Client();
+        $client->client_id = $user->id;
+        $client->save();
 
         //assigning roles at sign up
         $auth = \Yii::$app->authManager;

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\UserSearch $model */
+/** @var frontend\models\UserSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -35,19 +35,17 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'rua') ?>
+    <?php // echo $form->field($model, 'street') ?>
 
-    <?php // echo $form->field($model, 'codigo_postal') ?>
+    <?php // echo $form->field($model, 'zip_code') ?>
 
-    <?php // echo $form->field($model, 'localidade') ?>
+    <?php // echo $form->field($model, 'area') ?>
 
-    <?php // echo $form->field($model, 'telefone') ?>
+    <?php // echo $form->field($model, 'phone_number') ?>
 
     <?php // echo $form->field($model, 'nif') ?>
 
-    <?php // echo $form->field($model, 'genero') ?>
-
-    <?php // echo $form->field($model, 'role') ?>
+    <?php // echo $form->field($model, 'gender') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

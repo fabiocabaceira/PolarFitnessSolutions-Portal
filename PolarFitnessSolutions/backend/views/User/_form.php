@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\User $model */
+/** @var frontend\models\User $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -30,19 +30,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->textInput() ?>
 
-    <?= $form->field($model, 'rua')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'codigo_postal')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'zip_code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'localidade')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'area')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'telefone')->textInput() ?>
+    <?= $form->field($model, 'phone_number')->textInput() ?>
 
     <?= $form->field($model, 'nif')->textInput() ?>
 
-    <?= $form->field($model, 'genero')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'role')->textInput() ?>
+    <?= $form->field($model, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

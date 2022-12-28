@@ -40,11 +40,8 @@ use yii\helpers\Url;
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['/user/index']],
-                    ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['/funcionario/index']],
-                    ['label' => 'Planos de Treino',  'icon' => 'fa-solid fa-file', 'url' => ['/planodetreino/index']],
-                    ['label' => 'Planos Alimentares',  'icon' => 'fa-solid fa-file', 'url' => ['/planonutricional/index']],
-                    ['label' => 'Calendário',  'icon' => 'fa-solid fa-calendar-days', 'url' => ['']],
+                    ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['client/index']],
+                    ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['/worker/index']],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
 /*

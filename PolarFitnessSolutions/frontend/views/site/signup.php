@@ -32,19 +32,18 @@ use yii\bootstrap5\ActiveForm;
 
                             <?= $form->field($model, 'password')->passwordInput() ?>
 
-                            <?= $form->field($model, 'rua')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
 
-                            <?= $form->field($model, 'codigo_postal')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'zip_code')->textInput(['maxlength' => true]) ?>
 
-                            <?= $form->field($model, 'localidade')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'area')->textInput(['maxlength' => true]) ?>
 
-                            <?= $form->field($model, 'telefone')->textInput() ?>
+                            <?= $form->field($model, 'phone_number')->textInput() ?>
 
                             <?= $form->field($model, 'nif')->textInput() ?>
 
-                            <?= $form->field($model, 'genero')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
+                            <?= $form->field($model, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminino' => 'Feminino', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
-                            <?= $form->field($model, 'role')->dropDownList([ 1 => 'Admin', 2 => 'Funcionario', 3 => 'Cliente', ], ['prompt' => '']) ?>
                         </div>
                         <spacer type="horizontal" width="100" height="100"> ㅤ </spacer>
                         <div class="d-grid gap-2 col-8 mx-auto">

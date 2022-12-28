@@ -47,7 +47,7 @@ class m221113_130217_init_rbac extends Migration
         //admin
         $sql1 = <<<SQL
         INSERT INTO {$table}
-        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
+        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`street`,`zip_code`,`area`,`phone_number`,`nif`,`gender`)
         VALUES
         ('admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
         SQL;
@@ -55,7 +55,7 @@ class m221113_130217_init_rbac extends Migration
         //utilizador
         $sql2 = <<<SQL
         INSERT INTO {$table}
-        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
+        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`street`,`zip_code`,`area`,`phone_number`,`nif`,`gender`) 
         VALUES
         ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', '$now1', '$now2','10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro')
         SQL;
@@ -63,7 +63,7 @@ class m221113_130217_init_rbac extends Migration
         //funcionario
         $sql3 = <<<SQL
         INSERT INTO {$table}
-        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`rua`,`codigo_postal`,`localidade`,`telefone`,`nif`,`genero`)
+        (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`street`,`zip_code`,`area`,`phone_number`,`nif`,`gender`)
         VALUES
         ('Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino')
         SQL;
