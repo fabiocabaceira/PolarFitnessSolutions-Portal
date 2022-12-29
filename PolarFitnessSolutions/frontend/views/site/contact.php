@@ -8,14 +8,18 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
+$this->title = 'Apoio ao Cliente';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php $domain = yii\helpers\Url::base(true);
+
+
+     echo Html::img($domain.'/imgs/apoioaocliente.jpeg', ['alt' => 'Imagem do Polar', 'class' => 'image-login img-fluid']) ?>
 
     <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+        Inserir texto
     </p>
 
     <div class="row">

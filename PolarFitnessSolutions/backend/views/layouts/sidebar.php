@@ -7,7 +7,7 @@ use yii\helpers\Url;
     <!-- Brand Logo -->
     <a href="" class="brand-link">
         <img src="<?= URL::to("@web/imgs/Polar_logo.jpeg")?>" alt="PolarFitnessSolutions Logo" class="brand-image elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Polar Fitness</span>
+        <span class="brand-text font-weight-light">Polar Fitness Solutions </span>
     </a>
 
     <!-- Sidebar -->
