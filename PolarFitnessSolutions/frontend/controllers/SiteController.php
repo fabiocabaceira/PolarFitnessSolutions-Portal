@@ -81,8 +81,7 @@ class SiteController extends Controller
 
         if(Yii::$app->user->can('administrador')){
             Yii::$app->user->logout();
-            Yii::$app->session->setFlash('error', 'Invalid User Type');
-            return $this->redirect(['site/login']);
+            return $this->redirect(Yii::$app->urlManagerBackend->createUrl(['site/login']));
         } else {
             return $this->render('index');
         }

@@ -59,7 +59,7 @@ class SiteController extends Controller
     /**
      * Displays homepage.
      *
-     * @return string
+     * @return mixed
      */
     public function actionIndex()
     {
@@ -68,7 +68,8 @@ class SiteController extends Controller
         }
         else{
             Yii::$app->user->logout();
-            return $this->goHome();
+            return $this->redirect(Yii::$app->urlManagerFrontend->createUrl(['site/login']));
+
         }
 
     }
