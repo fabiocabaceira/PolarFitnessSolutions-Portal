@@ -39,13 +39,24 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        //implementar rbac (cliente, funcionario)
         $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search2($this->request->queryParams);
+        if (Yii::$app->user->can("utilizador")){
+            $dataProvider = $searchModel->search2($this->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }else{
+            $dataProvider = $searchModel->search($this->request->queryParams);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
     }
 
     /**

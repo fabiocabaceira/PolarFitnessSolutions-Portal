@@ -49,7 +49,7 @@ class Client extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getClient()
+    public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'client_id']);
     }

@@ -3,7 +3,11 @@
 namespace frontend\controllers;
 
 use frontend\models\client;
+use frontend\models\ClientCreateForm;
 use frontend\models\clientSearch;
+use frontend\models\SignupForm;
+use frontend\models\User;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,7 +59,9 @@ class ClientController extends Controller
      */
     public function actionView($client_id)
     {
+        $user = User::findOne($client_id);
         return $this->render('view', [
+           'user' => $user,
             'model' => $this->findModel($client_id),
         ]);
     }
@@ -67,16 +73,11 @@ class ClientController extends Controller
      */
     public function actionCreate()
     {
-        $model = new client();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'client_id' => $model->client_id]);
+        $model = new ClientCreateForm();
+        if ($model->load($this->request->post()) && $model->signup()) {
+                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+                return $this->goHome();
             }
-        } else {
-            $model->loadDefaultValues();
-        }
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -91,13 +92,15 @@ class ClientController extends Controller
      */
     public function actionUpdate($client_id)
     {
+        $user = User::findOne($client_id);
         $model = $this->findModel($client_id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $user->load($this->request->post()) && $user->save()) {
             return $this->redirect(['view', 'client_id' => $model->client_id]);
         }
 
         return $this->render('update', [
+            'user' => $user,
             'model' => $model,
         ]);
     }
@@ -111,8 +114,10 @@ class ClientController extends Controller
      */
     public function actionDelete($client_id)
     {
-        $this->findModel($client_id)->delete();
 
+        $this->findModel($client_id)->delete();
+        $user = User::findOne($client_id);
+        $user->delete();
         return $this->redirect(['index']);
     }
 

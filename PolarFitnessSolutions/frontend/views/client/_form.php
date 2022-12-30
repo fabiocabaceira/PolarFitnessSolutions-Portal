@@ -1,13 +1,11 @@
 <?php
-
-use yii\helpers\Html;
+use yii\bootstrap5\Html;
 use yii\widgets\ActiveForm;
-
+/** @var \frontend\models\ClientCreateForm $model */
 /** @var yii\web\View $this */
-/** @var frontend\models\User $model */
-/** @var yii\widgets\ActiveForm $form */
-?>
+/** @var yii\bootstrap5\ActiveForm $form */
 
+?>
 <div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
