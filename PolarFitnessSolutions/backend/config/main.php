@@ -46,7 +46,7 @@ return [
         ],
         'urlManagerFrontend' => [
             'class' => 'yii\web\urlManager',
-            'baseUrl' => 'http://localhost/school/PolarFitnessSolutions-Portal/PolarFitnessSolutions/PolarFitnessSolutions/frontend/web',
+            'baseUrl' => 'http://localhost/github/PolarFitnessSolutions-Portal/PolarFitnessSolutions/frontend/web',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
