@@ -25,11 +25,10 @@ use yii\bootstrap5\ActiveForm;
                         </div>
 
                         <h3 class="text-center">Booking</h3>
-                        <p class="text-left">Escolha um dia e uma hora para a sua inscrição:</p>
                         <?php $form = ActiveForm::begin() ?>
                         <div class="user-box">
                             <?= $form->field($model, 'booking_date')->widget(DateTimePicker::classname(), [
-                                'options' => ['placeholder' => 'Enter event time ...'],
+                                'options' => ['placeholder' => 'Escolha um dia e uma hora para a sua inscrição'],
                                 'pluginOptions' => [
                                     'autoclose' => true
                                 ]

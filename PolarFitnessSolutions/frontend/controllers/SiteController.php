@@ -90,7 +90,11 @@ class SiteController extends Controller
 
     public function actionBooking(){
         $model = new BookingForm();
-        if($model->load(Yii::$app->request->post()) && $model->booking());
+        if($model->load(Yii::$app->request->post()) && $model->booking()){
+        Yii::$app->session->setFlash('success', 'Inscricao valida');
+        return $this->goHome();
+        }
+
         return $this->render('booking', [
             'model' => $model,
         ]);
