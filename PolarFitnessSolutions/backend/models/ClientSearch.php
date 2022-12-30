@@ -1,8 +1,8 @@
 <?php
 
-namespace app\models;
-use app\models\Client;
-use app\models\User;
+namespace backend\models;
+use backend\models\Client;
+use backend\models\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;

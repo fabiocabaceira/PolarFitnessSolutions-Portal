@@ -2,8 +2,10 @@
 
 namespace backend\controllers;
 
-use app\models\Client;
-use app\models\ClientSearch;
+use backend\models\Client;
+use backend\models\ClientSearch;
+use backend\models\SignupForm;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,20 +69,17 @@ class ClientController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Client();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'client_id' => $model->client_id]);
+        $model = new SignupForm();
+            if ($model->load($this->request->post()) && $model->signup()) {
+                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+                return $this->goHome();
             }
-        } else {
-            $model->loadDefaultValues();
-        }
+
 
         return $this->render('create', [
             'model' => $model,
-        ]);
-    }
+            ]);
+        }
 
     /**
      * Updates an existing Client model.

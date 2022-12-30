@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\client $model */
+/** @var backend\models\SignupForm $model */
 
 $this->title = 'Create Client';
 $this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
