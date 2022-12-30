@@ -46,7 +46,7 @@ class Client extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Client]].
+     * Gets query for [[User]].
      *
      * @return \yii\db\ActiveQuery
      */

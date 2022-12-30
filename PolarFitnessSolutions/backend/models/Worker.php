@@ -45,11 +45,11 @@ class Worker extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Worker]].
+     * Gets query for [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getWorker()
+    public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'worker_id']);
     }

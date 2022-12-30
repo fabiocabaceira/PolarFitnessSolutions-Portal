@@ -47,7 +47,7 @@ AppAsset::register($this);
 
  if (Yii::$app->user->can('funcionario')) {
             $menuItems = [
-                ['label' => 'Detalhes conta', 'url' => ['/user/index']],
+                ['label' => 'Detalhes conta', 'url' => ['/user/view?id='.$id]],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
                 ['label' => 'Gerir Planos de treino', 'url' => ['/site/signup']],
                 ['label' => 'Clientes', 'url' => ['/site/signup']],

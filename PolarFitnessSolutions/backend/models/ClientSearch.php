@@ -57,9 +57,6 @@ class ClientSearch extends Client
             return $dataProvider;
         }
 
-
-
-
         return $dataProvider;
     }
 }

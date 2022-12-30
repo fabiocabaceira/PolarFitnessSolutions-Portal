@@ -1,5 +1,7 @@
 <?php
 
+use frontend\models\Client;
+use frontend\models\Worker;
 use yii\db\Migration;
 
 /**
@@ -71,6 +73,13 @@ class m221113_130217_init_rbac extends Migration
         Yii::$app->db->createCommand($sql1)->execute();
         Yii::$app->db->createCommand($sql2)->execute();
         Yii::$app->db->createCommand($sql3)->execute();
+
+        $client1 = new Client();
+        $client1->client_id=2;
+        $client1->save();
+        $worker1 = new Worker();
+        $worker1->worker_id=3;
+        $worker1->save();
 
         //authManager
         $auth = Yii::$app->authManager;
@@ -159,6 +168,10 @@ class m221113_130217_init_rbac extends Migration
         $auth->assign($administrador, 1);
         $auth->assign($utilizador, 2);
         $auth->assign($funcionario, 3);
+
+
+
+
 
     }
 
