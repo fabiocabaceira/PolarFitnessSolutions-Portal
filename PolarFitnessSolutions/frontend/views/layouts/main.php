@@ -9,7 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
-
+$id = Yii::$app->user->id;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage(); ?>
@@ -55,9 +55,9 @@ AppAsset::register($this);
             ];
         } else if(Yii::$app->user->can('utilizador')) {
             $menuItems = [
-                ['label' => 'Detalhes conta', 'url' => ['/user/view?id=4']],
+                ['label' => 'Detalhes conta', 'url' => ['/user/view?id='.$id]],
                 ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
-                ['label' => 'Inscreva-se', 'url' => ['/site/signup']],
+                ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
             ];
         }
