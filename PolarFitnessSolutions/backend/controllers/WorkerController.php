@@ -3,7 +3,10 @@
 namespace backend\controllers;
 
 use backend\models\Worker;
+use backend\models\WorkerCreateForm;
 use backend\models\WorkerSearch;
+use backend\models\SignupForm;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,14 +70,10 @@ class WorkerController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Worker();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'worker_id' => $model->worker_id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        $model = new WorkerCreateForm();
+        if ($model->load($this->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            return $this->goHome();
         }
 
         return $this->render('create', [

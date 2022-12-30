@@ -4,7 +4,7 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Worker;
+use frontend\models\Worker;
 
 /**
  * WorkerSearch represents the model behind the search form of `app\models\Worker`.
@@ -17,7 +17,7 @@ class WorkerSearch extends Worker
     public function rules()
     {
         return [
-            [['worker_id'], 'integer'],
+            [['worker_id'], 'safe'],
         ];
     }
 
@@ -39,7 +39,7 @@ class WorkerSearch extends Worker
      */
     public function search($params)
     {
-        $query = Worker::find();
+        $query = Worker::find()->leftJoin('user', 'worker.worker_id=user.id')->with('user');
 
         // add conditions that should always apply here
 
@@ -55,10 +55,7 @@ class WorkerSearch extends Worker
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'worker_id' => $this->worker_id,
-        ]);
+
 
         return $dataProvider;
     }
