@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Workout_plan;
+use backend\models\Workout_plan;
 
 /**
  * Workout_planSearch represents the model behind the search form of `app\models\Workout_plan`.

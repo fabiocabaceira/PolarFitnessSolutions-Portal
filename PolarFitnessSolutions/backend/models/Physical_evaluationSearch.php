@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Physical_evaluation;
+use backend\models\Physical_evaluation;
 
 /**
  * Physical_evaluationSearch represents the model behind the search form of `app\models\Physical_evaluation`.

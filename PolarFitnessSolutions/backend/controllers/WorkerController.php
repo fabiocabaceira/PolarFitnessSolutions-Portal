@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use app\models\Worker;
-use app\models\WorkerSearch;
+use backend\models\Worker;
+use backend\models\WorkerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

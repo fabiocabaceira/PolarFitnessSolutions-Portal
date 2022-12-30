@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
-use app\models\Gym_area;
-use app\models\Gym_areaSearch;
+use backend\models\Gym_area;
+use backend\models\Gym_areaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

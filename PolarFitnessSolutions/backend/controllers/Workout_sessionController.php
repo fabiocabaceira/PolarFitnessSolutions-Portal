@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
-use app\models\Workout_session;
-use app\models\Workout_sessionSearch;
+use backend\models\Workout_session;
+use backend\models\Workout_sessionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

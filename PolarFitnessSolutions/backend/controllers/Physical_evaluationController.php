@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
-use app\models\Physical_evaluation;
-use app\models\Physical_evaluationSearch;
+use backend\models\Physical_evaluation;
+use backend\models\Physical_evaluationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

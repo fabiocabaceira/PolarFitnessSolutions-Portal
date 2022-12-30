@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
-use app\models\Nutrition_plan;
-use app\models\Nutrition_planSearch;
+use backend\models\Nutrition_plan;
+use backend\models\Nutrition_planSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

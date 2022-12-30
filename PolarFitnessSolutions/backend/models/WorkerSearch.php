@@ -1,10 +1,10 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Worker;
+use backend\models\Worker;
 
 /**
  * WorkerSearch represents the model behind the search form of `app\models\Worker`.

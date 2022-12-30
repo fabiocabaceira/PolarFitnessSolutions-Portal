@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace backend\controllers;
 
-use app\models\Workout_plan;
-use app\models\Workout_planSearch;
+use backend\models\Workout_plan;
+use backend\models\Workout_planSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
