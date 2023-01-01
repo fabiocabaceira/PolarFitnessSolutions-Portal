@@ -42,6 +42,15 @@ CREATE TABLE worker(
     FOREIGN KEY(worker_id) REFERENCES user(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE worker_client_relation(
+    id                      INT             UNSIGNED,
+    client_id               INT             UNSIGNED,
+    worker_id               INT             UNSIGNED,
+    FOREIGN KEY(client_id) REFERENCES client(client_id),
+    FOREIGN KEY(worker_id) REFERENCES worker(worker_id),
+    PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE booking(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     booking_date            DATETIME    NOT NULL,
@@ -54,10 +63,10 @@ CREATE TABLE messages(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     content                 VARCHAR(225)            NOT NULL,
     create_date             DATETIME    NOT NULL,
-    user_id                 INT			UNSIGNED,
+    client_id               INT			UNSIGNED,
     worker_id               INT			UNSIGNED,
-    FOREIGN KEY(user_id)    REFERENCES user(id),
-    FOREIGN KEY(worker_id)  REFERENCES user(id),
+    FOREIGN KEY(client_id)    REFERENCES client(client_id),
+    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -65,10 +74,10 @@ CREATE TABLE nutrition_plan(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     content                 LONGTEXT    NOT NULL,
     createdate              DATETIME    NOT NULL,
-    user_id                 INT			UNSIGNED,
+    client_id               INT			UNSIGNED,
     worker_id               INT			UNSIGNED,
-    FOREIGN KEY(user_id) REFERENCES user(id),
-    FOREIGN KEY(worker_id) REFERENCES user(id),
+    FOREIGN KEY(client_id)    REFERENCES client(client_id),
+    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
     PRIMARY KEY(id)      
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -76,10 +85,10 @@ CREATE TABLE workout_plan(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     workout_name            VARCHAR(30) NOT NULL,
     createdate              DATETIME,
-    user_id                 INT			UNSIGNED,
+    client_id               INT			UNSIGNED,
     worker_id               INT			UNSIGNED,
-    FOREIGN KEY(user_id) REFERENCES user(id),
-    FOREIGN KEY(worker_id) REFERENCES user(id),
+    FOREIGN KEY(client_id)    REFERENCES client(client_id),
+    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
     PRIMARY KEY(id)    
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -125,9 +134,9 @@ CREATE TABLE physical_evaluation(
     peso_corporal           FLOAT,
     excesso_de_peso         FLOAT,
     percentagem_de_gordura  FLOAT,
-    user_id                INT			UNSIGNED,
+    client_id              INT			UNSIGNED,
     worker_id              INT			UNSIGNED,
-    FOREIGN KEY(worker_id) REFERENCES user(id),
-    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(client_id)    REFERENCES client(client_id),
+    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
     PRIMARY KEY(id)            
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
