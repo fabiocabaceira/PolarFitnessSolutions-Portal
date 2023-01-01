@@ -25,35 +25,31 @@ $this->title = $model->username;
                                 'template' => '<div class="col-md-12"><label>{label}</label><label class="form-control">{value}</label></div>',
                                 'attributes' => [
                                     [
-                                        'label' => 'username',
+                                        'label' => 'Nome',
                                         'value' => $model->username,
                                     ],
                                     [
-                                        'label' => 'email',
+                                        'label' => 'Email',
                                         'value' => $model->email,
                                     ],
                                     [
-                                        'label' => 'created at',
+                                        'label' => 'Data de criação da conta',
                                         'value' => $model->created_at,
                                     ],
                                     [
-                                        'label' => 'last updated at',
+                                        'label' => 'Data da ultima atualização da conta',
                                         'value' => $model->updated_at,
                                     ],
                                     [
-                                        'label' => 'status',
-                                        'value' => $model->status,
-                                    ],
-                                    [
-                                        'label' => 'street',
+                                        'label' => 'Rua',
                                         'value' => $model->street,
                                     ],
                                     [
-                                        'label' => 'zip code',
+                                        'label' => 'Codigo postal',
                                         'value' => $model->zip_code,
                                     ],
                                     [
-                                        'label' => 'phone_number',
+                                        'label' => 'Número de telemóvel',
                                         'value' => $model->phone_number,
                                     ],
                                     [
@@ -61,7 +57,7 @@ $this->title = $model->username;
                                         'value' => $model->nif,
                                     ],
                                     [
-                                        'label' => 'gender',
+                                        'label' => 'Género',
                                         'value' => $model->gender,
                                     ],
 
