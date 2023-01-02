@@ -43,6 +43,7 @@ use yii\helpers\Url;
                     ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['client/index']],
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['/worker/index']],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
+                    ['label' => 'Inscricoes',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['booking/index']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
 /*
                     [
