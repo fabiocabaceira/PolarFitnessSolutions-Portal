@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var frontend\models\User $model */
 
-$this->title = 'Update User: ' . $model->id;
+$this->title = 'Update User: ' . $model->username;
 ?>
 <div class="user-update">
 

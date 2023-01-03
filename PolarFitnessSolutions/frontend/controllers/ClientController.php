@@ -30,7 +30,7 @@ class ClientController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['index','view','create','update', 'delete'],
+                            'actions' => ['index','view','update', 'delete'],
                             'allow' => true,
                             'roles' => ['funcionario'],
                         ],
@@ -75,23 +75,6 @@ class ClientController extends Controller
         return $this->render('view', [
            'user' => $user,
             'model' => $this->findModel($client_id),
-        ]);
-    }
-
-    /**
-     * Creates a new client model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
-    public function actionCreate()
-    {
-        $model = new ClientCreateForm();
-        if ($model->load($this->request->post()) && $model->signup()) {
-                Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-                return $this->goHome();
-            }
-        return $this->render('create', [
-            'model' => $model,
         ]);
     }
 

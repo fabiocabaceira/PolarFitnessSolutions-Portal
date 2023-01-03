@@ -37,7 +37,7 @@ $this->title = $model->username;
                                         'value' => Yii::$app->formatter->asDatetime($model->created_at),
                                     ],
                                     [
-                                        'label' => 'Data da ultima atualização da conta',
+                                        'label' => 'Data da última atualização da conta',
                                         'value' => Yii::$app->formatter->asDatetime($model->updated_at),
                                     ],
                                     [
@@ -45,7 +45,7 @@ $this->title = $model->username;
                                         'value' => $model->street,
                                     ],
                                     [
-                                        'label' => 'Codigo postal',
+                                        'label' => 'Código postal',
                                         'value' => $model->zip_code,
                                     ],
                                     [
@@ -53,7 +53,7 @@ $this->title = $model->username;
                                         'value' => $model->phone_number,
                                     ],
                                     [
-                                        'label' => 'nif',
+                                        'label' => 'NIF',
                                         'value' => $model->nif,
                                     ],
                                     [
@@ -65,7 +65,9 @@ $this->title = $model->username;
 
                             ]) ?></span>
                         <div class="mt-5 text-center">
-                            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary profile-button']) ?>
+                            <?php if(Yii::$app->user->can('utilizador')){?>
+                                <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary profile-button']); ?>
+                            <?php } ?>
                         </div>
 
             </div>
