@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\nutrition_planSearch $model */
+/** @var frontend\models\Nutrition_planSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content') ?>
 
-    <?= $form->field($model, 'createdate') ?>
+    <?= $form->field($model, 'created_at') ?>
 
     <?= $form->field($model, 'client_id') ?>
 

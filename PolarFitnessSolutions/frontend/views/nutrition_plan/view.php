@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\nutrition_plan $model */
+/** @var frontend\models\Nutrition_plan $model */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Nutrition Plans', 'url' => ['index']];
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'content:ntext',
-            'createdate',
+            'created_at',
             'client_id',
             'worker_id',
         ],

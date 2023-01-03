@@ -73,7 +73,7 @@ CREATE TABLE messages(
 CREATE TABLE nutrition_plan(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     content                 LONGTEXT    NOT NULL,
-    createdate              DATETIME    NOT NULL,
+    created_at              INT(11)     NOT NULL,
     client_id               INT			UNSIGNED,
     worker_id               INT			UNSIGNED,
     FOREIGN KEY(client_id)    REFERENCES client(client_id),

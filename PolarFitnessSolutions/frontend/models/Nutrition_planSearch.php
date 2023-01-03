@@ -4,12 +4,12 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\nutrition_plan;
+use frontend\models\Nutrition_plan;
 
 /**
- * nutrition_planSearch represents the model behind the search form of `frontend\models\nutrition_plan`.
+ * Nutrition_planSearch represents the model behind the search form of `frontend\models\Nutrition_plan`.
  */
-class nutrition_planSearch extends nutrition_plan
+class Nutrition_planSearch extends Nutrition_plan
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class nutrition_planSearch extends nutrition_plan
     public function rules()
     {
         return [
-            [['id', 'client_id', 'worker_id'], 'integer'],
-            [['content', 'createdate'], 'safe'],
+            [['id', 'created_at', 'client_id', 'worker_id'], 'integer'],
+            [['content'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class nutrition_planSearch extends nutrition_plan
      */
     public function search($params)
     {
-        $query = nutrition_plan::find();
+        $query = Nutrition_plan::find();
 
         // add conditions that should always apply here
 
@@ -59,7 +59,7 @@ class nutrition_planSearch extends nutrition_plan
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'createdate' => $this->createdate,
+            'created_at' => $this->created_at,
             'client_id' => $this->client_id,
             'worker_id' => $this->worker_id,
         ]);

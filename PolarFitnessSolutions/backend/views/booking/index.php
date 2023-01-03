@@ -10,16 +10,14 @@ use yii\grid\GridView;
 /** @var frontend\models\BookingSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Bookings';
+$this->title = 'Inscrições';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="booking-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Booking', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
+
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -29,9 +27,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'booking_date',
+            // Username
+            [
+                'attribute' => 'user.username',
+                'label' => 'Username',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->user->username;
+                },
+            ],
             'user_id',
+            // Email
+            [
+                'attribute' => 'user.email',
+                'label' => 'Email',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->user->email;
+                },
+            ],
+
+            // Número de telemóvel
+            [
+                'attribute' => 'user.phone_number',
+                'label' => 'Número de telemóvel',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->user->phone_number;
+                },
+            ],
+
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Booking $model, $key, $index, $column) {

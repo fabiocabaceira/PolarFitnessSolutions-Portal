@@ -3,18 +3,19 @@
 namespace frontend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "nutrition_plan".
  *
  * @property int $id
  * @property string $content
- * @property string $createdate
- * @property int|null $user_id
+ * @property int $created_at
+ * @property int|null $client_id
  * @property int|null $worker_id
  *
- * @property User $user
- * @property User $worker
+ * @property Client $client
+ * @property Worker $worker
  */
 class Nutrition_plan extends \yii\db\ActiveRecord
 {
@@ -26,18 +27,24 @@ class Nutrition_plan extends \yii\db\ActiveRecord
         return 'nutrition_plan';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['content', 'createdate'], 'required'],
+            [['content', 'created_at'], 'required'],
             [['content'], 'string'],
-            [['createdate'], 'safe'],
-            [['user_id', 'worker_id'], 'integer'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
-            [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['worker_id' => 'id']],
+            [['client_id', 'worker_id'], 'integer'],
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
+            [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
         ];
     }
 
@@ -49,20 +56,20 @@ class Nutrition_plan extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'content' => 'Content',
-            'createdate' => 'Createdate',
-            'user_id' => 'User ID',
+            'created_at' => 'Created At',
+            'client_id' => 'Client ID',
             'worker_id' => 'Worker ID',
         ];
     }
 
     /**
-     * Gets query for [[User]].
+     * Gets query for [[Client]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getClient()
     {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(Client::class, ['client_id' => 'client_id']);
     }
 
     /**
@@ -72,6 +79,6 @@ class Nutrition_plan extends \yii\db\ActiveRecord
      */
     public function getWorker()
     {
-        return $this->hasOne(User::class, ['id' => 'worker_id']);
+        return $this->hasOne(Worker::class, ['worker_id' => 'worker_id']);
     }
 }
