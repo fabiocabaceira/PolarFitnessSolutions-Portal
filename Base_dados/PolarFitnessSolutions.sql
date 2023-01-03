@@ -94,7 +94,7 @@ CREATE TABLE workout_plan(
 
 CREATE TABLE exercise(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
-    exercise_name           VARCHAR(30)         	NOT NULL,
+    exercise_name           VARCHAR(60)         	NOT NULL,
     max_rep                 INT,
     min_rep                 INT,
     PRIMARY KEY(id)
