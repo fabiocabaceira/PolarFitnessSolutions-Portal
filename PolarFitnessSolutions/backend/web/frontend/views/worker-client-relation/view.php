@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Booking $model */
+/** @var frontend\models\WorkerClientRelation $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Bookings', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Worker Client Relations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="booking-view">
+<div class="worker-client-relation-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,15 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'booking_date',
-            'user_id',
-        ],
-    ]) ?>
-    <?= DetailView::widget([
-        'model' => $user,
-        'attributes' => [
-            'id',
-            'username',
+            'client_id',
+            'worker_id',
         ],
     ]) ?>
 

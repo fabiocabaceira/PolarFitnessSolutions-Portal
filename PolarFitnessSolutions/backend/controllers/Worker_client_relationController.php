@@ -2,18 +2,16 @@
 
 namespace backend\controllers;
 
-use backend\models\Booking;
-use backend\models\User;
-use frontend\models\BookingSearch;
-use backend\models\Client;
+use backend\models\WorkerClientRelation;
+use backend\models\worker_client_relationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BookingController implements the CRUD actions for Booking model.
+ * Worker_client_relationController implements the CRUD actions for WorkerClientRelation model.
  */
-class BookingController extends Controller
+class Worker_client_relationController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,13 +32,13 @@ class BookingController extends Controller
     }
 
     /**
-     * Lists all Booking models.
+     * Lists all WorkerClientRelation models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new BookingSearch();
+        $searchModel = new worker_client_relationSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -50,28 +48,26 @@ class BookingController extends Controller
     }
 
     /**
-     * Displays a single Booking model.
+     * Displays a single WorkerClientRelation model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'user' => $this->findUser($id),
         ]);
     }
 
     /**
-     * Creates a new Booking model.
+     * Creates a new WorkerClientRelation model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Booking();
+        $model = new WorkerClientRelation();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -87,7 +83,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Updates an existing Booking model.
+     * Updates an existing WorkerClientRelation model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -107,7 +103,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Deletes an existing Booking model.
+     * Deletes an existing WorkerClientRelation model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -121,27 +117,16 @@ class BookingController extends Controller
     }
 
     /**
-     * Finds the Booking model based on its primary key value.
+     * Finds the WorkerClientRelation model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Booking the loaded model
+     * @return WorkerClientRelation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Booking::findOne(['id' => $id])) !== null) {
+        if (($model = WorkerClientRelation::findOne(['id' => $id])) !== null) {
             return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    protected function findUser($id)
-    {
-        $client = new Client();
-
-        if (($user = User::findOne(['id' => $id])) !== null) {
-            return $user;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
