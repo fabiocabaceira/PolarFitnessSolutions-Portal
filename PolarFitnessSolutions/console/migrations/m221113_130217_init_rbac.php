@@ -51,7 +51,7 @@ class m221113_130217_init_rbac extends Migration
         $now2 = time();
 
         //admin
-        Yii::$app->db->createCommand()->batchInsert($table,['username', 'password_hash','email', 'auth_key', 'verification_token','created_at', 'updated_at','status','street','zip_code','area','phone_number','nif','gender'],[['admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'],['Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', '$now1', '$now2','10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'],['Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino']])->execute();
+        Yii::$app->db->createCommand()->batchInsert($table,['username', 'password_hash','email', 'auth_key', 'verification_token','created_at', 'updated_at','status','street','zip_code','area','phone_number','nif','gender'],[['admin', $password_hash,  'admin@email.com', $auth_key,$verification_token, $now1, $now2, '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'],['Pedro', $password_hash,  'Pedro@email.com', $auth_key,$verification_token, $now1, $now2,'10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'],['Joao', $password_hash,  'Joao@email.com', $auth_key,$verification_token, $now1, $now2, '10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino']])->execute();
 
         /*$sql1 = <<<SQL
         INSERT INTO {$table}
