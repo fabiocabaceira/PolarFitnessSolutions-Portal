@@ -30,9 +30,7 @@ class WorkerClientRelation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id', 'client_id', 'worker_id'], 'integer'],
-            [['id'], 'unique'],
+            [['client_id', 'worker_id'], 'integer'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
             [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
         ];
@@ -45,8 +43,8 @@ class WorkerClientRelation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'client_id' => 'ID do Cliente',
-            'worker_id' => 'ID do Funcionário',
+            'client_id' => 'Client ID',
+            'worker_id' => 'Worker ID',
         ];
     }
 

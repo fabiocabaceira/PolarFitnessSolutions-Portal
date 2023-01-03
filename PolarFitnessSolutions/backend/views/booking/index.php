@@ -27,7 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'booking_date',
+
+            ['attribute' => 'booking_date',
+                'label' => 'Data da Inscrição',
+            ],
             // Username
             [
                 'attribute' => 'user.username',
@@ -37,10 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            ['attribute' => 'user_id',
-                'label' =>  'ID do Cliente',
-            ],
-            
             // Email
             [
                 'attribute' => 'user.email',
@@ -57,6 +56,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model, $index, $dataColumn) {
                     return $model->user->phone_number;
                 },
+            ],
+
+            ['attribute' => 'user_id',
+                'label' =>  'ID do Cliente',
             ],
 
             [

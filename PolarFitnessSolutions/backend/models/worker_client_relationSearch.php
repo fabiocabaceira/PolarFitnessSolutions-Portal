@@ -39,7 +39,7 @@ class worker_client_relationSearch extends WorkerClientRelation
      */
     public function search($params)
     {
-        $query = WorkerClientRelation::find()->leftJoin('client', 'worker_client_relation.client_id=client.client_id')->with('client')->leftJoin('worker', 'worker_client_relation.worker_id=worker.worker_id')->with('worker');
+        $query = WorkerClientRelation::find();
 
         // add conditions that should always apply here
 
