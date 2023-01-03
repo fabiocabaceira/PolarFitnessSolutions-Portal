@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use backend\models\Booking;
+use backend\models\User;
 use frontend\models\BookingSearch;
+use backend\models\Client;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,8 +57,10 @@ class BookingController extends Controller
      */
     public function actionView($id)
     {
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'user' => $this->findUser($id),
         ]);
     }
 
@@ -127,6 +131,17 @@ class BookingController extends Controller
     {
         if (($model = Booking::findOne(['id' => $id])) !== null) {
             return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findUser($id)
+    {
+        $client = new Client();
+
+        if (($user = User::findOne(['id' => $id])) !== null) {
+            return $user;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
