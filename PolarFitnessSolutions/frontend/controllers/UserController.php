@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use frontend\models\User;
 use frontend\models\UserSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,6 +23,26 @@ class UserController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['index'],
+                            'allow' => true,
+                            'roles' => ['funcionario'],
+                        ],
+                        [
+                            'actions' => ['view', 'update'],
+                            'allow' => true,
+                            'roles' => ['utilizador', 'funcionario'],
+                        ],
+                        [
+                            'actions' => ['create'],
+                            'allow' => true,
+                            'roles' => [ 'funcionario'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -84,9 +105,15 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->user->getId()==$id){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else{
+            return $this->redirect(array('/site/index'));
+        }
+
     }
 
     /**
@@ -140,9 +167,14 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->user->can('administrador')){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+        else{
+            return $this->redirect(['index']);
+        }
     }
 
     /**
