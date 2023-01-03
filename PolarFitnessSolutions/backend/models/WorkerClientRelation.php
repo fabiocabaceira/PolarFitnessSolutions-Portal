@@ -45,8 +45,8 @@ class WorkerClientRelation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'client_id' => 'Client ID',
-            'worker_id' => 'Worker ID',
+            'client_id' => 'ID do Cliente',
+            'worker_id' => 'ID do Funcionário',
         ];
     }
 

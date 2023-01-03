@@ -10,15 +10,13 @@ use yii\grid\GridView;
 /** @var frontend\models\WorkerSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Workers';
+$this->title = 'Funcionários';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="worker-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Worker', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Funcionário', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,7 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'worker_id',
+            ['attribute' => 'worker_id',
+            'label' => 'ID do Funcionário',
+            ],
 
             // Username
             [

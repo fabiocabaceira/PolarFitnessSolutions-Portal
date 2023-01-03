@@ -36,7 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->user->username;
                 },
             ],
-            'user_id',
+
+            ['attribute' => 'user_id',
+                'label' =>  'ID do Cliente',
+            ],
+            
             // Email
             [
                 'attribute' => 'user.email',

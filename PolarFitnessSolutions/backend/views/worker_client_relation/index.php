@@ -10,15 +10,13 @@ use yii\grid\GridView;
 /** @var backend\models\worker_client_relationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Worker Client Relations';
+$this->title = 'Atribuição de Profissionais';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="worker-client-relation-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Worker Client Relation', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Atribuir funcionario a cliente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -31,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'client_id',
+
             'worker_id',
             [
                 'class' => ActionColumn::className(),
