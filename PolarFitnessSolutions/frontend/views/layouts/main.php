@@ -48,11 +48,9 @@ AppAsset::register($this);
  if (Yii::$app->user->can('funcionario')) {
             $menuItems = [
                 ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
-                ['label' => 'Mensagens', 'url' => ['/site/signup']],
-                ['label' => 'Gerir Planos de treino', 'url' => ['/site/signup']],
                 ['label' => 'Clientes', 'url' => ['/client/index']],
-                ['label' => 'Atribuir planos de treino', 'url' => ['/site/signup']],
-                ['label' => 'Marcar Consultas', 'url' => ['/site/signup']],
+                ['label' => 'Mensagens', 'url' => ['/site/signup']],
+                ['label' => 'Planos de treino', 'url' => ['/site/signup']],
             ];
         } else if(Yii::$app->user->can('utilizador')) {
             $menuItems = [
