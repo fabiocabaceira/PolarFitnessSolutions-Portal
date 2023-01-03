@@ -40,7 +40,7 @@ class BookingSearch extends Booking
      */
     public function search($params)
     {
-        $query = Booking::find();
+        $query = Booking::find()->leftJoin('user', 'booking.user_id=user.id')->with('user');
 
         // add conditions that should always apply here
 
@@ -56,12 +56,6 @@ class BookingSearch extends Booking
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'booking_date' => $this->booking_date,
-            'user_id' => $this->user_id,
-        ]);
 
         return $dataProvider;
     }
