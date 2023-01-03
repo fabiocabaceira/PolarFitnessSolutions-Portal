@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // Username
             [
                     'attribute' => 'user.username',
-                    'label' => 'Username',
+                    'label' => 'Nome',
                     'value' => function($model, $index, $dataColumn) {
                     return $model->user->username;
                     },
