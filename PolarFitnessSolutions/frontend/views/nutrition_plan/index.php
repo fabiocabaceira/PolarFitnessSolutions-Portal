@@ -1,13 +1,13 @@
 <?php
 
-use frontend\models\nutrition_plan;
+use frontend\models\Nutrition_plan;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\nutrition_planSearch $searchModel */
+/** @var frontend\models\Nutrition_planSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Nutrition Plans';
@@ -31,12 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'content:ntext',
-            'createdate',
+            [
+                'attribute' => 'created_at',
+                'label' => 'Criado a ',
+                'value' => Yii::$app->formatter->asDatetime($searchModel->created_at),
+            ],
+
             'client_id',
             'worker_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, nutrition_plan $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Nutrition_plan $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
