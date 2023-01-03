@@ -51,47 +51,70 @@ class m221113_130217_init_rbac extends Migration
         $now2 = time();
 
         //admin
-        $sql1 = <<<SQL
+        Yii::$app->db->createCommand()->batchInsert($table,['username', 'password_hash','email', 'auth_key', 'verification_token','created_at', 'updated_at','status','street','zip_code','area','phone_number','nif','gender'],[['admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'],['Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', '$now1', '$now2','10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'],['Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino']])->execute();
+
+        /*$sql1 = <<<SQL
         INSERT INTO {$table}
         (`username`, `password_hash`,`email`, `auth_key`, `verification_token`,`created_at`, `updated_at`,`status`,`street`,`zip_code`,`area`,`phone_number`,`nif`,`gender`)
         VALUES
         ('admin', '$password_hash',  'admin@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua admin', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'),
         ('Pedro', '$password_hash',  'Pedro@email.com', '$auth_key','$verification_token', '$now1', '$now2','10', 'Rua cliente', '2222-222', 'Localidade teste','123123123', '321321321' , 'Outro'),
         ('Joao', '$password_hash',  'Joao@email.com', '$auth_key','$verification_token', '$now1', '$now2', '10', 'Rua funcionario', '2222-222', 'Localidade teste','123123123', '321321321' , 'Masculino')
-        SQL;
+        SQL;*/
 
         //Exercises
-        $sql2 = <<<SQL
+        Yii::$app->db->createCommand()->batchInsert($table2,['exercise_name', 'max_rep', 'min_rep'],[['Supino Horizontal Com Barra', '10', '6'],['Supino Inclinado Com Barra', '10', '6'],['Supino Horizontal Com Halteres', '10', '6'],['Supino Inclinado Com Halteres', '10', '6'],['Agachamento Com Barra', '12', '6'],['Lunge Com Halteres', '12', '6'],['Peso Morto Com Barra', '12', '10'],['Leg Curl Sentado', '15', '12'],['Press Pernas 45 graus', '20', '12'],['Hip Thrust Com Barra', '20', '12'],['Flexões', '30', '5'],['Abdominais', '30', '5'],['Press De Ombros Com Barra', '10', '6'],['Press De Ombros Com Halteres', '10', '6'],['Dips De Tricep', '15', '5'],['Cross-over Alto', '10', '6'],['Extensão De Tricep Na Máquina', '10', '6'],['Elevações', '15', '2'],['Biceps Com Barra', '12', '6'],['Biceps Com Halteres', '12', '6'],['Biceps No Puxador Com Corda', '15', '12'],['Puxada ao peito (pega U)', '15', '12'],['Elevações laterais com halteres', '15', '12']])->execute();
+        /*$sql2 = <<<SQL
         INSERT INTO {$table2}
         (`exercise_name`, `max_rep`, `min_rep`)
         VALUES
         ('Supino Horizontal Com Barra', '10', '6'),
         ('Supino Inclinado Com Barra', '10', '6'),
         ('Supino Horizontal Com Halteres', '10', '6'),
-        ('Supino Inclinado Com Halteres', '10', '6'),
-        ('Agachamento Com Barra', '12', '6'),
-        ('Lunge Com Halteres', '12', '6'),
-        ('Peso Morto Com Barra', '12', '10'),
-        ('Leg Curl Sentado', '15', '12'),
-        ('Press Pernas 45 graus', '20', '12'),
-        ('Hip Thrust Com Barra', '20', '12'),
-        ('Flexões', '30', '5'),
-        ('Abdominais', '30', '5'),
-        ('Press De Ombros Com Barra', '10', '6'),
-        ('Press De Ombros Com Halteres', '10', '6'),
-        ('Dips De Tricep', '15', '5'),
-        ('Cross-over Alto', '10', '6'),
-        ('Extensão De Tricep Na Máquina', '10', '6'),
-        ('Elevações', '15', '2'),
-        ('Biceps Com Barra', '12', '6'),
-        ('Biceps Com Halteres', '12', '6'),
-        ('Biceps No Puxador Com Corda', '15', '12'),
-        ('Puxada ao peito (pega U)', '15', '12'),
-        ('Elevações laterais com halteres', '15', '12')
-        SQL;
 
-        Yii::$app->db->createCommand($sql1)->execute();
-        Yii::$app->db->createCommand($sql2)->execute();
+        ('Supino Inclinado Com Halteres', '10', '6'),
+
+        ('Agachamento Com Barra', '12', '6'),
+
+        ('Lunge Com Halteres', '12', '6'),
+
+        ('Peso Morto Com Barra', '12', '10'),
+
+        ('Leg Curl Sentado', '15', '12'),
+
+        ('Press Pernas 45 graus', '20', '12'),
+
+        ('Hip Thrust Com Barra', '20', '12'),
+
+        ('Flexões', '30', '5'),
+
+        ('Abdominais', '30', '5'),
+
+        ('Press De Ombros Com Barra', '10', '6'),
+
+        ('Press De Ombros Com Halteres', '10', '6'),
+
+        ('Dips De Tricep', '15', '5'),
+
+        ('Cross-over Alto', '10', '6'),
+
+        ('Extensão De Tricep Na Máquina', '10', '6'),
+
+        ('Elevações', '15', '2'),
+
+        ('Biceps Com Barra', '12', '6'),
+
+        ('Biceps Com Halteres', '12', '6'),
+
+        ('Biceps No Puxador Com Corda', '15', '12'),
+
+        ('Puxada ao peito (pega U)', '15', '12'),
+
+        ('Elevações laterais com halteres', '15', '12')
+        SQL;*/
+
+//        Yii::$app->db->createCommand($sql1)->execute();
+//        Yii::$app->db->createCommand($sql2)->execute();
 
         $client1 = new Client();
         $client1->client_id=2;
