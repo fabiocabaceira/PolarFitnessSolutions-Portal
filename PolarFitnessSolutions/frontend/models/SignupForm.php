@@ -52,6 +52,23 @@ class SignupForm extends Model
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Nome',
+            'email' => 'Email',
+            'street' => 'Rua',
+            'zip_code' => 'Código Postal',
+            'area' => 'Localidade',
+            'phone_number' => 'Número de telefone',
+            'nif' => 'Nif',
+            'gender' => 'Género',
+        ];
+    }
+    
+    /**
      * Signs user up.
      *
      * @return bool whether the creating new account was successful and email was sent
