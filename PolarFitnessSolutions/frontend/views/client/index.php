@@ -17,9 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Client', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -34,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // Username
             [
                     'attribute' => 'user.username',
-                    'label' => 'Username',
+                    'label' => 'Nome',
                     'value' => function($model, $index, $dataColumn) {
                     return $model->user->username;
                     },
@@ -97,6 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => ActionColumn::className(),
+                'template'=>'{view} {update}',
                 'urlCreator' => function ($action,  $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'client_id' => $model->client_id]);
                  }

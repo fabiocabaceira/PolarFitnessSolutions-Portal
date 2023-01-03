@@ -25,43 +25,55 @@ $this->title = $user->username;
                                 'template' => '<div class="col-md-12"><label>{label}</label><label class="form-control">{value}</label></div>',
                                 'attributes' => [
                                     [
-                                        'label' => 'username',
+                                        'label' => 'Nome',
                                         'value' => $user->username,
                                     ],
                                     [
-                                        'label' => 'email',
+                                        'label' => 'Email',
                                         'value' => $user->email,
                                     ],
                                     [
-                                        'label' => 'created at',
+                                        'label' => 'Data de criação da conta',
                                         'value' => $user->created_at,
                                     ],
                                     [
-                                        'label' => 'last updated at',
+                                        'label' => 'Data da última atualização da conta',
                                         'value' => $user->updated_at,
                                     ],
                                     [
-                                        'label' => 'status',
-                                        'value' => $user->status,
+                                        'label' => 'Status',
+                                         'value'=> function ($model) {
+                                             if ($model->status == 0) {
+                                                 return 'Apagado';
+                                             }
+                                             if ($model->status == 9) {
+                                                 return 'Inativo';
+                                             }
+                                             if ($model->status == 10) {
+                                                 return 'Ativo';
+                                             } else {
+                                                 return 'Invalido';
+                                             }
+                                         }
                                     ],
                                     [
-                                        'label' => 'street',
+                                        'label' => 'Rua',
                                         'value' => $user->street,
                                     ],
                                     [
-                                        'label' => 'zip code',
+                                        'label' => 'Código postal',
                                         'value' => $user->zip_code,
                                     ],
                                     [
-                                        'label' => 'phone_number',
+                                        'label' => 'Número de telemóvel',
                                         'value' => $user->phone_number,
                                     ],
                                     [
-                                        'label' => 'nif',
+                                        'label' => 'NIF',
                                         'value' => $user->nif,
                                     ],
                                     [
-                                        'label' => 'gender',
+                                        'label' => 'Género',
                                         'value' => $user->gender,
                                     ],
 
@@ -69,8 +81,7 @@ $this->title = $user->username;
 
                             ]) ?></span>
                 <div class="mt-5 text-center">
-                    <?= Html::a('Update', ['update', 'id' => $model->client_id], ['class' => 'btn btn-primary profile-button']) ?>
-                    <?= Html::a('Delete', ['delete', 'id' => $model->client_id], ['class' => 'btn btn-primary profile-button']) ?>
+                    <?= Html::a('Atualizar', ['update', 'client_id' => $model->client_id], ['class' => 'btn btn-primary profile-button']) ?>
                 </div>
 
 

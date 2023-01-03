@@ -51,6 +51,7 @@ AppAsset::register($this);
                 ['label' => 'Clientes', 'url' => ['/client/index']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
                 ['label' => 'Planos de treino', 'url' => ['/site/signup']],
+                ['label' => 'Nutrição', 'url' => ['/site/signup']],
             ];
         } else if(Yii::$app->user->can('utilizador')) {
             $menuItems = [

@@ -32,9 +32,14 @@ class UserController extends Controller
                             'roles' => ['funcionario'],
                         ],
                         [
-                            'actions' => ['view', 'update'],
+                            'actions' => ['view'],
                             'allow' => true,
                             'roles' => ['utilizador', 'funcionario'],
+                        ],
+                        [
+                            'actions' => ['update'],
+                            'allow' => true,
+                            'roles' => ['utilizador'],
                         ],
                         [
                             'actions' => ['create'],
