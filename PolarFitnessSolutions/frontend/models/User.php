@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "user".
@@ -48,6 +49,13 @@ class User extends \yii\db\ActiveRecord
         return 'user';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -55,7 +63,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'password_hash', 'email', 'auth_key', 'created_at', 'updated_at', 'street', 'zip_code', 'area', 'phone_number', 'nif'], 'required'],
-            [['created_at', 'updated_at', 'status', 'phone_number', 'nif'], 'integer'],
+            [['status', 'phone_number', 'nif'], 'integer'],
             [['gender'], 'string'],
             [['username', 'area'], 'string', 'max' => 50],
             [['password_hash', 'password_reset_token', 'verification_token'], 'string', 'max' => 255],
@@ -64,6 +72,7 @@ class User extends \yii\db\ActiveRecord
             [['street'], 'string', 'max' => 200],
             [['zip_code'], 'string', 'max' => 8],
             [['password_reset_token'], 'unique'],
+
         ];
     }
 
