@@ -43,7 +43,7 @@ CREATE TABLE worker(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE worker_client_relation(
-    id                      INT             UNSIGNED,
+    id                      INT             UNSIGNED    AUTO_INCREMENT,
     client_id               INT             UNSIGNED,
     worker_id               INT             UNSIGNED,
     FOREIGN KEY(client_id) REFERENCES client(client_id),
@@ -72,8 +72,10 @@ CREATE TABLE messages(
 
 CREATE TABLE nutrition_plan(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
+    nutritionname 			VARCHAR(30)	NOT NULL,
     content                 LONGTEXT    NOT NULL,
     created_at              INT(11)     NOT NULL,
+    updated_at              INT(11)     NOT NULL,
     client_id               INT			UNSIGNED,
     worker_id               INT			UNSIGNED,
     FOREIGN KEY(client_id)    REFERENCES client(client_id),

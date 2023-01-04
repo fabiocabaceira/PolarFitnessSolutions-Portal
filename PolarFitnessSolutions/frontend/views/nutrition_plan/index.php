@@ -1,24 +1,27 @@
 <?php
 
-use frontend\models\Nutrition_plan;
+use frontend\models\nutrition_plan;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Nutrition_planSearch $searchModel */
+/** @var frontend\models\nutrition_planSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Nutrition Plans';
+
+$this->title = 'Planos de Nutrição';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="nutrition-plan-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Nutrition Plan', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Plano de Nutrição', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,17 +31,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'content:ntext',
+            'nutritionname',
             [
-                'attribute' => 'created_at',
-                'label' => 'Criado a ',
-                'value' => Yii::$app->formatter->asDatetime($searchModel->created_at),
+                'attribute' => 'client_id',
+                'label' => 'ID Cliente',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->client_id;
+                },
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'ID Funcionário',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->client_id;
+                },
+            ],
+            [
+                'attribute' => 'content:ntext',
+                'label' => 'Conteudo',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->content;
+                },
             ],
 
-            'client_id',
-            'worker_id',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Nutrition_plan $model, $key, $index, $column) {
