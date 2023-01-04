@@ -2,15 +2,14 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Nutrition_plan;
-use frontend\models\Nutrition_planSearch;
-use yii\filters\AccessControl;
+use frontend\models\nutrition_plan;
+use frontend\models\nutrition_planSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * Nutrition_planController implements the CRUD actions for Nutrition_plan model.
+ * Nutrition_planController implements the CRUD actions for nutrition_plan model.
  */
 class Nutrition_planController extends Controller
 {
@@ -22,17 +21,6 @@ class Nutrition_planController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::class,
-                    'rules' => [
-                        [
-                            'actions' => ['index','view','update','create', 'delete'],
-                            'allow' => true,
-                            'roles' => ['funcionario'],
-                        ],
-
-                    ],
-                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -44,23 +32,25 @@ class Nutrition_planController extends Controller
     }
 
     /**
-     * Lists all Nutrition_plan models.
+     * Lists all nutrition_plan models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new Nutrition_planSearch();
+        $searchModel = new nutrition_planSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
     /**
-     * Displays a single Nutrition_plan model.
+     * Displays a single nutrition_plan model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -73,13 +63,13 @@ class Nutrition_planController extends Controller
     }
 
     /**
-     * Creates a new Nutrition_plan model.
+     * Creates a new nutrition_plan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Nutrition_plan();
+        $model = new nutrition_plan();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -95,7 +85,7 @@ class Nutrition_planController extends Controller
     }
 
     /**
-     * Updates an existing Nutrition_plan model.
+     * Updates an existing nutrition_plan model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -115,7 +105,7 @@ class Nutrition_planController extends Controller
     }
 
     /**
-     * Deletes an existing Nutrition_plan model.
+     * Deletes an existing nutrition_plan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -129,15 +119,15 @@ class Nutrition_planController extends Controller
     }
 
     /**
-     * Finds the Nutrition_plan model based on its primary key value.
+     * Finds the nutrition_plan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Nutrition_plan the loaded model
+     * @return nutrition_plan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Nutrition_plan::findOne(['id' => $id])) !== null) {
+        if (($model = nutrition_plan::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

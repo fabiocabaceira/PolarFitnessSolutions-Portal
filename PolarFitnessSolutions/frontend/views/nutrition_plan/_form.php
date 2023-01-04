@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Nutrition_plan $model */
+/** @var frontend\models\nutrition_plan $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -13,8 +13,6 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-
 
     <?= $form->field($model, 'client_id')->textInput() ?>
 

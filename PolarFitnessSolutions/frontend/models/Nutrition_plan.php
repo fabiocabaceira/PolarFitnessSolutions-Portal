@@ -40,7 +40,7 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content', 'created_at'], 'required'],
+            [['content',], 'required'],
             [['content'], 'string'],
             [['client_id', 'worker_id'], 'integer'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],

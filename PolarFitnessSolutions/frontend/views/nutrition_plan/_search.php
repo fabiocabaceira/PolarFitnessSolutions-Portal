@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Nutrition_planSearch $model */
+/** @var frontend\models\nutrition_planSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -21,9 +21,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'created_at') ?>
 
+    <?= $form->field($model, 'updated_at') ?>
+
     <?= $form->field($model, 'client_id') ?>
 
-    <?= $form->field($model, 'worker_id') ?>
+    <?php // echo $form->field($model, 'worker_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
