@@ -30,7 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'client_id',
+            [
+                'attribute' => 'client_id',
+                'label' => 'nome',
+                'value' => function($model, $index, $dataColumn){
+                return $model->client->user->username;
+                }
+],
+
             'worker_id',
             [
                 'class' => ActionColumn::className(),
