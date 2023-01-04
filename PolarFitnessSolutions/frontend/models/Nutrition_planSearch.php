@@ -11,6 +11,9 @@ use frontend\models\nutrition_plan;
  */
 class nutrition_planSearch extends nutrition_plan
 {
+    public $clientUsername;
+    public $workerUsername;
+
     /**
      * {@inheritdoc}
      */
@@ -18,6 +21,7 @@ class nutrition_planSearch extends nutrition_plan
     {
         return [
             [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
+            [['clientUsername', 'workerUsername'], 'string'],
             [['nutritionname', 'content'], 'safe'],
         ];
     }
@@ -42,11 +46,18 @@ class nutrition_planSearch extends nutrition_plan
     {
         $query = nutrition_plan::find();
 
+
+        $query->joinWith('client.user');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['clientUsername'] = [
+          'asc' => ['user.username'=>SORT_ASC],
+          'desc' => ['user.username'=>SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -57,16 +68,26 @@ class nutrition_planSearch extends nutrition_plan
         }
 
         // grid filtering conditions
+//        $userClient = User::find()->where(['username'=>$this->clientUsername])->one();
+//        if($userClient!=null){
+//            $this->client_id=$userClient;
+//        }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'client_id' => $this->client_id,
+//            'client_id' => $this->client_id,
             'worker_id' => $this->worker_id,
+
         ]);
 
+
+
         $query->andFilterWhere(['like', 'nutritionname', $this->nutritionname])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'user.username', $this->clientUsername]);
+
 
         return $dataProvider;
     }

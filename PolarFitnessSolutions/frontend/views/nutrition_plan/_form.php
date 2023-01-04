@@ -12,16 +12,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nutritionname')->textInput() ?>
+    <?= $form->field($model, 'nutritionname')->textInput()->label('Nome do plano de nutrição') ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 6])->label('Conteudo') ?>
 
-    <?= $form->field($model, 'client_id')->textInput() ?>
+    <?= $form->field($model, 'client_id')->textInput()->label('Nome do cliente') ?>
 
-    <?= $form->field($model, 'worker_id')->textInput() ?>
+    <?= $form->field($model, 'worker_id')->textInput()->label('Nome do funcionario') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
