@@ -34,7 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'nutritionname',
                 'label'=>'Nome',
-                'value'=>$searchModel->nutritionname,
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->nutritionname;
+                },
             ],
             [
                 'attribute' => 'clientUsername',
