@@ -18,6 +18,7 @@ CREATE TABLE user(
     phone_number            INT             NOT NULL,
     nif                     INT             NOT NULL,
     gender                  ENUM('Masculino', 'Feminino', 'Outro')  NULL,
+    subscription            ENUM('Inativo', 'Ativo')  NOT NULL,
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -47,6 +48,26 @@ CREATE TABLE booking(
     booking_date            DATETIME    NOT NULL,
     user_id                 INT			UNSIGNED,
     FOREIGN KEY (user_id) REFERENCES user(id),
+    PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE nutrition_booking(
+    id                      INT         UNSIGNED    AUTO_INCREMENT,
+    booking_date            DATETIME    NOT NULL,
+    client_id               INT			UNSIGNED,
+    worker_id               INT			UNSIGNED,
+    FOREIGN KEY(client_id)    REFERENCES client(client_id),
+    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
+    PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE physical_evaluation_booking(
+    id                      INT         UNSIGNED    AUTO_INCREMENT,
+    booking_date            DATETIME    NOT NULL,
+    client_id               INT			UNSIGNED,
+    worker_id               INT			UNSIGNED,
+    FOREIGN KEY(client_id)    REFERENCES client(client_id),
+    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

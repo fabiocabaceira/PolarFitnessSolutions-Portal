@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var backend\models\User $model */
+/** @var backend\models\WorkoutPlanExerciseRelation $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Workout Plan Exercise Relations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="user-view">
+<div class="workout-plan-exercise-relation-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,22 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'username',
-            'password_hash',
-            'email:email',
-            'auth_key',
-            'password_reset_token',
-            'created_at',
-            'updated_at',
-            'verification_token',
-            'status',
-            'street',
-            'zip_code',
-            'area',
-            'phone_number',
-            'nif',
-            'gender',
-            'subscription',
+            'workout_plan_id',
+            'exercise_id',
         ],
     ]) ?>
 

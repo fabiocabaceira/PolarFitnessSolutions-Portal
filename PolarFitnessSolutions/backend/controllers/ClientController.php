@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\Client;
 use backend\models\ClientSearch;
 use backend\models\SignupForm;
+use backend\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,7 +58,9 @@ class ClientController extends Controller
      */
     public function actionView($client_id)
     {
+        $user = User::findOne($client_id);
         return $this->render('view', [
+            'user' => $user,
             'model' => $this->findModel($client_id),
         ]);
     }

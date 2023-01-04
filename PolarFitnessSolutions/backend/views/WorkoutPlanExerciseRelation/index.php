@@ -1,24 +1,24 @@
 <?php
 
-use backend\models\User;
+use backend\models\WorkoutPlanExerciseRelation;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var backend\models\UserSearch $searchModel */
+/** @var backend\models\WorkoutPlanExerciseRelationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Users';
+$this->title = 'Workout Plan Exercise Relations';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="workout-plan-exercise-relation-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Workout Plan Exercise Relation', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,25 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            'password_hash',
-            'email:email',
-            'auth_key',
-            //'password_reset_token',
-            //'created_at',
-            //'updated_at',
-            //'verification_token',
-            //'status',
-            //'street',
-            //'zip_code',
-            //'area',
-            //'phone_number',
-            //'nif',
-            //'gender',
-            //'subscription',
+            'workout_plan_id',
+            'exercise_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, User $model, $key, $index, $column) {
+                'urlCreator' => function ($action, WorkoutPlanExerciseRelation $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

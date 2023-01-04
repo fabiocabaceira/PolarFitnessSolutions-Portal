@@ -40,22 +40,7 @@ $this->title = $user->username;
                                         'label' => 'Data da última atualização da conta',
                                         'value' => $user->updated_at,
                                     ],
-                                    [
-                                        'label' => 'Status',
-                                         'value'=> function ($model) {
-                                             if ($model->status == 0) {
-                                                 return 'Apagado';
-                                             }
-                                             if ($model->status == 9) {
-                                                 return 'Inativo';
-                                             }
-                                             if ($model->status == 10) {
-                                                 return 'Ativo';
-                                             } else {
-                                                 return 'Invalido';
-                                             }
-                                         }
-                                    ],
+
                                     [
                                         'label' => 'Rua',
                                         'value' => $user->street,
