@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             // Email
             [
-                'attribute' => 'user.email',
+                'attribute' => 'email',
                 'label' => 'Email',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->user->email;

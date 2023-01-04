@@ -24,34 +24,42 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Criar Plano de Nutrição', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'nutritionname',
             [
-                'attribute' => 'client_id',
-                'label' => 'ID Cliente',
+                'attribute'=>'nutritionname',
+                'label'=>'Nome',
                 'value' => function($model, $index, $dataColumn) {
-                    return $model->client_id;
+                    return $model->nutritionname;
                 },
             ],
             [
-                'attribute' => 'worker_id',
-                'label' => 'ID Funcionário',
+                'attribute' => 'clientUsername',
+                'label' => 'Cliente',
                 'value' => function($model, $index, $dataColumn) {
-                    return $model->client_id;
+                    return $model->client->user->username;
+                },
+
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'Funcionário',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->worker->user->username;
                 },
             ],
             [
                 'attribute' => 'content:ntext',
-                'label' => 'Conteudo',
+                'label' => 'Conteúdo',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->content;
                 },
+
             ],
 
             [

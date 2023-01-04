@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "client".
@@ -52,5 +53,10 @@ class Client extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'client_id']);
+    }
+
+    public function getUsername(){
+        $ClientUsername = self::find()->select(['id','username'])->all();
+        return ArrayHelper::map($ClientUsername, 'id', 'username');
     }
 }
