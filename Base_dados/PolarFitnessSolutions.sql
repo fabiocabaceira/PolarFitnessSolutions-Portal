@@ -43,7 +43,7 @@ CREATE TABLE worker(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE worker_client_relation(
-    id                      INT             UNSIGNED,
+    id                      INT             UNSIGNED    AUTO_INCREMENT,
     client_id               INT             UNSIGNED,
     worker_id               INT             UNSIGNED,
     FOREIGN KEY(client_id) REFERENCES client(client_id),
