@@ -18,7 +18,7 @@ class nutrition_planSearch extends nutrition_plan
     {
         return [
             [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
-            [['content'], 'safe'],
+            [['nutritionname', 'content'], 'safe'],
         ];
     }
 
@@ -65,7 +65,8 @@ class nutrition_planSearch extends nutrition_plan
             'worker_id' => $this->worker_id,
         ]);
 
-        $query->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'nutritionname', $this->nutritionname])
+            ->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;
     }

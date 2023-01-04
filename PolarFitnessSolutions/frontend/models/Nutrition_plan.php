@@ -9,15 +9,17 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "nutrition_plan".
  *
  * @property int $id
+ * @property string $nutritionname
  * @property string $content
  * @property int $created_at
+ * @property int $updated_at
  * @property int|null $client_id
  * @property int|null $worker_id
  *
  * @property Client $client
  * @property Worker $worker
  */
-class Nutrition_plan extends \yii\db\ActiveRecord
+class Nutrition_Plan extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -30,7 +32,7 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
+          TimestampBehavior::class,
         ];
     }
 
@@ -40,9 +42,10 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content',], 'required'],
+            [['nutritionname', 'content'], 'required'],
             [['content'], 'string'],
-            [['client_id', 'worker_id'], 'integer'],
+            [['created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
+            [['nutritionname'], 'string', 'max' => 30],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
             [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
         ];
@@ -55,8 +58,10 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'nutritionname' => 'Nutritionname',
             'content' => 'Content',
             'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
             'client_id' => 'Client ID',
             'worker_id' => 'Worker ID',
         ];

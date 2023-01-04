@@ -41,11 +41,9 @@ class Nutrition_planController extends Controller
         $searchModel = new nutrition_planSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-
         ]);
     }
 

@@ -72,6 +72,7 @@ CREATE TABLE messages(
 
 CREATE TABLE nutrition_plan(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
+    nutritionname 			VARCHAR(30)	NOT NULL,
     content                 LONGTEXT    NOT NULL,
     created_at              INT(11)     NOT NULL,
     updated_at              INT(11)     NOT NULL,

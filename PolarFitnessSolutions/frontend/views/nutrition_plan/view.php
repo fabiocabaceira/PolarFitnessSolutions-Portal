@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            'nutritionname',
             'content:ntext',
             [
                 'attribute' => 'created_at',
