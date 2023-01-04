@@ -94,12 +94,14 @@ class ClientController extends Controller
     public function actionUpdate($client_id)
     {
         $model = $this->findModel($client_id);
+        $user = User::findOne($client_id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $user->load($this->request->post()) && $user->save()) {
             return $this->redirect(['view', 'client_id' => $model->client_id]);
         }
 
         return $this->render('update', [
+            'user' => $user,
             'model' => $model,
         ]);
     }
