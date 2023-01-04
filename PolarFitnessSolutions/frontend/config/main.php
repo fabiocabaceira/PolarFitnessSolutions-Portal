@@ -40,6 +40,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/user'],
             ],
         ],
         'urlManagerBackend' => [
@@ -47,6 +48,11 @@ return [
             'baseUrl' => 'http://localhost/github/PolarFitnessSolutions-Portal/PolarFitnessSolutions/backend/web',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+        ],
+    ],
+    'modules' => [
+        'api' => [
+            'class' => 'frontend\modules\api\ModuleAPI',
         ],
     ],
     'params' => $params,
