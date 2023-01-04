@@ -21,15 +21,6 @@ CREATE TABLE user(
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE gym_area(
-    id          INT                      UNSIGNED    AUTO_INCREMENT,
-    capacity    INT(50)         NOT NULL,
-    area_name   VARCHAR(200)    NOT NULL,
-    user_id		INT                     UNSIGNED,
-    PRIMARY KEY(id),
-    FOREIGN KEY (user_id) REFERENCES user(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 CREATE TABLE client(
     client_id               INT             UNSIGNED,
     PRIMARY KEY(client_id),
@@ -56,17 +47,6 @@ CREATE TABLE booking(
     booking_date            DATETIME    NOT NULL,
     user_id                 INT			UNSIGNED,
     FOREIGN KEY (user_id) REFERENCES user(id),
-    PRIMARY KEY(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE messages(
-    id                      INT         UNSIGNED    AUTO_INCREMENT,
-    content                 VARCHAR(225)            NOT NULL,
-    create_date             DATETIME    NOT NULL,
-    client_id               INT			UNSIGNED,
-    worker_id               INT			UNSIGNED,
-    FOREIGN KEY(client_id)    REFERENCES client(client_id),
-    FOREIGN KEY(worker_id)    REFERENCES worker(worker_id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -102,28 +82,18 @@ CREATE TABLE exercise(
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE current_set(
-    id                      INT         UNSIGNED    AUTO_INCREMENT,            
-    reps                    INT,
-    set_weight              FLOAT,
-    exercise_id             INT			UNSIGNED,
+CREATE TABLE workout_plan_exercise_relation(
+    id                      INT             UNSIGNED    AUTO_INCREMENT,
+    workout_plan_id         INT             UNSIGNED,
+    exercise_id             INT             UNSIGNED,
+    FOREIGN KEY(workout_plan_id) REFERENCES workout_plan(id),
     FOREIGN KEY(exercise_id) REFERENCES exercise(id),
-    PRIMARY KEY(id)  
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE workout_session(
-    id                      INT         UNSIGNED     AUTO_INCREMENT,
-    start_time              DATETIME,
-    end_time                DATETIME,
-    set_id                  INT			UNSIGNED,
-    user_id                 INT			UNSIGNED,
-    FOREIGN KEY(set_id)     REFERENCES current_set(id),
-    FOREIGN KEY(user_id)    REFERENCES user(id),
-    PRIMARY KEY(id)    
+    PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE physical_evaluation(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
+    create_date             DATE,	
     imc                     FLOAT,
     fc_repouso              INT,
     peso                    FLOAT,
