@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use frontend\modules\api\resources\UserResource;
 use Yii;
 use yii\base\Model;
 

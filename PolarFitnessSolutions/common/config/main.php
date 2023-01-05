@@ -6,6 +6,11 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'request' => [
+        'parsers' => [
+            'application/json' => \yii\web\JsonParser::class
+        ],
+            ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest'],
