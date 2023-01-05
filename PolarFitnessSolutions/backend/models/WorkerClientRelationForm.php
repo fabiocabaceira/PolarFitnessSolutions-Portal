@@ -14,16 +14,14 @@ class WorkerClientRelationForm extends Model
     public $Funcionario;
 
 
+
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
 
         ];
     }
@@ -39,21 +37,13 @@ class WorkerClientRelationForm extends Model
             return null;
         }
 
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
 
-        $user->save();
+        $relation = new WorkerClientRelation();
+        $relation->client_id = $this->client_id;
+        $relation->worker_id = $this->worker_id;
+        $relation->save();
 
-        $worker = new Worker();
-        $worker->worker_id = $user->id;
-        $worker->save();
-
-        //assigning roles at sign up
-        $auth = \Yii::$app->authManager;
-        $funcionarioRole = $auth->getRole('funcionario');
-        $auth->assign($funcionarioRole, $user->getId());
-        return $this->sendEmail($user);
+        return true;
     }
 
     /**
