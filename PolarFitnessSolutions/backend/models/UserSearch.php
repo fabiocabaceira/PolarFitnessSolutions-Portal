@@ -4,10 +4,10 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\User;
+use backend\models\User;
 
 /**
- * UserSearch represents the model behind the search form of `frontend\models\User`.
+ * UserSearch represents the model behind the search form of `backend\models\User`.
  */
 class UserSearch extends User
 {
@@ -18,7 +18,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'created_at', 'updated_at', 'status', 'phone_number', 'nif'], 'integer'],
-            [['username', 'password_hash', 'email', 'auth_key', 'password_reset_token', 'verification_token', 'street', 'zip_code', 'area', 'gender'], 'safe'],
+            [['username', 'password_hash', 'email', 'auth_key', 'password_reset_token', 'verification_token', 'street', 'zip_code', 'area', 'gender', 'subscription'], 'safe'],
         ];
     }
 
@@ -75,7 +75,8 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'zip_code', $this->zip_code])
             ->andFilterWhere(['like', 'area', $this->area])
-            ->andFilterWhere(['like', 'gender', $this->gender]);
+            ->andFilterWhere(['like', 'gender', $this->gender])
+            ->andFilterWhere(['like', 'subscription', $this->subscription]);
 
         return $dataProvider;
     }

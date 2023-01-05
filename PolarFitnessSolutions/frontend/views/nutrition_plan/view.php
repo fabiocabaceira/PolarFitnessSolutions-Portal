@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\nutrition_plan $model */
 
-$this->title = $model->id;
+$this->title = $model->nutritionname;
 $this->params['breadcrumbs'][] = ['label' => 'Planos de Nutrição', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -30,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'nutritionname',
+            [
+                'attribute'=>'nutritionname',
+                'label'=>'Nome',
+                'value'=>$model->nutritionname,
+            ],
             'content:ntext',
             [
                 'attribute' => 'created_at',
@@ -45,12 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'client_id',
                 'label' => 'Cliente ',
-                'value' => $model->client_id,
+                'value' => $model->client->user->username,
             ],
             [
                 'attribute' => 'worker_id',
                 'label' => 'Funcionário',
-                'value' => $model->worker_id,
+                'value' => $model->worker->user->username,
             ],
         ],
     ]) ?>

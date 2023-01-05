@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\UserSearch $model */
+/** @var backend\models\UserSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -46,6 +46,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'nif') ?>
 
     <?php // echo $form->field($model, 'gender') ?>
+
+    <?php // echo $form->field($model, 'subscription') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

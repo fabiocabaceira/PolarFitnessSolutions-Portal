@@ -2,8 +2,12 @@
 
 namespace backend\controllers;
 
+use backend\models\User;
+use backend\models\Worker;
 use backend\models\WorkerClientRelation;
 use backend\models\worker_client_relationSearch;
+use backend\models\WorkerClientRelationForm;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,14 +71,11 @@ class Worker_client_relationController extends Controller
      */
     public function actionCreate()
     {
-        $model = new WorkerClientRelation();
+        $model = new WorkerClientRelationForm();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        if ($model->load($this->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            return $this->goHome();
         }
 
         return $this->render('create', [

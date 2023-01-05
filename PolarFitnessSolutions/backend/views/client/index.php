@@ -38,6 +38,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->user->username;
                     },
             ],
+            // Estado de subscrição
+            [
+                'attribute' => 'user.subscription',
+                'label' => 'Estado de subscrição',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->user->subscription;
+                },
+            ],
             // Email
             [
                 'attribute' => 'user.email',

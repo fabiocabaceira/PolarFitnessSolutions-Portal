@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var frontend\models\nutrition_plan $model */
 
-$this->title = 'Create Nutrition Plan';
-$this->params['breadcrumbs'][] = ['label' => 'Nutrition Plans', 'url' => ['index']];
+$this->title = 'Criar Plano de Nutrição';
+$this->params['breadcrumbs'][] = ['label' => 'Nutrição', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nutrition-plan-create">
