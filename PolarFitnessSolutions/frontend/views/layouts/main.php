@@ -50,7 +50,7 @@ AppAsset::register($this);
                 ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
                 ['label' => 'Clientes', 'url' => ['/client/index']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
-                ['label' => 'Planos de treino', 'url' => ['/site/signup']],
+                ['label' => 'Planos de treino', 'url' => ['/workout_plan/index']],
                 ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
             ];
         } else if(Yii::$app->user->can('utilizador')) {

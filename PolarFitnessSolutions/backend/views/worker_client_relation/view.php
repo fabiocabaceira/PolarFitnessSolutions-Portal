@@ -29,9 +29,42 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'client_id',
-            'worker_id',
+
+            [
+                'attribute' => 'id',
+                'label' => 'ID da Atribuição',
+            ],
+
+            [
+                'attribute' => 'client.username',
+                'label' => 'Nome do Cliente',
+                'value' => function($model, $index){
+                    return $model->client->user->username;
+                }
+
+            ],
+
+            [
+                'attribute' => 'worker.username',
+                'label' => 'Nome do Funcionário',
+                'value' => function($model, $index){
+                    return $model->worker->user->username;
+                }
+            ],
+
+            [
+                'attribute' => 'client_id',
+                'label' => 'ID do Cliente',
+            ],
+
+
+            [
+                'attribute' => 'worker_id',
+                'label' => 'ID do Funcionário',
+
+            ],
+
+
         ],
     ]) ?>
 

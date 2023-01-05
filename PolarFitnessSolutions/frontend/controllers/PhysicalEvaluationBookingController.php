@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PhysicalEvaluationBookingController implements the CRUD actions for PhysicalEvaluationBooking model.
+ * PhysicalEvaluationBookingController implements the CRUD actions for physicalevaluationbooking model.
  */
 class PhysicalEvaluationBookingController extends Controller
 {
@@ -32,7 +32,7 @@ class PhysicalEvaluationBookingController extends Controller
     }
 
     /**
-     * Lists all PhysicalEvaluationBooking models.
+     * Lists all physicalevaluationbooking models.
      *
      * @return string
      */
@@ -48,7 +48,7 @@ class PhysicalEvaluationBookingController extends Controller
     }
 
     /**
-     * Displays a single PhysicalEvaluationBooking model.
+     * Displays a single physicalevaluationbooking model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,7 +61,7 @@ class PhysicalEvaluationBookingController extends Controller
     }
 
     /**
-     * Creates a new PhysicalEvaluationBooking model.
+     * Creates a new physicalevaluationbooking model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
@@ -83,7 +83,7 @@ class PhysicalEvaluationBookingController extends Controller
     }
 
     /**
-     * Updates an existing PhysicalEvaluationBooking model.
+     * Updates an existing physicalevaluationbooking model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class PhysicalEvaluationBookingController extends Controller
     }
 
     /**
-     * Deletes an existing PhysicalEvaluationBooking model.
+     * Deletes an existing physicalevaluationbooking model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,7 +117,7 @@ class PhysicalEvaluationBookingController extends Controller
     }
 
     /**
-     * Finds the PhysicalEvaluationBooking model based on its primary key value.
+     * Finds the physicalevaluationbooking model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return PhysicalEvaluationBooking the loaded model

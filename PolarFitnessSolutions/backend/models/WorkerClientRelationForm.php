@@ -8,17 +8,11 @@ use common\models\User;
 /**
  * Signup forms
  */
-class WorkerCreateForm extends Model
+class WorkerClientRelationForm extends Model
 {
-    public $username;
-    public $email;
-    public $street;
-    public $zip_code;
-    public $area;
-    public $phone_number;
-    public $gender;
-    public $password;
-    public $nif;
+    public $Cliente;
+    public $Funcionario;
+
 
     /**
      * {@inheritdoc}
@@ -30,22 +24,6 @@ class WorkerCreateForm extends Model
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-
-            ['password', 'required'],
-            ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
-
-            ['street', 'required'],
-            ['zip_code', 'required'],
-            ['area', 'required'],
-            ['phone_number', 'required'],
-            ['nif', 'required'],
-            ['gender', 'required'],
 
         ];
     }
@@ -64,15 +42,7 @@ class WorkerCreateForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->street = $this->street;
-        $user->zip_code = $this->zip_code;
-        $user->phone_number = $this->phone_number;
-        $user->area = $this->area;
-        $user->nif = $this->nif;
-        $user->gender = $this->gender;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
+
         $user->save();
 
         $worker = new Worker();

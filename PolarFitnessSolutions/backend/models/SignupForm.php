@@ -86,6 +86,8 @@ class SignupForm extends Model
         return $this->sendEmail($user);
     }
 
+
+
     /**
      * Sends confirmation email to user
      * @param User $user user model to with email should be send

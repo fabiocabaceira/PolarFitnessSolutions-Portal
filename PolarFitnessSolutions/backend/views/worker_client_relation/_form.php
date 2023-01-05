@@ -1,20 +1,24 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var backend\models\WorkerClientRelation $model */
+/** @var backend\models\WorkerClientRelationForm $model */
 /** @var yii\widgets\ActiveForm $form */
+
+
+
 ?>
 
 <div class="worker-client-relation-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'client_id')->textInput() ?>
+    <?= $form->field($model, 'Cliente')->dropDownList(ArrayHelper::map(\backend\models\Client::find()->asArray()->with('user')->all(), 'client_id', 'user.username')); ?>
+    <?= $form->field($model, 'Funcionario')->dropDownList(ArrayHelper::map(\backend\models\Worker::find()->asArray()->with('user')->all(), 'worker_id', 'user.username'))?>
 
-    <?= $form->field($model, 'worker_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

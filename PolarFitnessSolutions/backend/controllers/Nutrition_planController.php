@@ -2,19 +2,16 @@
 
 namespace backend\controllers;
 
-use backend\models\User;
-use backend\models\Worker;
-use backend\models\WorkerClientRelation;
-use backend\models\worker_client_relationSearch;
-use backend\models\WorkerClientRelationForm;
+use backend\models\Nutrition_plan;
+use backend\models\Nutrition_planSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * Worker_client_relationController implements the CRUD actions for WorkerClientRelation model.
+ * Nutrition_planController implements the CRUD actions for Nutrition_plan model.
  */
-class Worker_client_relationController extends Controller
+class Nutrition_planController extends Controller
 {
     /**
      * @inheritDoc
@@ -35,13 +32,13 @@ class Worker_client_relationController extends Controller
     }
 
     /**
-     * Lists all WorkerClientRelation models.
+     * Lists all Nutrition_plan models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new worker_client_relationSearch();
+        $searchModel = new Nutrition_planSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -51,7 +48,7 @@ class Worker_client_relationController extends Controller
     }
 
     /**
-     * Displays a single WorkerClientRelation model.
+     * Displays a single Nutrition_plan model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -64,17 +61,20 @@ class Worker_client_relationController extends Controller
     }
 
     /**
-     * Creates a new WorkerClientRelation model.
+     * Creates a new Nutrition_plan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new WorkerClientRelationForm();
+        $model = new Nutrition_plan();
 
-        if ($model->load($this->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -83,7 +83,7 @@ class Worker_client_relationController extends Controller
     }
 
     /**
-     * Updates an existing WorkerClientRelation model.
+     * Updates an existing Nutrition_plan model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class Worker_client_relationController extends Controller
     }
 
     /**
-     * Deletes an existing WorkerClientRelation model.
+     * Deletes an existing Nutrition_plan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class Worker_client_relationController extends Controller
     }
 
     /**
-     * Finds the WorkerClientRelation model based on its primary key value.
+     * Finds the Nutrition_plan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return WorkerClientRelation the loaded model
+     * @return Nutrition_plan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = WorkerClientRelation::findOne(['id' => $id])) !== null) {
+        if (($model = Nutrition_plan::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

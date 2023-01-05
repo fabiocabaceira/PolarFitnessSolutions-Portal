@@ -10,15 +10,13 @@ use yii\grid\GridView;
 /** @var backend\models\worker_client_relationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Worker Client Relations';
+$this->title = 'Atribuição de Profissionais';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="worker-client-relation-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Worker Client Relation', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Atribuir Funcionário a Cliente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,16 +27,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             [
-                'attribute' => 'client_id',
-                'label' => 'nome',
+                'attribute' => 'id',
+                'label' => 'ID da Atribuição',
+            ],
+            [
+                'attribute' => 'client.username',
+                'label' => 'Nome do cliente',
                 'value' => function($model, $index, $dataColumn){
                 return $model->client->user->username;
                 }
-],
+            ],
+            [
+                'attribute' => 'worker.username',
+                'label' => 'Nome do funcionário',
+                'value' => function($model, $index, $dataColumn){
+                    return $model->worker->user->username;
+                }
+            ],
+            [
+                    'attribute' => 'worker_id',
+                    'label' => 'ID do Funcionário',
 
-            'worker_id',
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'ID do Cliente',
+            ],
+
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, WorkerClientRelation $model, $key, $index, $column) {
