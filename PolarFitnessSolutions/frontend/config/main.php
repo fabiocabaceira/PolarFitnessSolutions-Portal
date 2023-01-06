@@ -13,6 +13,9 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
+            'parsers' => [
+                'application/json' => \yii\web\JsonParser::class
+            ],
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
