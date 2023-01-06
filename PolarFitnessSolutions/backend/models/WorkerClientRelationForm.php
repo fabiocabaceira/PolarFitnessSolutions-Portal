@@ -4,16 +4,14 @@ namespace backend\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use backend\models\WorkerClientRelation;
 /**
  * Signup forms
  */
 class WorkerClientRelationForm extends Model
 {
-    public $Cliente;
-    public $Funcionario;
-
-
+    public $client_id;
+    public $worker_id;
 
 
     /**
@@ -22,6 +20,7 @@ class WorkerClientRelationForm extends Model
     public function rules()
     {
         return [
+            [['client_id', 'worker_id'], 'integer'],
 
         ];
     }

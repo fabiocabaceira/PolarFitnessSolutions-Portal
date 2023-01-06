@@ -158,17 +158,7 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionConta()
-    {
-        return $this->render('conta');
-        $model = new Profile();
-        if($model->load(Yii::$app->request->post()) && $model->profileSave());
-    }
+
 
     /**
      * Signs user up.
