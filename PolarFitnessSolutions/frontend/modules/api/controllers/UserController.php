@@ -11,10 +11,6 @@ class UserController extends activeController
 
     public function actionLogin()
     {
-//        if (!Yii::$app->user->isGuest) {
-//            return $this->goHome();
-//        }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post(),'') && $model->login()) {
             return $model->getUserApi()->toArray(['id','username','email','street','zip_code','area','phone_number','nif','gender']);
@@ -26,9 +22,6 @@ Yii::$app->response->statusCode = 422;
     }
 
     public function actionSignup(){
-//        if (!Yii::$app->user->isGuest) {
-//            return $this->goHome();
-//        }
 
             $model = new SignupForm();
             if ($model->load(Yii::$app->request->post(),'') && $model->signup()) {
