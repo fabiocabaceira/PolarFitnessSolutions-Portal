@@ -47,7 +47,6 @@ class nutrition_planSearch extends nutrition_plan
         $id = Yii::$app->user->id;
         $query = nutrition_plan::find()->where(['worker_id' => $id]);
 
-
         $query->joinWith('client.user');
 
         // add conditions that should always apply here
@@ -70,10 +69,6 @@ class nutrition_planSearch extends nutrition_plan
         }
 
         // grid filtering conditions
-//        $userClient = User::find()->where(['username'=>$this->clientUsername])->one();
-//        if($userClient!=null){
-//            $this->client_id=$userClient;
-//        }
 
         $query->andFilterWhere([
             'id' => $this->id,

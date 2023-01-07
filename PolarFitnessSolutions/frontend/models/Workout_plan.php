@@ -9,12 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $workout_name
- * @property string|null $createdate
+ * @property int $created_at
  * @property int|null $client_id
  * @property int|null $worker_id
  *
- * @property User $client
- * @property User $worker
+ * @property Client $client
+ * @property Worker $worker
+ * @property WorkoutPlanExerciseRelation[] $workoutPlanExerciseRelations
  */
 class Workout_plan extends \yii\db\ActiveRecord
 {
@@ -32,12 +33,11 @@ class Workout_plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['workout_name'], 'required'],
-            [['createdate'], 'safe'],
-            [['user_id', 'worker_id'], 'integer'],
+            [['workout_name', 'created_at'], 'required'],
+            [['created_at', 'client_id', 'worker_id'], 'integer'],
             [['workout_name'], 'string', 'max' => 30],
-            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['client_id' => 'id']],
-            [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['worker_id' => 'id']],
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
+            [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
         ];
     }
 
@@ -49,10 +49,20 @@ class Workout_plan extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'workout_name' => 'Workout Name',
-            'createdate' => 'Createdate',
+            'created_at' => 'Created At',
             'client_id' => 'Client ID',
             'worker_id' => 'Worker ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Client]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClient()
+    {
+        return $this->hasOne(Client::class, ['client_id' => 'client_id']);
     }
 
     /**
@@ -62,11 +72,16 @@ class Workout_plan extends \yii\db\ActiveRecord
      */
     public function getWorker()
     {
-        return $this->hasOne(User::class, ['id' => 'worker_id']);
+        return $this->hasOne(Worker::class, ['worker_id' => 'worker_id']);
     }
 
-    public function getClient()
+    /**
+     * Gets query for [[WorkoutPlanExerciseRelations]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getWorkoutPlanExerciseRelations()
     {
-        return $this->hasOne(User::class, ['id' => 'client_id']);
+        return $this->hasMany(WorkoutPlanExerciseRelation::class, ['workout_plan_id' => 'id']);
     }
 }
