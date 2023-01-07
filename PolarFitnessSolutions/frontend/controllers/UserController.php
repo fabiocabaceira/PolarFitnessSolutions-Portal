@@ -28,8 +28,8 @@ class UserController extends Controller
                     'rules' => [
                         [
                             'actions' => ['index'],
-                            'allow' => true,
-                            'roles' => ['funcionario'],
+                            'allow' => false,
+                            'roles' => ['funcionario', 'utilizador'],
                         ],
                         [
                             'actions' => ['view'],
