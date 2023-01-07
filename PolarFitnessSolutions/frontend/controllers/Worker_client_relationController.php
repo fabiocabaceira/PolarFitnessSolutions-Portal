@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use frontend\models\WorkerClientRelation;
 use frontend\models\worker_client_relationSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,6 +24,17 @@ class Worker_client_relationController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['index','view','update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['funcionario'],
+                        ],
+
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
