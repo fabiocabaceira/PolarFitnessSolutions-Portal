@@ -1,17 +1,17 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
-use frontend\models\Workout_plan;
-use frontend\models\Workout_planSearch;
+use backend\models\PhysicalEvaluationBooking;
+use backend\models\PhysicalEvaluationBookingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * Workout_planController implements the CRUD actions for Workout_plan model.
+ * Physical_evaluation_bookingController implements the CRUD actions for PhysicalEvaluationBooking model.
  */
-class Workout_planController extends Controller
+class Physical_evaluation_bookingController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class Workout_planController extends Controller
     }
 
     /**
-     * Lists all Workout_plan models.
+     * Lists all PhysicalEvaluationBooking models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new Workout_planSearch();
+        $searchModel = new PhysicalEvaluationBookingSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class Workout_planController extends Controller
     }
 
     /**
-     * Displays a single Workout_plan model.
+     * Displays a single PhysicalEvaluationBooking model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class Workout_planController extends Controller
     }
 
     /**
-     * Creates a new Workout_plan model.
+     * Creates a new PhysicalEvaluationBooking model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Workout_plan();
+        $model = new PhysicalEvaluationBooking();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class Workout_planController extends Controller
     }
 
     /**
-     * Updates an existing Workout_plan model.
+     * Updates an existing PhysicalEvaluationBooking model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class Workout_planController extends Controller
     }
 
     /**
-     * Deletes an existing Workout_plan model.
+     * Deletes an existing PhysicalEvaluationBooking model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class Workout_planController extends Controller
     }
 
     /**
-     * Finds the Workout_plan model based on its primary key value.
+     * Finds the PhysicalEvaluationBooking model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Workout_plan the loaded model
+     * @return PhysicalEvaluationBooking the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Workout_plan::findOne(['id' => $id])) !== null) {
+        if (($model = PhysicalEvaluationBooking::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var frontend\models\Workout_planSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Planos de treino';
+$this->title = 'Workout Plans';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workout-plan-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Criar plano de treino', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Workout Plan', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'workout_name',
-            'createdate',
+            'created_at',
             'client_id',
             'worker_id',
             [

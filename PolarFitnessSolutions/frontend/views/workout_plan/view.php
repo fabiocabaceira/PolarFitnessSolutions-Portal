@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'workout_name',
-            'createdate',
+            'created_at',
             'client_id',
             'worker_id',
         ],
