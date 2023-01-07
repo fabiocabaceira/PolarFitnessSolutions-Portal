@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\User;
 use backend\models\Worker;
 use backend\models\WorkerCreateForm;
 use backend\models\WorkerSearch;
@@ -58,7 +59,9 @@ class WorkerController extends Controller
      */
     public function actionView($worker_id)
     {
+        $user = User::findOne($worker_id);
         return $this->render('view', [
+            'user' => $user,
             'model' => $this->findModel($worker_id),
         ]);
     }
@@ -91,12 +94,14 @@ class WorkerController extends Controller
     public function actionUpdate($worker_id)
     {
         $model = $this->findModel($worker_id);
+        $user = User::findOne($worker_id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $user->load($this->request->post()) && $user->save()) {
             return $this->redirect(['view', 'worker_id' => $model->worker_id]);
         }
 
         return $this->render('update', [
+            'user' => $user,
             'model' => $model,
         ]);
     }
