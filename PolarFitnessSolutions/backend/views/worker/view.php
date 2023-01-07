@@ -70,10 +70,8 @@ $this->title = $user->username;
 
                             ]) ?></span>
                 <div class="mt-5 text-center">
-                    <?= Html::a('Atualizar', ['update', 'client_id' => $model->worker_id], ['class' => 'btn btn-primary profile-button']) ?>
+                    <?= Html::a('Atualizar', ['update', 'worker_id' => $model->worker_id], ['class' => 'btn btn-primary profile-button']) ?>
                 </div>
-
-
             </div>
         </div>
 
