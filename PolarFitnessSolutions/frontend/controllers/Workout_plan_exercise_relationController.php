@@ -65,7 +65,7 @@ class Workout_plan_exercise_relationController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate($workout_id)
     {
         $model = new Workout_plan_exercise_relation();
 
@@ -79,6 +79,7 @@ class Workout_plan_exercise_relationController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'workout_id' =>$workout_id,
         ]);
     }
 
