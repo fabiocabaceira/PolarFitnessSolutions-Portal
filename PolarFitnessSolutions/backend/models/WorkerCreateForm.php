@@ -70,6 +70,7 @@ class WorkerCreateForm extends Model
         $user->area = $this->area;
         $user->nif = $this->nif;
         $user->gender = $this->gender;
+        $user->status = 10;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
