@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\Client $model */
 
-$this->title = $user->username;
+$this->title = $model->user->username;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">

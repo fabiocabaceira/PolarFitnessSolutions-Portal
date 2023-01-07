@@ -10,6 +10,7 @@ use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 $id = Yii::$app->user->id;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage(); ?>
@@ -48,7 +49,7 @@ AppAsset::register($this);
  if (Yii::$app->user->can('funcionario')) {
             $menuItems = [
                 ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
-                ['label' => 'Clientes', 'url' => ['/client/index']],
+                ['label' => 'Clientes', 'url' => ['/worker_client_relation/index']],
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
                 ['label' => 'Planos de treino', 'url' => ['/workout_plan/index']],
                 ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],

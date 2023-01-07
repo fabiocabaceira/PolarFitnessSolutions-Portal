@@ -2,15 +2,18 @@
 
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\models\WorkerClientRelation;
+
 
 /**
  * worker_client_relationSearch represents the model behind the search form of `frontend\models\WorkerClientRelation`.
  */
 class worker_client_relationSearch extends WorkerClientRelation
 {
+
     /**
      * {@inheritdoc}
      */
@@ -39,7 +42,8 @@ class worker_client_relationSearch extends WorkerClientRelation
      */
     public function search($params)
     {
-        $query = WorkerClientRelation::find();
+        $id = Yii::$app->user->id;
+        $query = WorkerClientRelation::find()->where(['worker_id' => $id]);
 
         // add conditions that should always apply here
 
