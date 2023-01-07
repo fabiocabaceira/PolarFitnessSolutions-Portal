@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             [
-                'attribute' => 'worker_id',
+                'attribute' => 'workerUsername',
                 'label' => 'Funcionário',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->worker->user->username;
