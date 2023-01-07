@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /** @var frontend\models\WorkerClientRelation $model */
 
 $this->title = $model->client->user->username;
-$this->params['breadcrumbs'][] = ['label' => 'Worker Client Relations', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Os meus clientes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Detalhes de <?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // Nif
             [
                 'attribute' => 'user.nif',
-                'label' => 'Nif',
+                'label' => 'NIF',
                 'value' => function($model, $index) {
                     return $model->client->user->nif;
                 },

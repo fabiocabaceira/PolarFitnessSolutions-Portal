@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var frontend\models\worker_client_relationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'O meus clientes';
+$this->title = 'Os meus clientes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="worker-client-relation-index">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             // Nome do cliente
             [
-                'attribute' => 'user.username',
+                'attribute' => 'clientUsername',
                 'label' => 'Nome',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client->user->username;

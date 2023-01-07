@@ -14,6 +14,8 @@ use frontend\models\WorkerClientRelation;
 class worker_client_relationSearch extends WorkerClientRelation
 {
 
+    public $clientUsername;
+
     /**
      * {@inheritdoc}
      */
@@ -21,6 +23,7 @@ class worker_client_relationSearch extends WorkerClientRelation
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
+            [['clientUsername'], 'string'],
         ];
     }
 
@@ -45,11 +48,17 @@ class worker_client_relationSearch extends WorkerClientRelation
         $id = Yii::$app->user->id;
         $query = WorkerClientRelation::find()->where(['worker_id' => $id]);
 
+        $query->joinWith('client.user');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['clientUsername'] = [
+          'asc' => ['user.username' => SORT_ASC],
+          'desc' => ['user.username' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -62,9 +71,11 @@ class worker_client_relationSearch extends WorkerClientRelation
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'client_id' => $this->client_id,
-            'worker_id' => $this->worker_id,
+            //'client_id' => $this->client_id,
+            //'worker_id' => $this->worker_id,
         ]);
+
+        $query->andFilterWhere(['like', 'user.username', $this->clientUsername]);
 
         return $dataProvider;
     }
