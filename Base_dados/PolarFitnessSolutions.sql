@@ -87,7 +87,7 @@ CREATE TABLE nutrition_plan(
 CREATE TABLE workout_plan(
     id                      INT         UNSIGNED    AUTO_INCREMENT,
     workout_name            VARCHAR(30) NOT NULL,
-    createdate              DATETIME,
+    created_at              INT(11)     NOT NULL,
     client_id               INT			UNSIGNED,
     worker_id               INT			UNSIGNED,
     FOREIGN KEY(client_id)    REFERENCES client(client_id),
