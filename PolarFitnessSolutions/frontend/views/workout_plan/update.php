@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var frontend\models\Workout_plan $model */
 
-$this->title = 'Update Workout Plan: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Workout Plans', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Update Workout Plan: ' . $model->workout_name;
+$this->params['breadcrumbs'][] = ['label' => 'Planos de Treino', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->client->user->username . ': ' . $model->workout_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="workout-plan-update">
 

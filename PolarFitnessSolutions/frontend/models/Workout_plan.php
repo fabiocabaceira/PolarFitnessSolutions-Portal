@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "workout_plan".
@@ -10,6 +11,7 @@ use Yii;
  * @property int $id
  * @property string $workout_name
  * @property int $created_at
+ * @property int $updated_at
  * @property int|null $client_id
  * @property int|null $worker_id
  *
@@ -27,14 +29,21 @@ class Workout_plan extends \yii\db\ActiveRecord
         return 'workout_plan';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['workout_name', 'created_at'], 'required'],
-            [['created_at', 'client_id', 'worker_id'], 'integer'],
+            [['workout_name'], 'required'],
+            [['created_at', 'client_id', 'worker_id', 'updated_at'], 'integer'],
             [['workout_name'], 'string', 'max' => 30],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
             [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
@@ -50,6 +59,7 @@ class Workout_plan extends \yii\db\ActiveRecord
             'id' => 'ID',
             'workout_name' => 'Workout Name',
             'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
             'client_id' => 'Client ID',
             'worker_id' => 'Worker ID',
         ];

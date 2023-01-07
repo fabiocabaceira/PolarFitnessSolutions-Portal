@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Client;
 use frontend\models\nutrition_plan;
 use frontend\models\nutrition_planSearch;
 use yii\filters\AccessControl;

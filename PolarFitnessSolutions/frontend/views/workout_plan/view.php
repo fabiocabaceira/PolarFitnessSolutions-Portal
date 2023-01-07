@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\Workout_plan $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Workout Plans', 'url' => ['index']];
+$this->title = $model->workout_name;
+$this->params['breadcrumbs'][] = ['label' => 'Planos de Treino', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem a certeza que deseja apagar este plano de treino?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,11 +29,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'workout_name',
-            'created_at',
-            'client_id',
-            'worker_id',
+            [
+                'attribute'=>'workout_name',
+                'label'=>'Nome',
+                'value'=>$model->workout_name,
+            ],
+            [
+                'attribute' => 'created_at',
+                'label' => 'Criado a ',
+                'value' => Yii::$app->formatter->asDatetime($model->created_at),
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'Cliente ',
+                'value' => $model->client->user->username,
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'Funcionário',
+                'value' => $model->worker->user->username,
+            ],
         ],
     ]) ?>
 
