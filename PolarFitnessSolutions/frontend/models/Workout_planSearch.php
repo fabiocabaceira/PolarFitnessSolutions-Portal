@@ -17,8 +17,8 @@ class Workout_planSearch extends Workout_plan
     public function rules()
     {
         return [
-            [['id', 'client_id', 'worker_id'], 'integer'],
-            [['workout_name', 'createdate'], 'safe'],
+            [['id', 'created_at', 'client_id', 'worker_id'], 'integer'],
+            [['workout_name'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class Workout_planSearch extends Workout_plan
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'createdate' => $this->createdate,
+            'created_at' => $this->created_at,
             'client_id' => $this->client_id,
             'worker_id' => $this->worker_id,
         ]);

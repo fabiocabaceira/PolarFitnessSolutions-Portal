@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'workout_name') ?>
 
-    <?= $form->field($model, 'createdate') ?>
+    <?= $form->field($model, 'created_at') ?>
 
     <?= $form->field($model, 'client_id') ?>
 

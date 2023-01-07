@@ -10,10 +10,10 @@ use Yii;
  * @property int $id
  * @property string $workout_name
  * @property string|null $createdate
- * @property int|null $user_id
+ * @property int|null $client_id
  * @property int|null $worker_id
  *
- * @property User $user
+ * @property User $client
  * @property User $worker
  */
 class Workout_plan extends \yii\db\ActiveRecord
@@ -36,7 +36,7 @@ class Workout_plan extends \yii\db\ActiveRecord
             [['createdate'], 'safe'],
             [['user_id', 'worker_id'], 'integer'],
             [['workout_name'], 'string', 'max' => 30],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['client_id' => 'id']],
             [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['worker_id' => 'id']],
         ];
     }
@@ -50,19 +50,9 @@ class Workout_plan extends \yii\db\ActiveRecord
             'id' => 'ID',
             'workout_name' => 'Workout Name',
             'createdate' => 'Createdate',
-            'user_id' => 'User ID',
+            'client_id' => 'Client ID',
             'worker_id' => 'Worker ID',
         ];
-    }
-
-    /**
-     * Gets query for [[User]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -73,5 +63,10 @@ class Workout_plan extends \yii\db\ActiveRecord
     public function getWorker()
     {
         return $this->hasOne(User::class, ['id' => 'worker_id']);
+    }
+
+    public function getClient()
+    {
+        return $this->hasOne(User::class, ['id' => 'client_id']);
     }
 }

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'createdate')->textInput() ?>
+    <?= $form->field($model, 'client_id')->textInput() ?>
 
     <?= $form->field($model, 'worker_id')->textInput() ?>
 
