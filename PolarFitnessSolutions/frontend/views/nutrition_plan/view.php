@@ -29,13 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             [
                 'attribute'=>'nutritionname',
                 'label'=>'Nome',
                 'value'=>$model->nutritionname,
             ],
-            'content:ntext',
+            [
+                'attribute' => 'content',
+                'label' => 'Conteúdo',
+                'value' => $model->content,
+                'format'=>'ntext'
+            ],
             [
                 'attribute' => 'created_at',
                 'label' => 'Criado a ',

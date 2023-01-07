@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\models\nutrition_plan;
@@ -12,7 +13,6 @@ use frontend\models\nutrition_plan;
 class nutrition_planSearch extends nutrition_plan
 {
     public $clientUsername;
-    public $workerUsername;
 
     /**
      * {@inheritdoc}
@@ -21,7 +21,7 @@ class nutrition_planSearch extends nutrition_plan
     {
         return [
             [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
-            [['clientUsername', 'workerUsername'], 'string'],
+            [['clientUsername'], 'string'],
             [['nutritionname', 'content'], 'safe'],
         ];
     }
@@ -44,11 +44,12 @@ class nutrition_planSearch extends nutrition_plan
      */
     public function search($params)
     {
-        $query = nutrition_plan::find();
+        $id = Yii::$app->user->id;
+        $query = nutrition_plan::find()->where(['worker_id' => $id]);
 
 
         $query->joinWith('client.user');
-        $query->joinWith('worker.user');
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -58,11 +59,6 @@ class nutrition_planSearch extends nutrition_plan
         $dataProvider->sort->attributes['clientUsername'] = [
           'asc' => ['user.username'=>SORT_ASC],
           'desc' => ['user.username'=>SORT_DESC],
-        ];
-
-        $dataProvider->sort->attributes['workerUsername'] = [
-          'asc' => ['user.username'=>SORT_ASC],
-          'desc' => ['user.username'=>SORT_DESC]
         ];
 
         $this->load($params);
@@ -89,8 +85,7 @@ class nutrition_planSearch extends nutrition_plan
 
         $query->andFilterWhere(['like', 'nutritionname', $this->nutritionname])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'user.username', $this->clientUsername])
-            ->andFilterWhere(['like', 'user.username', $this->workerUsername]);
+            ->andFilterWhere(['like', 'user.username', $this->clientUsername]);
 
 
         return $dataProvider;

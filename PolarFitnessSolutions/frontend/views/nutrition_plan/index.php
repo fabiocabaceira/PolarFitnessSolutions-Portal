@@ -13,8 +13,6 @@ use yii\grid\GridView;
 
 $this->title = 'Planos de Nutrição';
 $this->params['breadcrumbs'][] = $this->title;
-
-
 ?>
 <div class="nutrition-plan-index">
 
@@ -43,14 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Cliente',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client->user->username;
-                },
-
-            ],
-            [
-                'attribute' => 'workerUsername',
-                'label' => 'Funcionário',
-                'value' => function($model, $index, $dataColumn) {
-                    return $model->worker->user->username;
                 },
             ],
             [

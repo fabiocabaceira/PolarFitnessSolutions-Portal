@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /** @var frontend\models\nutrition_plan $model */
 
 $this->title = 'Atualizar Plano de Nutrição: ' . $model->nutritionname;
-$this->params['breadcrumbs'][] = ['label' => 'Nutrição', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->client->user->username . ': ' . $model->nutritionname, 'url' => ['view', 'id' => $model->nutritionname]];
+$this->params['breadcrumbs'][] = ['label' => 'Planos de Nutrição', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->client->user->username . ': ' . $model->nutritionname, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="nutrition-plan-update">
