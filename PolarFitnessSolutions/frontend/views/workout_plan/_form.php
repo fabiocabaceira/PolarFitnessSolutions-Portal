@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true])->label('Nome') ?>
 
     <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map(\frontend\models\WorkerClientRelation::find()->leftJoin('user', 'user.id = client_id')->asArray()->with('client')->all(), 'client_id', 'client_id', 'workout_plan_relation.client.user.username'))->label('ID Cliente')?>
 
