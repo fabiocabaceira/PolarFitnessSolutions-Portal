@@ -5,9 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\PhysicalEvaluationBooking $model */
 
-$this->title = 'Create Physical Evaluation Booking';
-$this->params['breadcrumbs'][] = ['label' => 'Physical Evaluation Bookings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="physical-evaluation-booking-create">
 
