@@ -42,12 +42,12 @@ use yii\helpers\Url;
                 'items' => [
                     ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['client/index']],
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['worker/index']],
-                    ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
                     ['label' => 'Atribuição de Profissionais',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['worker_client_relation/index']],
                     ['label' => 'Inscrições',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['booking/index']],
                     ['label' => 'consultas de avaliação física',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['physical_evaluation_booking/index']],
                     ['label' => 'consultas de nutricao',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['nutrition_booking/index']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                    ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
 /*
                     [
                         'label' => 'Starter Pages',

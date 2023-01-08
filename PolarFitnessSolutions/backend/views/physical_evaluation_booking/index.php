@@ -9,13 +9,9 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var backend\models\PhysicalEvaluationBookingSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
-
-$this->title = 'Physical Evaluation Bookings';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Consultas de Avaliação Física';
 ?>
 <div class="physical-evaluation-booking-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Create Physical Evaluation Booking', ['create'], ['class' => 'btn btn-success']) ?>

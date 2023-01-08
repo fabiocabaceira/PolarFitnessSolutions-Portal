@@ -50,6 +50,22 @@ class SignupForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Nome',
+            'email' => 'Email',
+            'password' => 'Palavra-Passe',
+            'street' => 'Rua',
+            'zip_code' => 'Código postal',
+            'area' => 'Localidade',
+            'phone_number' => 'Número de telemóvel',
+            'nif' => 'NIF',
+            'gender' => 'Género',
+
+        ];
+    }
+
     /**
      * Signs user up.
      *

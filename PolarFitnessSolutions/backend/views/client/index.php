@@ -11,7 +11,6 @@ use yii\grid\GridView;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Clientes';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="client-index">
 
@@ -33,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // Username
             [
                     'attribute' => 'user.username',
-                    'label' => 'Username',
+                    'label' => 'Nome',
                     'value' => function($model, $index, $dataColumn) {
                     return $model->user->username;
                     },
@@ -89,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // Nif
             [
                 'attribute' => 'user.nif',
-                'label' => 'Nif',
+                'label' => 'NIF',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->user->nif;
                 },

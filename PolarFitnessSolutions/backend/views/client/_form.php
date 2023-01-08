@@ -7,8 +7,6 @@ use yii\widgets\ActiveForm;
 /** @var yii\bootstrap5\ActiveForm $form */
 
 ?>
-
-
 <div class="col-md-12 d-flex flex-column justify-content-center">
     <div class="col-lg-6 col-md-8 mx-auto">
 
@@ -16,7 +14,7 @@ use yii\widgets\ActiveForm;
                 <div class="div-center">
                     <div class="content">
 
-                        <h3 class="text-center">Create Client Account</h3>
+                        <h3 class="text-center">Dados</h3>
 
                         <hr/>
                         <?php $form = ActiveForm::begin() ?>

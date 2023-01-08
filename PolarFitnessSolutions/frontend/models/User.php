@@ -82,22 +82,24 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'password_hash' => 'Password Hash',
+            'username' => 'Nome',
             'email' => 'Email',
+            'password' => 'Palavra-Passe',
+            'street' => 'Rua',
+            'zip_code' => 'Código postal',
+            'area' => 'Localidade',
+            'phone_number' => 'Número de telemóvel',
+            'nif' => 'NIF',
+            'gender' => 'Género',
+            'id' => 'ID',
+            'password_hash' => 'Password Hash',
             'auth_key' => 'Auth Key',
             'password_reset_token' => 'Password Reset Token',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'verification_token' => 'Verification Token',
             'status' => 'Status',
-            'street' => 'Street',
-            'zip_code' => 'Zip Code',
-            'area' => 'Area',
-            'phone_number' => 'Phone Number',
-            'nif' => 'Nif',
-            'gender' => 'Gender',
+            'subscription' => 'Subscrição'
         ];
     }
 

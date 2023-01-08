@@ -49,6 +49,10 @@ $this->title = $model->username;
                                         'value' => $model->zip_code,
                                     ],
                                     [
+                                        'label' => 'Localidade',
+                                        'value' => $model->area,
+                                    ],
+                                    [
                                         'label' => 'Número de telemóvel',
                                         'value' => $model->phone_number,
                                     ],

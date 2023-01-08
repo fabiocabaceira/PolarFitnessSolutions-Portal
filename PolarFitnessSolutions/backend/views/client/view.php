@@ -11,7 +11,6 @@ $this->title = $user->username;
 ?>
 <div class="user-view">
 
-    <h1>Cliente: <?= Html::encode($this->title) ?></h1>
 
     <div class="container d-flex justify-content-center">
         <div class="col-md-6 border-right">
