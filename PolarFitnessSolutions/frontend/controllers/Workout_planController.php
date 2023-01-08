@@ -30,7 +30,7 @@ class Workout_planController extends Controller
                         [
                             'actions' => ['index','view','update', 'delete','create'],
                             'allow' => true,
-                            'roles' => ['funcionario'],
+                            'roles' => ['funcionario', 'utilizador'],
                         ],
 
                     ],

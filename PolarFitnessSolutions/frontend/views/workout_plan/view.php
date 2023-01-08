@@ -21,18 +21,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Adicionar Exercício', ['/workout_plan_exercise_relation/create', 'workout_id'=>$model->id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Tem a certeza que deseja apagar este plano de treino?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if (Yii::$app->user->can('funcionario')){?>
+            <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Tem a certeza que deseja apagar este plano de treino?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+            <?php } ?>
+
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [

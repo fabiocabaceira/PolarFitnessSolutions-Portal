@@ -29,12 +29,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'workout_name',
+
             [
+
                 'attribute' => 'clientUsername',
                 'label' => 'Cliente',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client->user->username;
                 },
+                'visible'=> Yii::$app->user->can('funcionario'),
+            ],
+            [
+
+                'attribute' => 'workerUsername',
+                'label' => 'Funcionario',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->worker->user->username;
+                },
+                'visible'=> Yii::$app->user->can('utilizador'),
             ],
             [
                 'class' => ActionColumn::className(),

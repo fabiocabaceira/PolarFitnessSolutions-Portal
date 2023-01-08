@@ -5,7 +5,6 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Workout_plan;
 
 /**
  * Workout_planSearch represents the model behind the search form of `frontend\models\Workout_plan`.
@@ -13,6 +12,7 @@ use frontend\models\Workout_plan;
 class Workout_planSearch extends Workout_plan
 {
     public $clientUsername;
+    public $workerUsername;
 
     /**
      * {@inheritdoc}
@@ -21,7 +21,7 @@ class Workout_planSearch extends Workout_plan
     {
         return [
             [['id', 'created_at', 'client_id', 'worker_id'], 'integer'],
-            [['clientUsername'], 'string'],
+            [['clientUsername', 'workerUsername'], 'string'],
             [['workout_name'], 'safe'],
         ];
     }
@@ -45,9 +45,17 @@ class Workout_planSearch extends Workout_plan
     public function search($params)
     {
         $id = Yii::$app->user->id;
-        $query = Workout_plan::find()->where(['worker_id' => $id]);
+        if (Yii::$app->user->can('funcionario')){
+            $query = Workout_plan::find()->where(['worker_id' => $id]);
+            $query->joinWith('client.user');
+        }
+        elseif (Yii::$app->user->can('utilizador')){
+            $query = Workout_plan::find()->where(['client_id' => $id]);
+            $query->joinWith('worker.user');
+        }
 
-        $query->joinWith('client.user');
+
+
 
         // add conditions that should always apply here
 
@@ -56,6 +64,10 @@ class Workout_planSearch extends Workout_plan
         ]);
 
         $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['workerUsername'] = [
             'asc' => ['user.username'=>SORT_ASC],
             'desc' => ['user.username'=>SORT_DESC],
         ];
@@ -77,7 +89,8 @@ class Workout_planSearch extends Workout_plan
         ]);
 
         $query->andFilterWhere(['like', 'workout_name', $this->workout_name])
-            ->andFilterWhere(['like', 'user.username', $this->clientUsername]);
+            ->andFilterWhere(['like', 'user.username', $this->clientUsername])
+            ->andFilterWhere(['like', 'user.username', $this->workerUsername]);
 
         return $dataProvider;
     }

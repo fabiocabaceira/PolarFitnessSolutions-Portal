@@ -13,8 +13,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <?php
+    if(Yii::$app->user->can('funcionario')){?>
+        <?= $this->render('_form', [
+            'model' => $model,
+        ])?>
+        <?php
+    }
+    if (Yii::$app->user->can('utilizador')){?>
+        <?= $this->render('_form_utilizador', [
+            'model' => $model,
+        ])?>
+        <?php
+    }
+    ?>
 </div>
