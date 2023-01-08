@@ -1,10 +1,13 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var frontend\models\Workout_plan $model */
+/** @var frontend\models\ExerciseSearch $searchModel */
+/** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = $model->workout_name;
 $this->params['breadcrumbs'][] = ['label' => 'Planos de Treino', 'url' => ['index']];
@@ -26,6 +29,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute'=>'exercise.exercise_name',
+                'label'=>'Nome',
+                'value' => function($searchModel, $index, $dataColumn) {
+                    return $searchModel->exercise->exercise_name;
+                },
+            ],
+            [
+                'attribute'=>'exercise.max_rep',
+                'label'=>'Max rep',
+                'value' => function($searchModel, $index, $dataColumn) {
+                    return $searchModel->exercise->max_rep;
+                },
+            ],
+            [
+                'attribute'=>'exercise.min_rep',
+                'label'=>'Min rep',
+                'value' => function($searchModel, $index, $dataColumn) {
+                    return $searchModel->exercise->min_rep;
+                },
+            ],
+        ],
+    ]); ?>
 
     <?= DetailView::widget([
         'model' => $model,

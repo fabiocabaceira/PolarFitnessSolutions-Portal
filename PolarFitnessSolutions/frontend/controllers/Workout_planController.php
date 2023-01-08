@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
+use frontend\models\ExerciseSearch;
 use frontend\models\Workout_plan;
+use frontend\models\Workout_plan_exercise_relationSearch;
 use frontend\models\Workout_planSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -67,8 +69,14 @@ class Workout_planController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new Workout_plan_exercise_relationSearch();
+        $searchModel->workout_plan_id = $id;
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
