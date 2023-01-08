@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use frontend\models\PhysicalEvaluationBooking;
 
 /**
- * PhysicalEvaluationBookingSearch represents the model behind the search form of `frontend\models\physicalevaluationbooking`.
+ * PhysicalEvaluationBookingSearch represents the model behind the search form of `frontend\models\PhysicalEvaluationBooking`.
  */
 class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
 {

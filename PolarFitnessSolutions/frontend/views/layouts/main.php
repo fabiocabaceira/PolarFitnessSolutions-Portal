@@ -53,6 +53,8 @@ AppAsset::register($this);
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
                 ['label' => 'Planos de treino', 'url' => ['/workout_plan/index']],
                 ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
+                ['label' => 'consultas de avaliação física', 'url' => ['physical_evaluation_booking/index']],
+                ['label' => 'consultas de nutricao', 'url' => ['nutrition_booking/index']],
             ];
         } else if(Yii::$app->user->can('utilizador')) {
             $menuItems = [
