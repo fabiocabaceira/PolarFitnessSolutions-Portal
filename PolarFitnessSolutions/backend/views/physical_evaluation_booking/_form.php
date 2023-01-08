@@ -18,10 +18,6 @@ use yii\widgets\ActiveForm;
                 <div class="back">
                     <div class="div-center">
                         <div class="content">
-                            <div class="form-image">
-                                <?php $domain = yii\helpers\Url::base(true);
-                                echo Html::img($domain.'/imgs/Polar_logo_black.png', ['alt' => 'Imagem do Polar', 'class' => 'image-login img-fluid']) ?>
-                            </div>
 
                             <h3 class="text-center">Marcar Inscrição</h3>
                             <?php $form = ActiveForm::begin() ?>
