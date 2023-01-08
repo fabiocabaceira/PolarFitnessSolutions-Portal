@@ -1,4 +1,6 @@
 <?php
+
+use kartik\bs5dropdown\ButtonDropdown;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
@@ -37,7 +39,20 @@ use yii\helpers\Url;
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
+
             <?php
+            echo ButtonDropdown::widget([
+                'label' => 'Marcações',
+                'dropdown' => [
+                    'items' => [
+                        ['label' => 'Inscrições', 'url' => ['booking/index']],
+                        ['label' => 'Avaliações físicas', 'url' => ['physical_evaluation_booking/index']],
+                        ['label' => 'Nutrição', 'url' => ['nutrition_booking/index']],
+
+                    ],
+                ],
+                'buttonOptions' => ['class' => 'btn-outline-secondary']
+            ]);
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['client/index']],

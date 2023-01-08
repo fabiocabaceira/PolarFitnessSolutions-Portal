@@ -34,8 +34,10 @@ class BookingForm extends Model
         if (!$this->validate()) {
             return null;
         }
-
-
+        $check = Booking::find()->where(['user_id' => \Yii::$app->user->id]);
+        if ($check){
+            return false;
+        }
         $booking = new Booking();
         $booking->booking_date = $this->booking_date;
         $booking->user_id = \Yii::$app->user->id;
@@ -43,4 +45,6 @@ class BookingForm extends Model
 
         return true;
     }
+
+
 }
