@@ -64,6 +64,7 @@ AppAsset::register($this);
                 ['label' => 'Mensagens', 'url' => ['/site/signup']],
                 ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
                 ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
+                ['label' => 'Visualizar Inscricao', 'url' => ['site/viewbooking']],
             ];
         }
 

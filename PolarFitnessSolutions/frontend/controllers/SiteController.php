@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\User;
+use frontend\models\Booking;
 use frontend\models\BookingForm;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -100,6 +101,28 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionViewbooking(){
+        $model = new Booking();
+        $id = Yii::$app->user->id;
+        $search = Booking::find()->where(['user_id' => $id])->one();
+        if (!$search){
+            Yii::$app->session->setFlash('error', 'Tem de marcar uma inscricao primeiro');
+            return $this->goBack();
+        }
+
+        return $this->render('viewBooking', [
+            'model' => $model,
+            'search' => $search,
+        ]);
+    }
+
+    public function actionDeletebooking()
+    {
+        $id = Yii::$app->user->id;
+        $search = Booking::find()->where(['user_id' => $id])->one();
+        $search->delete();
+        return $this->redirect(['index']);
+    }
     /**
      * Logs in a user.
      *
