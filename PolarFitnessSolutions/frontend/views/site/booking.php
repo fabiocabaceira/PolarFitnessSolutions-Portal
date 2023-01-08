@@ -33,6 +33,7 @@ use yii\bootstrap5\ActiveForm;
                                     'autoclose' => true,
                                     'hoursDisabled' => '0,1,2,3,4,5,6,7,8,9,19,20,21,22,23',
                                     'minuteStep' => 15,
+                                    'startDate' => date('Y-m-d H:i:s'),
                                 ]
                             ]);?>
                         </div>
