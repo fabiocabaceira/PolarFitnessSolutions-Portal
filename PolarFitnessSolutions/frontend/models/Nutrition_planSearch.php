@@ -45,9 +45,18 @@ class nutrition_planSearch extends nutrition_plan
     public function search($params)
     {
         $id = Yii::$app->user->id;
-        $query = nutrition_plan::find()->where(['worker_id' => $id]);
 
-        $query->joinWith('client.user');
+        if(Yii::$app->user->can('funcionario')){
+            $query = nutrition_plan::find()->where(['worker_id' => $id]);
+
+            $query->joinWith('client.user');
+        }
+        elseif (Yii::$app->user->can('utilizador')){
+            $query = nutrition_plan::find()->where(['client_id' => $id]);
+
+            $query->joinWith('worker.user');
+        }
+
 
         // add conditions that should always apply here
 

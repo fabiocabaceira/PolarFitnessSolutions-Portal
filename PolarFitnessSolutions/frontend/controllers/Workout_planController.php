@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use frontend\models\ExerciseSearch;
 use frontend\models\Workout_plan;
 use frontend\models\Workout_plan_exercise_relationSearch;
@@ -71,13 +72,23 @@ class Workout_planController extends Controller
     {
         $searchModel = new Workout_plan_exercise_relationSearch();
         $searchModel->workout_plan_id = $id;
+
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->user->can('utilizador')){
+            if(Yii::$app->user->id == $this->findModel($id)->client_id){
+                return $this->render('view', [
+                    'model' => $this->findModel($id),
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                ]);
+            }
+            throw new NotFoundHttpException();
+        }
+
+
+
+
     }
 
     /**

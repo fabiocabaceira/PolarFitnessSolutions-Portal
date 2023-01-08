@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use frontend\models\nutrition_plan;
 use frontend\models\nutrition_planSearch;
 use yii\filters\AccessControl;
@@ -26,9 +27,14 @@ class Nutrition_planController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['index','view','update', 'delete','create'],
+                            'actions' => ['update', 'delete','create'],
                             'allow' => true,
                             'roles' => ['funcionario'],
+                        ],
+                        [
+                            'actions' => ['index','view'],
+                            'allow' => true,
+                            'roles' => ['funcionario', 'utilizador'],
                         ],
 
                     ],
@@ -67,9 +73,16 @@ class Nutrition_planController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $plan = Nutrition_Plan::findOne(['id'=>$id]);
+        if(Yii::$app->user->id == $plan->client_id || Yii::$app->user->id == $plan->worker_id){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else{
+            throw new NotFoundHttpException();
+        }
+
     }
 
     /**

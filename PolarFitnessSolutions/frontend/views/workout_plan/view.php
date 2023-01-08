@@ -14,6 +14,8 @@ $this->title = $model->workout_name;
 $this->params['breadcrumbs'][] = ['label' => 'Planos de Treino', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+//var_dump($dataProvider->count);
 ?>
 <div class="workout-plan-view">
 
@@ -34,40 +36,47 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            [
-                'attribute'=>'exercise.exercise_name',
-                'label'=>'Nome',
-                'value' => function($searchModel, $index, $dataColumn) {
-                    return $searchModel->exercise->exercise_name;
-                },
+    <?php if ($dataProvider->count != 0){ ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            //'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
+                    'attribute'=>'exercise.exercise_name',
+                    'label'=>'Nome',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->exercise_name;
+                    },
+                ],
+                [
+                    'attribute'=>'exercise.max_rep',
+                    'label'=>'Max rep',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->max_rep;
+                    },
+                ],
+                [
+                    'attribute'=>'exercise.min_rep',
+                    'label'=>'Min rep',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->min_rep;
+                    },
+                ],
+                [
+                    'class' => ActionColumn::className(),
+                    'template' => '{delete}',
+                    'controller' => 'workout_plan_exercise_relation',
+
+                ],
             ],
-            [
-                'attribute'=>'exercise.max_rep',
-                'label'=>'Max rep',
-                'value' => function($searchModel, $index, $dataColumn) {
-                    return $searchModel->exercise->max_rep;
-                },
-            ],
-            [
-                'attribute'=>'exercise.min_rep',
-                'label'=>'Min rep',
-                'value' => function($searchModel, $index, $dataColumn) {
-                    return $searchModel->exercise->min_rep;
-                },
-            ],
-            [
-                'class' => ActionColumn::className(),
-                'template' => '{delete}',
-                'controller' => 'workout_plan_exercise_relation',
-                
-            ],
-        ],
-    ]); ?>
+        ]); ?>
+    <?php }
+    else{?>
+        <p style="color:red; font-size:22px" > Ainda não adicionou exercícios.</p>
+    <?php }
+    ?>
+
 
     <?= DetailView::widget([
         'model' => $model,
