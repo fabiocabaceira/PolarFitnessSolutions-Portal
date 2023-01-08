@@ -33,6 +33,7 @@ class NutritionBooking extends \yii\db\ActiveRecord
         return [
             [['booking_date'], 'required'],
             [['booking_date'], 'safe'],
+            ['booking_date', 'unique', 'targetClass' => '\backend\models\NutritionBooking', 'message' => 'Esta data ja esta preenchida'],
             [['client_id', 'worker_id'], 'integer'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
             [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],

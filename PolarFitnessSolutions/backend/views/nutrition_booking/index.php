@@ -11,11 +11,8 @@ use yii\grid\GridView;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Nutrition Bookings';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nutrition-booking-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Create Nutrition Booking', ['create'], ['class' => 'btn btn-success']) ?>
