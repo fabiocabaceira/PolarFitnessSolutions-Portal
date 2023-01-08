@@ -17,10 +17,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'workout_plan_id')->hiddenInput(['value'=> $workout_id])->label(false) ?>
 
-    <?= $form->field($model, 'exercise_id')->dropDownList(ArrayHelper::map(\frontend\models\exercise::find()->all(), 'id', 'exercise_name'))?>
+    <?= $form->field($model, 'exercise_id')->dropDownList(ArrayHelper::map(\frontend\models\exercise::find()->all(), 'id', 'exercise_name'))->label('Nome do exercício:')?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

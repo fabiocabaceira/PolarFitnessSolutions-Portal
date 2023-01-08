@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -58,6 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($searchModel, $index, $dataColumn) {
                     return $searchModel->exercise->min_rep;
                 },
+            ],
+            [
+                'class' => ActionColumn::className(),
+                'template' => '{delete}',
+                'controller' => 'workout_plan_exercise_relation',
+                
             ],
         ],
     ]); ?>

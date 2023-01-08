@@ -71,7 +71,7 @@ class Workout_plan_exercise_relationController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['workout_plan/view?id=' . $model->workout_plan_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -112,9 +112,10 @@ class Workout_plan_exercise_relationController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = Workout_plan_exercise_relation::findOne($id);
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['workout_plan/view?id=' . $model->workout_plan_id]);
     }
 
     /**
