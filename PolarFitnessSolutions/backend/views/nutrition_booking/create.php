@@ -5,13 +5,9 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\NutritionBooking $model */
 
-$this->title = 'Create Nutrition Booking';
-$this->params['breadcrumbs'][] = ['label' => 'Nutrition Bookings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Criar Marcação de consulta de Nutrição';
 ?>
 <div class="nutrition-booking-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

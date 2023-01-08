@@ -9,9 +9,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * NutritionBookingController implements the CRUD actions for NutritionBooking model.
+ * Nutrition_bookingController implements the CRUD actions for NutritionBooking model.
  */
-class NutritionBookingController extends Controller
+class Nutrition_bookingController extends Controller
 {
     /**
      * @inheritDoc
