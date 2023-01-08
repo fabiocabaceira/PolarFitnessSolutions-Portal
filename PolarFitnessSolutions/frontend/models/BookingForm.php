@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use common\models\User;
+use Yii;
 use yii\base\Model;
 
 class BookingForm extends Model
@@ -29,15 +30,16 @@ class BookingForm extends Model
      */
     public function booking()
     {
+        $check = Booking::find()->where(['user_id' => \Yii::$app->user->id])->one();
         $model = new \frontend\models\BookingForm();
         $model->load(\Yii::$app->request->post());
         if (!$this->validate()) {
             return null;
         }
-        $check = Booking::find()->where(['user_id' => \Yii::$app->user->id]);
-        if ($check){
-            return false;
+        else if ($check){
+            return null;
         }
+
         $booking = new Booking();
         $booking->booking_date = $this->booking_date;
         $booking->user_id = \Yii::$app->user->id;
@@ -45,6 +47,4 @@ class BookingForm extends Model
 
         return true;
     }
-
-
 }

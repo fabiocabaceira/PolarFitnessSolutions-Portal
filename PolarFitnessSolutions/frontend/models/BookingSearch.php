@@ -2,9 +2,9 @@
 
 namespace frontend\models;
 
+use frontend\models\Booking;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Booking;
 
 /**
  * BookingSearch represents the model behind the search form of `frontend\models\Booking`.
