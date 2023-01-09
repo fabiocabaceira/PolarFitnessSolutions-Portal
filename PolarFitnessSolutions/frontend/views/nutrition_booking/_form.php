@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
                                 ])->label('Data da Marcação');?>
                             </div>
 
-                            <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map(\backend\models\Client::find()->asArray()->with('user')->all(), 'client_id', 'client_id', 'user.username'))->label('ID do Cliente'); ?>
+                            <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map(\frontend\models\Client::find()->asArray()->with('user')->all(), 'client_id', 'client_id', 'user.username'))->label('ID do Cliente'); ?>
                             <?= $form->field($model, 'worker_id')->hiddenInput(['value'=> Yii::$app->user->id])->label(false); ?>
                             <spacer type="horizontal" width="100" height="100"> ㅤ </spacer>
                             <div class="d-grid gap-2 col-8 mx-auto">

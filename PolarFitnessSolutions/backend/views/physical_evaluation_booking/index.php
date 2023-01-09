@@ -14,7 +14,7 @@ $this->title = 'Consultas de Avaliação Física';
 <div class="physical-evaluation-booking-index">
 
     <p>
-        <?= Html::a('Create Physical Evaluation Booking', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Consulta de Avaliação Física', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,9 +26,27 @@ $this->title = 'Consultas de Avaliação Física';
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'booking_date',
-            'client_id',
-            'worker_id',
+            [
+                'attribute' => 'booking_date',
+                'label' => 'Data',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->booking_date;
+                },
+            ],
+            [
+                'attribute' => 'clientUsername',
+                'label' => 'Cliente',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->client->user->username;
+                },
+            ],
+            [
+                'attribute' => 'workerUsername',
+                'label' => 'Funcionário',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->worker->user->username;
+                },
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PhysicalEvaluationBooking $model, $key, $index, $column) {

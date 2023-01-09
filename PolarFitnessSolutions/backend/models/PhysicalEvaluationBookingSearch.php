@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\PhysicalEvaluationBooking;
@@ -11,6 +12,9 @@ use backend\models\PhysicalEvaluationBooking;
  */
 class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
 {
+    public $clientUsername;
+    public $workerUsername;
+
     /**
      * {@inheritdoc}
      */
@@ -18,6 +22,7 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
+            [['clientUsername', 'workerUsername'], 'string'],
             [['booking_date'], 'safe'],
         ];
     }
@@ -41,12 +46,25 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     public function search($params)
     {
         $query = PhysicalEvaluationBooking::find();
+        $query->joinWith('worker.user');
+        $query->joinWith('client.user');
+
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['workerUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -60,9 +78,10 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
         $query->andFilterWhere([
             'id' => $this->id,
             'booking_date' => $this->booking_date,
-            'client_id' => $this->client_id,
-            'worker_id' => $this->worker_id,
         ]);
+        $query->andFilterWhere(['like', 'user.username', $this->clientUsername])
+            ->andFilterWhere(['like', 'user.username', $this->workerUsername]);
+
 
         return $dataProvider;
     }

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\PhysicalEvaluationBooking $model */
+/** @var backend\models\PhysicalEvaluationBooking $model */
 /** @var yii\widgets\ActiveForm $form */
 
 ?>
@@ -18,11 +18,6 @@ use yii\widgets\ActiveForm;
                 <div class="back">
                     <div class="div-center">
                         <div class="content">
-                            <div class="form-image">
-                                <?php $domain = yii\helpers\Url::base(true);
-                                echo Html::img($domain.'/imgs/Polar_logo_black.png', ['alt' => 'Imagem do Polar', 'class' => 'image-login img-fluid']) ?>
-                            </div>
-
                             <h3 class="text-center">Atualizar Marcação</h3>
                             <?php $form = ActiveForm::begin() ?>
                             <div class="user-box">
@@ -37,8 +32,8 @@ use yii\widgets\ActiveForm;
                                 ])->label('Data da Marcação');?>
                             </div>
 
-                            <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map(\frontend\models\Client::find()->asArray()->with('user')->all(), 'client_id', 'client_id', 'user.username'))->label('ID do Cliente'); ?>
-                            <?= $form->field($model, 'worker_id')->hiddenInput(['value'=> Yii::$app->user->id])->label(false); ?>
+                            <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map(\backend\models\Client::find()->asArray()->with('user')->all(), 'client_id', 'client_id', 'user.username'))->label('ID do Cliente'); ?>
+                            <?= $form->field($model, 'worker_id')->dropDownList(ArrayHelper::map(\backend\models\Worker::find()->asArray()->with('user')->all(), 'worker_id', 'worker_id', 'user.username'))->label('ID do Funcionário'); ?>
                             <spacer type="horizontal" width="100" height="100"> ㅤ </spacer>
                             <div class="d-grid gap-2 col-8 mx-auto">
 
