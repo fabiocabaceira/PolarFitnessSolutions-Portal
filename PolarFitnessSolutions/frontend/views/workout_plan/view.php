@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Funcionário',
                 'value' => function ($model, $widget){
                     if($model->worker == null){
-                        return 'Nao existe';
+                        return 'Não existe';
                     }
                     return $model->worker->user->username;
                 }

@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\WorkoutPlanExerciseRelation;
+use backend\models\Workout_plan_exercise_relation;
 
 /**
- * WorkoutPlanExerciseRelationSearch represents the model behind the search form of `backend\models\WorkoutPlanExerciseRelation`.
+ * Workout_plan_exercise_relationSearch represents the model behind the search form of `backend\models\Workout_plan_exercise_relation`.
  */
-class WorkoutPlanExerciseRelationSearch extends WorkoutPlanExerciseRelation
+class Workout_plan_exercise_relationSearch extends Workout_plan_exercise_relation
 {
     /**
      * {@inheritdoc}
@@ -39,7 +39,7 @@ class WorkoutPlanExerciseRelationSearch extends WorkoutPlanExerciseRelation
      */
     public function search($params)
     {
-        $query = WorkoutPlanExerciseRelation::find();
+        $query = Workout_plan_exercise_relation::find();
 
         // add conditions that should always apply here
 

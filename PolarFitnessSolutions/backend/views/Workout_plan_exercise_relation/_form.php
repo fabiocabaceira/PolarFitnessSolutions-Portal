@@ -5,10 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Workout_plan_exercise_relation $model */
+/** @var backend\models\Workout_plan_exercise_relation $model */
 /** @var yii\widgets\ActiveForm $form */
-
-
 ?>
 
 <div class="workout-plan-exercise-relation-form">
@@ -17,7 +15,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'workout_plan_id')->hiddenInput(['value'=> $workout_id])->label(false) ?>
 
-    <?= $form->field($model, 'exercise_id')->dropDownList(ArrayHelper::map(\frontend\models\exercise::find()->all(), 'id', 'exercise_name'))->label('Nome do exercício:')?>
+    <?= $form->field($model, 'exercise_id')->dropDownList(ArrayHelper::map(\backend\models\exercise::find()->all(), 'id', 'exercise_name'))->label('Nome do exercício:')?>
 
     <div class="form-group">
         <?= Html::submitButton('Adicionar', ['class' => 'btn btn-success']) ?>

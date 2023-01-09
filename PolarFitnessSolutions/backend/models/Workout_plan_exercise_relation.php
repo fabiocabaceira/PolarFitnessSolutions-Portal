@@ -14,7 +14,7 @@ use Yii;
  * @property Exercise $exercise
  * @property WorkoutPlan $workoutPlan
  */
-class WorkoutPlanExerciseRelation extends \yii\db\ActiveRecord
+class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

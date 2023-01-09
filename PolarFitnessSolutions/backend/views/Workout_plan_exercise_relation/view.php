@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var backend\models\WorkoutPlanExerciseRelation $model */
+/** @var backend\models\Workout_plan_exercise_relation $model */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Workout Plan Exercise Relations', 'url' => ['index']];

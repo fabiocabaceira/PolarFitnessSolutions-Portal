@@ -1,13 +1,13 @@
 <?php
 
-use backend\models\WorkoutPlanExerciseRelation;
+use backend\models\Workout_plan_exercise_relation;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var backend\models\WorkoutPlanExerciseRelationSearch $searchModel */
+/** @var backend\models\Workout_plan_exercise_relationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Workout Plan Exercise Relations';
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'exercise_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, WorkoutPlanExerciseRelation $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Workout_plan_exercise_relation $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

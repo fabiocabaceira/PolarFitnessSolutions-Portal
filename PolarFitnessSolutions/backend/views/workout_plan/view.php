@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="workout-plan-view">
 
     <p>
-        <?= Html::a('Adicionar Exercício', ['/WorkoutPlanExerciseRelation/create', 'workout_id'=>$model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Exercício', ['/workout_plan_exercise_relation/create', 'workout_id'=>$model->id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Atualizar Plano de Treino', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Apagar Plano de Treino', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -79,11 +79,41 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'workout_name',
-            'created_at',
-            'updated_at',
-            'client_id',
-            'worker_id',
+            [
+                'attribute'=>'workout_name',
+                'label'=>'Nome',
+                'value'=>$model->workout_name,
+            ],
+            [
+                'attribute' => 'created_at',
+                'label' => 'Criado a ',
+                'value' => Yii::$app->formatter->asDatetime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'label' => 'Atualizado a ',
+                'value' => Yii::$app->formatter->asDatetime($model->updated_at),
+            ],
+            [
+                'attribute' => 'clientUsername',
+                'label' => 'Nome Cliente ',
+                'value' => $model->client->user->username,
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'ID Cliente ',
+                'value' => $model->client_id,
+            ],
+            [
+                'attribute' => 'workerUsername',
+                'label' => 'Nome Funcionário ',
+                'value' => $model->worker->user->username,
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'ID Funcionário ',
+                'value' => $model->worker_id,
+            ],
         ],
     ]) ?>
 
