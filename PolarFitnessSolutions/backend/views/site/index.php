@@ -1,71 +1,146 @@
 <?php
-$this->title = 'Starter Page';
-$this->params['breadcrumbs'] = [['label' => $this->title]];
-Yii::$app->user->getId()
+$this->title = 'Página Inicial';
+
+/* Pesquisas na Base de Dados */
+Yii::$app->user->getId();
+$countusers = \common\models\User::find()->count();
+$countclients = \backend\models\Client::find()->count();
+$countworkers = \backend\models\Worker::find()->count();
+$countsignedusers = \backend\models\User::find()->where(['subscription' => 'ativo'])->count();
+$var = \backend\models\Client::find();
+$countnonsignedusers = \backend\models\User::find()->where(['subscription' => 'inativo'])->count();
+$countinscricoes = \backend\models\Booking::find()->count();
+$countatribuicoes = \backend\models\WorkerClientRelation::find()->count();
+$countexercicios = \backend\models\Exercise::find()->count();
+
+/* Condicoes e conversoes de valores */
+$percclient = ($countclients / $countusers) * 100;
+$percclient = number_format((float)$percclient, 0, '.', '');
+$percworker = ($countworkers / $countusers) * 100;
+$percworker = number_format((float)$percworker, 0, '.', '');
+$totalusersnonadmin = $countclients + $countworkers;
+$percusersnonadmin = ($totalusersnonadmin / $countusers) * 100;
+$percusersnonadmin = number_format((float)$percusersnonadmin, 0, '.', '');
 ?>
 <div class="container-fluid">
-    <div class="row">
-        <!--<div class="col-lg-6">
-            <?/*= \hail812\adminlte\widgets\Alert::widget([
-                'type' => 'success',
-                'body' => '<h3>Congratulations!</h3>',
-            ]) */?>
-            <?/*= \hail812\adminlte\widgets\Callout::widget([
-                'type' => 'danger',
-                'head' => 'I am a danger callout!',
-                'body' => 'There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.'
-            ]) */?>
-        </div>-->
-    </div>
 
     <div class="row">
-        <!--<div class="col-12 col-sm-6 col-md-3">
-            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'CPU Traffic',
-                'number' => '10 <small>%</small>',
-                'icon' => 'fas fa-cog',
-            ]) */?>
-        </div>-->
-    </div>
-
-    <!--<div class="row">
-        <div class="col-md-4 col-sm-6 col-12">
-            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Messages',
-                'number' => '1,410',
-                'icon' => 'far fa-envelope',
-            ]) */?>
-        </div>-->
-        <!--<div class="col-md-4 col-sm-6 col-12">
-            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Bookmarks',
-                'number' => '410',
-                 'theme' => 'success',
-                'icon' => 'far fa-flag',
-            ]) */?>
-        </div>-->
-        <!--<div class="col-md-4 col-sm-6 col-12">
-            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Uploads',
-                'number' => '13,648',
-                'theme' => 'gradient-warning',
-                'icon' => 'far fa-copy',
-            ]) */?>
-        </div>-->
-    </div>
-
-    <!--<div class="row">
-        <div class="col-md-4 col-sm-6 col-12">
-            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Bookmarks',
-                'number' => '41,410',
-                'icon' => 'far fa-bookmark',
-                'progress' => [
-                    'width' => '70%',
-                    'description' => '70% Increase in 30 Days'
-                ]
-            ]) */?>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\SmallBox::widget([
+                'title' => 'Funcionários: '. $countworkers,
+                'text' => 'Novo Funcionário',
+                'icon' => 'fas fa-user-plus',
+                'theme' => 'gradient-success',
+                'linkText' => 'Criar',
+                'linkUrl' => 'worker/create'
+            ])?>
         </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\SmallBox::widget([
+                'title' => 'Atribuições: '. $countatribuicoes,
+                'text' => 'Nova Atribuição',
+                'icon' => 'fa-solid fa-user-group',
+                'theme' => 'gradient-success',
+                'linkText' => 'Criar',
+                'linkUrl' => 'worker_client_relation/create'
+            ])?>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <?= \hail812\adminlte\widgets\SmallBox::widget([
+            'title' => 'Exercícios: '. $countexercicios,
+            'text' => 'Nova Atribuição',
+            'icon' => 'fa-solid fa-dumbbell',
+            'theme' => 'gradient-success',
+            'linkText' => 'Adicionar',
+            'linkUrl' => 'exercise/create'
+        ])?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Funcionarios: ' .$countworkers,
+                'number' => $percworker.'%',
+                'icon' => 'fa-solid fa-user-nurse',
+                'progress' => [
+                    'width' => $percworker.'%',
+                    'description' => 'Taxa de funcionarios'
+                ]
+            ]) ?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Clientes: '. $countclients,
+                'number' => $percclient.'%',
+                'icon' => 'fa-solid fa-user',
+                'progress' => [
+                    'width' => $percclient.'%',
+                    'description' => 'Taxa de Clientes'
+                ]
+            ]) ?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Utilizadores: '. $totalusersnonadmin,
+                'number' => $percusersnonadmin .'%',
+                'icon' => 'fa-solid fa-users',
+                'progress' => [
+                    'width' => '100%',
+                    'description' => 'Taxa de Clientes e Funcionarios'
+                ]
+            ]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <?php if (($countinscricoes - $countnonsignedusers) <= $countsignedusers){?>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Inscricoes',
+                'number' => $countinscricoes,
+                'theme' => 'gradient-success',
+                'icon' => 'fa-solid fa-book-bookmark',
+            ])?>
+        </div>
+        <?php } else {?>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Inscricoes',
+                'number' => $countinscricoes,
+                'theme' => 'gradient-warning',
+                'icon' => 'fa-solid fa-book-bookmark',
+            ])?>
+        </div>
+        <?php }?>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Utilizadores Ativos',
+                'number' => $countsignedusers,
+                'theme' => 'gradient-warning',
+                'icon' => 'fa-solid fa-book-bookmark',
+            ])?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Utilizadores Inativos',
+                'number' => $countnonsignedusers,
+                'theme' => 'gradient-warning',
+                'icon' => 'fa-solid fa-book-bookmark',
+            ])?>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Inscricoes',
+                'number' => $countinscricoes,
+                'theme' => 'gradient-warning',
+                'icon' => 'fa-solid fa-book-bookmark',
+            ])*/?>
+        </div>
+
         <div class="col-md-4 col-sm-6 col-12">
             <?php /*$infoBox = \hail812\adminlte\widgets\InfoBox::begin([
                 'text' => 'Likes',
@@ -83,22 +158,24 @@ Yii::$app->user->getId()
             ]) */?>
             <?php /*\hail812\adminlte\widgets\InfoBox::end() */?>
         </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-4 col-sm-6 col-12">
             <?/*= \hail812\adminlte\widgets\InfoBox::widget([
-                'text' => 'Events',
-                'number' => '41,410',
-                'theme' => 'gradient-warning',
-                'icon' => 'far fa-calendar-alt',
-                'progress' => [
-                    'width' => '70%',
-                    'description' => '70% Increase in 30 Days'
-                ],
-                'loadingStyle' => true
-            ]) */?>
+                'text' => 'Numero Total de Clientes',
+                'number' => $percclient,
+                'icon' => 'fa-solid fa-user',
+            ])*/?>
         </div>
-    </div>-->
 
-    <!--<div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Numero Total de Funcionarios',
+                'number' => $countworkers,
+                'icon' => 'fa-solid fa-user-nurse',
+            ])*/?>
+        </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <?/*= \hail812\adminlte\widgets\SmallBox::widget([
                 'title' => '150',
@@ -128,8 +205,32 @@ Yii::$app->user->getId()
                 'text' => 'User Registrations',
                 'icon' => 'fas fa-user-plus',
                 'theme' => 'gradient-success',
-                'loadingStyle' => true
-            ]) */?>
+                'linkText' => 'Novo utilizador',
+                'linkUrl' => 'worker/index'
+            ])*/?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Numero Total de Utilizadores',
+                'number' => $countusers,
+                'theme' => 'success',
+                'icon' => 'fa-solid fa-users',
+            ])*/?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Inscricoes',
+                'number' => $countinscricoes,
+                'theme' => 'gradient-warning',
+                'icon' => 'fa-solid fa-book-bookmark',
+            ])*/?>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <?/*= \hail812\adminlte\widgets\InfoBox::widget([
+                'text' => 'Numero Total de Utilizadores',
+                'number' => $countusers,
+                'icon' => 'fa-solid fa-users',
+            ])*/?>
         </div>
     </div>-->
 </div>
