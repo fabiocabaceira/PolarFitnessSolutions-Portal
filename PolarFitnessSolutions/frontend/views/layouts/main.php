@@ -51,26 +51,41 @@ AppAsset::register($this);
         ['label' => 'Criar conta', 'url' => ['/site/signup']],
         ];
 
+$subscription = \common\models\User::find()->where(['id' => $id])->andwhere(['subscription' => 'ativo'])->one();
  if (Yii::$app->user->can('funcionario')) {
-            $menuItems = [
-                ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
-                ['label' => 'Clientes', 'url' => ['/worker_client_relation/index']],
-                ['label' => 'Mensagens', 'url' => ['/site/signup']],
-                ['label' => 'Planos de treino', 'url' => ['/workout_plan/index']],
-                ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
-                ['label' => 'consultas de avaliação física', 'url' => ['physical_evaluation_booking/index']],
-                ['label' => 'consultas de nutricao', 'url' => ['nutrition_booking/index']],
-            ];
+
+         $menuItems = [
+             ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
+             ['label' => 'Clientes', 'url' => ['/worker_client_relation/index']],
+             ['label' => 'Mensagens', 'url' => ['/site/signup']],
+             ['label' => 'Planos de treino', 'url' => ['/workout_plan/index']],
+             ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
+             ['label' => 'consultas de avaliação física', 'url' => ['physical_evaluation_booking/index']],
+             ['label' => 'consultas de nutricao', 'url' => ['nutrition_booking/index']],
+         ];
+
+
         } else if(Yii::$app->user->can('utilizador')) {
-            $menuItems = [
-                ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
-                ['label' => 'Planos de Treino', 'url' => ['/workout_plan/index']],
-                ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
-                ['label' => 'Mensagens', 'url' => ['/site/signup']],
-                ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
-                ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
-                ['label' => 'Visualizar Inscricao', 'url' => ['site/viewbooking']],
-            ];
+    if  (!$subscription) {
+        $menuItems = [
+            ['label' => 'Conta', 'url' => ['/user/view?id=' . $id]],
+            ['label' => 'Planos de Treino', 'url' => ['/workout_plan/index']],
+            ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
+            ['label' => 'Mensagens', 'url' => ['/site/signup']],
+            ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
+            ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
+            ['label' => 'Visualizar Inscricao', 'url' => ['site/viewbooking']],
+        ];
+    }
+    else {
+        $menuItems = [
+            ['label' => 'Conta', 'url' => ['/user/view?id=' . $id]],
+            ['label' => 'Planos de Treino', 'url' => ['/workout_plan/index']],
+            ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
+            ['label' => 'Mensagens', 'url' => ['/site/signup']],
+            ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
+        ];
+    }
         }
 
     echo Nav::widget([
