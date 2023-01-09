@@ -3,16 +3,14 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Exercise $model */
+/** @var backend\models\Exercise $model */
 
-$this->title = 'Update Exercise: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Exercises', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Atualizar Exercício: ' . $model->exercise_name;
+$this->params['breadcrumbs'][] = ['label' => 'Exercícios', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->exercise_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 <div class="exercise-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

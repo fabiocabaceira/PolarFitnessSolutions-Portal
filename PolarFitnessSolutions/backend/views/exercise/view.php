@@ -4,23 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Exercise $model */
+/** @var backend\models\Exercise $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Exercises', 'url' => ['index']];
+$this->title = $model->exercise_name;
+$this->params['breadcrumbs'][] = ['label' => 'Exercícios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="exercise-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem a certeza que deseja apagar este exercício?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,10 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'exercise_name',
-            'max_rep',
-            'min_rep',
+            [
+                'label' => 'Exercício',
+                'value' => $model->exercise_name,
+            ],
+            [
+                'label' => 'Número máximo de repetições',
+                'value' => $model->max_rep,
+            ],
+            [
+                'label' => 'Número minímo de repetições',
+                'value' => $model->min_rep,
+            ],
+            [
+                'label' => 'Número de sets',
+                'value' => $model->sets,
+            ],
         ],
     ]) ?>
 

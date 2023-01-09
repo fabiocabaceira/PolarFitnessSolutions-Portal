@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use backend\models\Exercise;
 
 /**
- * ExerciseSearch represents the model behind the search form of `app\models\Exercise`.
+ * ExerciseSearch represents the model behind the search form of `backend\models\Exercise`.
  */
 class ExerciseSearch extends Exercise
 {
@@ -17,7 +17,7 @@ class ExerciseSearch extends Exercise
     public function rules()
     {
         return [
-            [['id', 'max_rep', 'min_rep'], 'integer'],
+            [['id', 'max_rep', 'min_rep', 'sets'], 'integer'],
             [['exercise_name'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class ExerciseSearch extends Exercise
             'id' => $this->id,
             'max_rep' => $this->max_rep,
             'min_rep' => $this->min_rep,
+            'sets' => $this->sets,
         ]);
 
         $query->andFilterWhere(['like', 'exercise_name', $this->exercise_name]);

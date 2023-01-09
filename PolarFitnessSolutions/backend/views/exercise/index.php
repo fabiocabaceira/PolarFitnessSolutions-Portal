@@ -1,24 +1,22 @@
 <?php
 
-use frontend\models\Exercise;
+use backend\models\Exercise;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\ExerciseSearch $searchModel */
+/** @var backend\models\ExerciseSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Exercises';
+$this->title = 'Exercícios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="exercise-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Exercise', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Adicionar Exercício', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,10 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'exercise_name',
             'max_rep',
             'min_rep',
+            'sets',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Exercise $model, $key, $index, $column) {

@@ -56,6 +56,7 @@ use yii\helpers\Url;
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['worker/index']],
                     ['label' => 'Atribuições',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['worker_client_relation/index']],
                     ['label' => 'Planos de treino',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['workout_plan/index']],
+                    ['label' => 'Gestão de Exercícios',  'icon' => 'fa-solid fa-dumbbell', 'url' => ['exercise/index']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
 

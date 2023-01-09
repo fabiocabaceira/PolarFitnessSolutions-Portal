@@ -11,8 +11,9 @@ use Yii;
  * @property string $exercise_name
  * @property int|null $max_rep
  * @property int|null $min_rep
+ * @property int|null $sets
  *
- * @property CurrentSet[] $currentSets
+ * @property WorkoutPlanExerciseRelation[] $workoutPlanExerciseRelations
  */
 class Exercise extends \yii\db\ActiveRecord
 {
@@ -31,8 +32,8 @@ class Exercise extends \yii\db\ActiveRecord
     {
         return [
             [['exercise_name'], 'required'],
-            [['max_rep', 'min_rep'], 'integer'],
-            [['exercise_name'], 'string', 'max' => 30],
+            [['max_rep', 'min_rep', 'sets'], 'integer'],
+            [['exercise_name'], 'string', 'max' => 100],
         ];
     }
 
@@ -46,16 +47,17 @@ class Exercise extends \yii\db\ActiveRecord
             'exercise_name' => 'Exercise Name',
             'max_rep' => 'Max Rep',
             'min_rep' => 'Min Rep',
+            'sets' => 'Sets',
         ];
     }
 
     /**
-     * Gets query for [[CurrentSets]].
+     * Gets query for [[WorkoutPlanExerciseRelations]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCurrentSets()
+    public function getWorkoutPlanExerciseRelations()
     {
-        return $this->hasMany(CurrentSet::class, ['exercise_id' => 'id']);
+        return $this->hasMany(WorkoutPlanExerciseRelation::class, ['exercise_id' => 'id']);
     }
 }
