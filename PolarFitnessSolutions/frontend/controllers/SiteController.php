@@ -107,7 +107,7 @@ class SiteController extends Controller
         $search = Booking::find()->where(['user_id' => $id])->one();
         if (!$search){
             Yii::$app->session->setFlash('error', 'Tem de marcar uma inscricao primeiro');
-            return $this->goBack();
+            return $this->goHome();
         }
 
         return $this->render('viewBooking', [
