@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\models\NutritionBooking;
@@ -11,6 +12,8 @@ use frontend\models\NutritionBooking;
  */
 class NutritionBookingSearch extends NutritionBooking
 {
+    public $clientUsername;
+
     /**
      * {@inheritdoc}
      */
@@ -18,6 +21,7 @@ class NutritionBookingSearch extends NutritionBooking
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
+            [['clientUsername'], 'string'],
             [['booking_date'], 'safe'],
         ];
     }
@@ -40,13 +44,23 @@ class NutritionBookingSearch extends NutritionBooking
      */
     public function search($params)
     {
-        $query = NutritionBooking::find();
+        $id = Yii::$app->user->id;
+
+        $query = NutritionBooking::find()->where(['worker_id'=>$id]);
+        $query->joinWith('client.user');
+
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
+
 
         $this->load($params);
 
@@ -60,9 +74,9 @@ class NutritionBookingSearch extends NutritionBooking
         $query->andFilterWhere([
             'id' => $this->id,
             'booking_date' => $this->booking_date,
-            'client_id' => $this->client_id,
-            'worker_id' => $this->worker_id,
         ]);
+
+        $query->andFilterWhere(['like', 'user.username', $this->clientUsername]);
 
         return $dataProvider;
     }

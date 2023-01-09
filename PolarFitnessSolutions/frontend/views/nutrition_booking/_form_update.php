@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
                                 echo Html::img($domain.'/imgs/Polar_logo_black.png', ['alt' => 'Imagem do Polar', 'class' => 'image-login img-fluid']) ?>
                             </div>
 
-                            <h3 class="text-center">Criar Marcação</h3>
+                            <h3 class="text-center">Atualizar Marcação</h3>
                             <?php $form = ActiveForm::begin() ?>
                             <div class="user-box">
                                 <?= $form->field($model, 'booking_date')->widget(DateTimePicker::classname(), [
@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
                             <spacer type="horizontal" width="100" height="100"> ㅤ </spacer>
                             <div class="d-grid gap-2 col-8 mx-auto">
 
-                                <?= Html::submitButton('Marcar', ['class' => 'btn btn-outline-dark']) ?>
+                                <?= Html::submitButton('Atualizar', ['class' => 'btn btn-outline-dark']) ?>
                             </div>
                             <?php ActiveForm::end(); ?>
                         </div>

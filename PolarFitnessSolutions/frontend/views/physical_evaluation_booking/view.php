@@ -6,8 +6,9 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\PhysicalEvaluationBooking $model */
 
-$this->title = $model->booking_date;
-
+$this->title = 'Consulta de Avaliação Fisíca de: ' . $model->client->user->username;
+$this->params['breadcrumbs'][] = ['label' => 'Consultas de Avaliação Fisíca', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="physical-evaluation-booking-view">
@@ -15,11 +16,11 @@ $this->title = $model->booking_date;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Alterar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem a certeza que quer apagar esta marcação?',
                 'method' => 'post',
             ],
         ]) ?>

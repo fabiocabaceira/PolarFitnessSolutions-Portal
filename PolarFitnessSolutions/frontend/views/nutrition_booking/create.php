@@ -10,8 +10,6 @@ $this->title = 'Criar Marcação de Consulta de Nutrição';
 ?>
 <div class="nutrition-booking-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

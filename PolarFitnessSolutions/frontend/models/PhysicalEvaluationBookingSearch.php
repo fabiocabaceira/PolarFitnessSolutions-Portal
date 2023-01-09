@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\models\PhysicalEvaluationBooking;
@@ -11,6 +12,7 @@ use frontend\models\PhysicalEvaluationBooking;
  */
 class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
 {
+    public $clientUsername;
     /**
      * {@inheritdoc}
      */
@@ -18,6 +20,7 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
+            [['clientUsername'], 'string'],
             [['booking_date'], 'safe'],
         ];
     }
@@ -40,13 +43,20 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
      */
     public function search($params)
     {
-        $query = PhysicalEvaluationBooking::find();
+        $id = Yii::$app->user->id;
+
+        $query = PhysicalEvaluationBooking::find()->where(['worker_id'=>$id]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -60,9 +70,9 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
         $query->andFilterWhere([
             'id' => $this->id,
             'booking_date' => $this->booking_date,
-            'client_id' => $this->client_id,
-            'worker_id' => $this->worker_id,
         ]);
+
+        $query->andFilterWhere(['like', 'user.username', $this->clientUsername]);
 
         return $dataProvider;
     }

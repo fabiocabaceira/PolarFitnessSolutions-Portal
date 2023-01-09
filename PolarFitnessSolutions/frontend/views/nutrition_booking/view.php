@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\NutritionBooking $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Nutrition Bookings', 'url' => ['index']];
+$this->title = 'Consulta de Nutrição de: ' . $model->client->user->username;
+$this->params['breadcrumbs'][] = ['label' => 'Consultas de Nutrição', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Alterar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem a certeza que quer apagar esta marcação?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,10 +29,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'booking_date',
-            'client_id',
-            'worker_id',
+            [
+                'attribute'=>'booking_date',
+                'label'=>'Data',
+                'value'=>$model->booking_date,
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'Cliente ',
+                'value' => $model->client->user->username,
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'Funcionário',
+                'value' => $model->worker->user->username,
+            ],
         ],
     ]) ?>
 

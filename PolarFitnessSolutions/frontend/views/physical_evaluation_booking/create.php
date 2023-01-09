@@ -9,8 +9,6 @@ $this->title = 'Criar Consulta de Avaliação Física';
 ?>
 <div class="physical-evaluation-booking-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

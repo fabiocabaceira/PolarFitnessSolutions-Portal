@@ -32,12 +32,11 @@ $this->title = 'Marcações de Consultas de Nutrição';
                 'label' => 'Data da Consulta',
             ],
             [
-                'attribute' => 'client_id',
-                'label' => 'Id do cliente',
-            ],
-            [
-                'attribute' => 'worker_id',
-                'label' => 'Id do funcionário',
+                'attribute' => 'clientUsername',
+                'label' => 'Cliente',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->client->user->username;
+                },
             ],
             [
                 'class' => ActionColumn::className(),
