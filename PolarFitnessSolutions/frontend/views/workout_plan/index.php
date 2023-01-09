@@ -44,6 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'workerUsername',
                 'label' => 'Funcionario',
                 'value' => function($model, $index, $dataColumn) {
+                    if($model->worker == null){
+                        return 'Nao existe';
+                    }
                     return $model->worker->user->username;
                 },
                 'visible'=> Yii::$app->user->can('utilizador'),

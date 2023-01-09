@@ -64,6 +64,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 ],
                 [
+                    'attribute'=>'exercise.sets',
+                    'label'=>'Sets',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->sets;
+                    },
+                ],
+                [
                     'class' => ActionColumn::className(),
                     'template' => '{delete}',
                     'controller' => 'workout_plan_exercise_relation',
@@ -99,7 +106,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'worker_id',
                 'label' => 'Funcionário',
-                'value' => $model->worker->user->username,
+                'value' => function ($model, $widget){
+                    if($model->worker == null){
+                        return 'Nao existe';
+                    }
+                    return $model->worker->user->username;
+                }
             ],
         ],
     ]) ?>

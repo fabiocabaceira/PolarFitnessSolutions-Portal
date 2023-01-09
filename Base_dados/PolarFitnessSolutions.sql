@@ -101,6 +101,7 @@ CREATE TABLE exercise(
     exercise_name           VARCHAR(100)         	NOT NULL,
     max_rep                 INT,
     min_rep                 INT,
+    sets					INT,
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
