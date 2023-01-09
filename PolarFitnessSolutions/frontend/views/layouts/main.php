@@ -69,9 +69,6 @@ $subscription = \common\models\User::find()->where(['id' => $id])->andwhere(['su
     if  (!$subscription) {
         $menuItems = [
             ['label' => 'Conta', 'url' => ['/user/view?id=' . $id]],
-            ['label' => 'Planos de Treino', 'url' => ['/workout_plan/index']],
-            ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
-            ['label' => 'Mensagens', 'url' => ['/site/signup']],
             ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
             ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
             ['label' => 'Visualizar Inscricao', 'url' => ['site/viewbooking']],
