@@ -4,15 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\PhysicalEvaluationBooking $model */
+/** @var backend\models\WorkoutPlan $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="physical-evaluation-booking-form">
+<div class="workout-plan-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'booking_date')->textInput() ?>
+    <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'created_at')->textInput() ?>
+
+    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <?= $form->field($model, 'client_id')->textInput() ?>
 

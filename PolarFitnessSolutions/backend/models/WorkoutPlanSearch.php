@@ -4,12 +4,12 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Workout_plan;
+use backend\models\WorkoutPlan;
 
 /**
- * Workout_planSearch represents the model behind the search form of `app\models\Workout_plan`.
+ * WorkoutPlanSearch represents the model behind the search form of `backend\models\WorkoutPlan`.
  */
-class Workout_planSearch extends Workout_plan
+class WorkoutPlanSearch extends WorkoutPlan
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class Workout_planSearch extends Workout_plan
     public function rules()
     {
         return [
-            [['id', 'user_id', 'worker_id'], 'integer'],
-            [['workout_name', 'createdate'], 'safe'],
+            [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
+            [['workout_name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class Workout_planSearch extends Workout_plan
      */
     public function search($params)
     {
-        $query = Workout_plan::find();
+        $query = WorkoutPlan::find();
 
         // add conditions that should always apply here
 
@@ -59,8 +59,9 @@ class Workout_planSearch extends Workout_plan
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'createdate' => $this->createdate,
-            'user_id' => $this->user_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'client_id' => $this->client_id,
             'worker_id' => $this->worker_id,
         ]);
 

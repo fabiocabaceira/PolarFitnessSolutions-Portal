@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\PhysicalEvaluationBooking $model */
+/** @var backend\models\WorkoutPlan $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Physical Evaluation Bookings', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Workout Plans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="physical-evaluation-booking-view">
+<div class="workout-plan-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'booking_date',
+            'workout_name',
+            'created_at',
+            'updated_at',
             'client_id',
             'worker_id',
         ],
