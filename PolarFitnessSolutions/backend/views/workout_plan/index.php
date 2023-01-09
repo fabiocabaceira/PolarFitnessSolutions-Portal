@@ -10,15 +10,13 @@ use yii\grid\GridView;
 /** @var backend\models\WorkoutPlanSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Workout Plans';
+$this->title = 'Planos de Treino';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="workout-plan-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Create Workout Plan', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Planos de Treino', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -31,10 +29,42 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'workout_name',
-            'created_at',
-            'updated_at',
-            'client_id',
-            //'worker_id',
+            [
+                'attribute' => 'clientUsername',
+                'label' => 'Cliente',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->client->user->username;
+                },
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'ID Cliente',
+                'value' => function($model, $index, $dataColumn) {
+                    return $model->client_id;
+                },
+            ],
+            [
+                'attribute' => 'workerUsername',
+                'label' => 'Funcionário',
+                'value' => function($model, $index, $dataColumn) {
+                    if($model->worker == null){
+                        return 'Não existe';
+                    }
+                    return $model->worker->user->username;
+                },
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'ID Funcionário',
+                'value' => function($model, $index, $dataColumn) {
+                    if ($model->worker_id == null){
+                        return 'Não tem funcionário associado';
+                    }
+                    else{
+                        return $model->worker_id;
+                    }
+                },
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, WorkoutPlan $model, $key, $index, $column) {

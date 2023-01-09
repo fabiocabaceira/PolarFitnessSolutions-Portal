@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "workout_plan".
@@ -28,13 +29,20 @@ class WorkoutPlan extends \yii\db\ActiveRecord
         return 'workout_plan';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['workout_name', 'created_at', 'updated_at'], 'required'],
+            [['workout_name'], 'required'],
             [['created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
             [['workout_name'], 'string', 'max' => 30],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],

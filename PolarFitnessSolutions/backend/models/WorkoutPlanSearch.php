@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\WorkoutPlan;
@@ -11,6 +12,9 @@ use backend\models\WorkoutPlan;
  */
 class WorkoutPlanSearch extends WorkoutPlan
 {
+    public $clientUsername;
+    public $workerUsername;
+
     /**
      * {@inheritdoc}
      */
@@ -18,6 +22,7 @@ class WorkoutPlanSearch extends WorkoutPlan
     {
         return [
             [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
+            [['clientUsername', 'workerUsername'], 'string'],
             [['workout_name'], 'safe'],
         ];
     }
@@ -41,12 +46,22 @@ class WorkoutPlanSearch extends WorkoutPlan
     public function search($params)
     {
         $query = WorkoutPlan::find();
+        $query->joinWith('client.user')->joinWith('worker.user');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['workerUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -65,7 +80,9 @@ class WorkoutPlanSearch extends WorkoutPlan
             'worker_id' => $this->worker_id,
         ]);
 
-        $query->andFilterWhere(['like', 'workout_name', $this->workout_name]);
+        $query->andFilterWhere(['like', 'workout_name', $this->workout_name])
+            ->andFilterWhere(['like', 'user.username', $this->clientUsername])
+            ->andFilterWhere(['like', 'user.username', $this->workerUsername]);
 
         return $dataProvider;
     }

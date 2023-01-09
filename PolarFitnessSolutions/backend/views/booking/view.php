@@ -6,21 +6,17 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\Booking $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Bookings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+$this->title = 'Inscrição de: ' . $model->user->username;
+
 ?>
 <div class="booking-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem a certeza que quer apagar esta inscrição?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,15 +26,31 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'booking_date',
-            'user_id',
-        ],
-    ]) ?>
-    <?= DetailView::widget([
-        'model' => $user,
-        'attributes' => [
-            'id',
-            'username',
+            [
+                'attribute'=>'booking_date',
+                'label'=>'Data',
+                'value'=>$model->booking_date,
+            ],
+            [
+                'attribute' => 'client_username',
+                'label' => 'Cliente ',
+                'value' => $model->user->username,
+            ],
+            [
+                'attribute' => 'client_email',
+                'label' => 'Email do cliente ',
+                'value' => $model->user->email,
+            ],
+            [
+                'attribute' => 'client_phone',
+                'label' => 'Número de telemóvel do cliente ',
+                'value' => $model->user->phone_number,
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'ID Cliente ',
+                'value' => $model->user->id,
+            ],
         ],
     ]) ?>
 

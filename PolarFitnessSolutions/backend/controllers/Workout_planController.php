@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\WorkoutPlan;
 use backend\models\WorkoutPlanSearch;
+use frontend\models\Workout_plan_exercise_relationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -55,8 +56,15 @@ class Workout_planController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new Workout_plan_exercise_relationSearch();
+        $searchModel->workout_plan_id = $id;
+
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
         ]);
     }
 

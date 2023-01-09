@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true])->label('Nome') ?>
 
-    <?= $form->field($model, 'worker_id')->dropDownList(ArrayHelper::map(\frontend\models\WorkerClientRelation::find()->asArray()->with('worker')->all(), 'worker_id', 'worker_id', 'user.username'))->label('ID Funcionario')?>
+    <?= $form->field($model, 'worker_id')->dropDownList(ArrayHelper::map(\frontend\models\WorkerClientRelation::find()->asArray()->with('worker')->all(), 'worker_id', 'worker_id', 'user.username'))->label('ID Funcionário')?>
 
     <?= $form->field($model, 'client_id')->hiddenInput(['value'=> Yii::$app->user->id])->label(false); ?>
 

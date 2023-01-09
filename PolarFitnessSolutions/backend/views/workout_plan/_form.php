@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,18 +13,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'workout_name')->textInput(['maxlength' => true])->label('Nome do Plano de Treino') ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map(\frontend\models\WorkerClientRelation::find()->leftJoin('user', 'user.id = client_id')->asArray()->with('client')->all(), 'client_id', 'client_id', 'workout_plan_relation.client.user.username'))->label('ID Cliente')?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'client_id')->textInput() ?>
-
-    <?= $form->field($model, 'worker_id')->textInput() ?>
-
+    <?= $form->field($model, 'worker_id')->dropDownList(ArrayHelper::map(\frontend\models\WorkerClientRelation::find()->asArray()->with('worker')->all(), 'worker_id', 'worker_id', 'user.username'))->label('ID Funcionário')?>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
             <div class="div-center">
                 <div class="content">
 
-                    <h3 class="text-center">Create Worker Account</h3>
+                    <h3 class="text-center">Dados</h3>
 
                     <hr/>
                     <?php $form = ActiveForm::begin() ?>

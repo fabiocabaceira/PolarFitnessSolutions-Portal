@@ -14,7 +14,7 @@ $this->title = 'Consultas de Avaliação Física';
 <div class="physical-evaluation-booking-index">
 
     <p>
-        <?= Html::a('Criar Consulta de Avaliação Física', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Marcar Consulta', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

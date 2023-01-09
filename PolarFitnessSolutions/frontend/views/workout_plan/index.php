@@ -29,9 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'workout_name',
-
             [
-
                 'attribute' => 'clientUsername',
                 'label' => 'Cliente',
                 'value' => function($model, $index, $dataColumn) {
@@ -40,12 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'visible'=> Yii::$app->user->can('funcionario'),
             ],
             [
-
                 'attribute' => 'workerUsername',
                 'label' => 'Funcionário',
                 'value' => function($model, $index, $dataColumn) {
                     if($model->worker == null){
-                        return 'Nao existe';
+                        return 'Não existe';
                     }
                     return $model->worker->user->username;
                 },

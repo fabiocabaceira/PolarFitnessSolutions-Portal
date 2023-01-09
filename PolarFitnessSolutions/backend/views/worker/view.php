@@ -6,17 +6,15 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var backend\models\Worker $model */
 
-$this->title = $user->username;
+$this->title = 'Detalhes de: ' . $user->username;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
 
-    <h1>Cliente: <?= Html::encode($this->title) ?></h1>
-
-    <div class="container d-flex justify-content-center">
+    <div class="col-md-12 d-flex flex-column justify-content-center">
         <div class="col-md-6 border-right">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="text-right">Detalhes</h4>
+                <h4 class="text-right">Detalhes de:  . $user->username</h4>
             </div>
             <div class="row mt-3 ">
                         <span class="col-md-12"><?= DetailView::widget([
@@ -70,7 +68,9 @@ $this->title = $user->username;
 
                             ]) ?></span>
                 <div class="mt-5 text-center">
-                    <?= Html::a('Atualizar', ['update', 'worker_id' => $model->worker_id], ['class' => 'btn btn-primary profile-button']) ?>
+
+                    <?= Html::submitButton('Criar', ['class' => 'btn btn-outline-dark btn-block']) ?>
+
                 </div>
             </div>
         </div>

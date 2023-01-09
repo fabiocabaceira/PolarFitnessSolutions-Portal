@@ -1,30 +1,79 @@
 <?php
 
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var backend\models\WorkoutPlan $model */
+/** @var backend\models\ExerciseSearch $searchModel */
+/** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Workout Plans', 'url' => ['index']];
+$this->title = $model->workout_name;
+$this->params['breadcrumbs'][] = ['label' => 'Planos de Treino', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="workout-plan-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Adicionar Exercício', ['/WorkoutPlanExerciseRelation/create', 'workout_id'=>$model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Atualizar Plano de Treino', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Apagar Plano de Treino', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Tem a certeza que deseja apagar este plano de treino?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
+    <?php if ($dataProvider->count != 0){ ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            //'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
+                    'attribute'=>'exercise.exercise_name',
+                    'label'=>'Nome',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->exercise_name;
+                    },
+                ],
+                [
+                    'attribute'=>'exercise.max_rep',
+                    'label'=>'Max rep',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->max_rep;
+                    },
+                ],
+                [
+                    'attribute'=>'exercise.min_rep',
+                    'label'=>'Min rep',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->min_rep;
+                    },
+                ],
+                [
+                    'attribute'=>'exercise.sets',
+                    'label'=>'Sets',
+                    'value' => function($searchModel, $index, $dataColumn) {
+                        return $searchModel->exercise->sets;
+                    },
+                ],
+                [
+                    'class' => ActionColumn::className(),
+                    'template' => '{delete}',
+                    'controller' => 'workout_plan_exercise_relation',
+                ],
+            ],
+        ]); ?>
+    <?php }
+    else{?>
+        <p style="color:red; font-size:22px" > Ainda não adicionou exercícios.</p>
+    <?php }
+    ?>
 
     <?= DetailView::widget([
         'model' => $model,

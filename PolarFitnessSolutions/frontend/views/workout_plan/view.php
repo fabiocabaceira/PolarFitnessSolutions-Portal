@@ -15,7 +15,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Planos de Treino', 'url' => ['inde
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
-//var_dump($dataProvider->count);
 ?>
 <div class="workout-plan-view">
 
@@ -23,9 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Adicionar Exercício', ['/workout_plan_exercise_relation/create', 'workout_id'=>$model->id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Atualizar Plano de Treino', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php if (Yii::$app->user->can('funcionario')){?>
-            <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
+            <?= Html::a('Apagar Plano de Treino', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Tem a certeza que deseja apagar este plano de treino?',

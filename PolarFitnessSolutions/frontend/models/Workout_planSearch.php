@@ -54,9 +54,6 @@ class Workout_planSearch extends Workout_plan
             $query->joinWith('worker.user');
         }
 
-
-
-
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

@@ -38,10 +38,10 @@ use yii\widgets\ActiveForm;
                             <?= $form->field($model, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminino' => 'Feminino', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
                         </div>
-                        <spacer type="horizontal" width="100" height="100"> ㅤ </spacer>
-                        <div class="d-grid gap-2 col-8 mx-auto">
+                        <div class="mt-5 text-center">
 
-                            <?= Html::submitButton('Signup', ['class' => 'btn btn-outline-dark']) ?>
+                            <?= Html::submitButton('Criar', ['class' => 'btn btn-outline-dark btn-block']) ?>
+
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>

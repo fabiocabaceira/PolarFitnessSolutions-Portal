@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\SignupForm $model */
 
-$this->title = 'Criar Cliente Novo';
+$this->title = 'Criar Novo Cliente';
 
 ?>
 <div class="client-create">

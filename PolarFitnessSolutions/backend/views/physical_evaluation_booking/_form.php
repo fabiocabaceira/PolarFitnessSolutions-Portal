@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
                             <?php $form = ActiveForm::begin() ?>
                             <div class="user-box">
                                 <?= $form->field($model, 'booking_date')->widget(DateTimePicker::classname(), [
-                                    'options' => ['placeholder' => 'Escolha um dia e uma hora para a sua inscrição'],
+                                    'options' => ['placeholder' => 'Escolha um dia e uma hora para a sua marcação'],
                                     'pluginOptions' => [
                                         'autoclose' => true,
                                         'hoursDisabled' => '0,1,2,3,4,5,6,7,8,9,19,20,21,22,23',

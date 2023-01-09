@@ -5,13 +5,9 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\Worker $model */
 
-$this->title = 'Create Worker';
-$this->params['breadcrumbs'][] = ['label' => 'Workers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Criar Novo Funcionário';
 ?>
 <div class="worker-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
