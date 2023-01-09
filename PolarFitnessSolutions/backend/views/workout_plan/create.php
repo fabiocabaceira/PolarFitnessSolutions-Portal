@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Workout_plan $model */
+/** @var backend\models\WorkoutPlan $model */
 
 $this->title = 'Create Workout Plan';
 $this->params['breadcrumbs'][] = ['label' => 'Workout Plans', 'url' => ['index']];

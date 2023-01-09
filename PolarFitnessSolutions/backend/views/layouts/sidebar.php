@@ -41,30 +41,30 @@ use yii\helpers\Url;
         <nav class="mt-2">
 
             <?php
-            echo ButtonDropdown::widget([
-                'label' => 'Marcações',
-                'dropdown' => [
-                    'items' => [
-                        ['label' => 'Inscrições', 'url' => ['booking/index']],
-                        ['label' => 'Avaliações físicas', 'url' => ['physical_evaluation_booking/index']],
-                        ['label' => 'Nutrição', 'url' => ['nutrition_booking/index']],
-
-                    ],
-                ],
-                'buttonOptions' => ['class' => 'btn-outline-secondary']
-            ]);
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
+                    [
+                        'label' => 'Marcações',
+                        'icon' => 'fa-solid fa-book-bookmark',
+                        'items' => [
+                            ['label' => 'Inscrições', 'url' => ['booking/index'], 'iconStyle' => 'far'],
+                            ['label' => 'Avaliações Fisicas', 'url' => ['physical_evaluation_booking/index'], 'iconStyle' => 'far'],
+                            ['label' => 'Nutrição', 'url' => ['nutrition_booking/index'], 'iconStyle' => 'far'],
+                        ]
+                    ],
                     ['label' => 'Clientes',  'icon' => 'fa-solid fa-person', 'url' => ['client/index']],
                     ['label' => 'Funcionários',  'icon' => 'fa-solid fa-person', 'url' => ['worker/index']],
-                    ['label' => 'Atribuição de Profissionais',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['worker_client_relation/index']],
-                    ['label' => 'Inscrições',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['booking/index']],
-                    ['label' => 'consultas de avaliação física',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['physical_evaluation_booking/index']],
-                    ['label' => 'consultas de nutricao',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['nutrition_booking/index']],
+                    ['label' => 'Atribuições',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['worker_client_relation/index']],
+                    ['label' => 'Planos de treino',  'icon' => 'fa-solid fa-book-bookmark', 'url' => ['workout_plan/index']],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ['label' => 'Definiçōes',  'icon' => 'fa-solid fa-gear', 'url' => ['']],
-/*
-                    [
+
+
+
+
+
+                    /*
+                     [
                         'label' => 'Starter Pages',
                         'icon' => 'tachometer-alt',
                         'badge' => '<span class="right badge badge-info">2</span>',

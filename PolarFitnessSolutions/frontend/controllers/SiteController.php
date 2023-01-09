@@ -92,7 +92,7 @@ class SiteController extends Controller
     public function actionBooking(){
         $model = new BookingForm();
         if($model->load(Yii::$app->request->post()) && $model->booking()){
-        Yii::$app->session->setFlash('success', 'Inscricao valida');
+        Yii::$app->session->setFlash('success', 'Inscricao marcada com sucesso');
         return $this->goHome();
         }
 
@@ -192,8 +192,8 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+            Yii::$app->session->setFlash('success', 'Obrigado pelo registo, pode agora efetuar o login');
+            return $this->redirect(['login']);
         }
 
         return $this->render('signup', [
