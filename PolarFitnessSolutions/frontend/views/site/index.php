@@ -16,7 +16,8 @@ $this->title = 'Polar Fitness Solutions';
                     echo Html::img($domain.'/imgs/joinnow.jpg', ['class' => 'swiper-slide']) ?>
                     <?php $domain = yii\helpers\Url::base(true);
                     echo Html::img($domain.'/imgs/veganman.jpg', ['class' => 'swiper-slide']) ?>
-
+                    <?php $domain = yii\helpers\Url::base(true);
+                    echo Html::img($domain.'/imgs/gymad.png', ['class' => 'swiper-slide']) ?>
 
                 </div>
                 <div class="swiper-button-next"></div>
