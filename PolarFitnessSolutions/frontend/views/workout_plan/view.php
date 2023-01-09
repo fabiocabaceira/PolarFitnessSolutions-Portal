@@ -74,7 +74,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => ActionColumn::className(),
                     'template' => '{delete}',
                     'controller' => 'workout_plan_exercise_relation',
-
                 ],
             ],
         ]); ?>

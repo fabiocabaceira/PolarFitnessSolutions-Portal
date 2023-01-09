@@ -13,6 +13,7 @@ use frontend\models\NutritionBooking;
 class NutritionBookingSearch extends NutritionBooking
 {
     public $clientUsername;
+    public $workerUsername;
 
     /**
      * {@inheritdoc}
@@ -21,7 +22,7 @@ class NutritionBookingSearch extends NutritionBooking
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
-            [['clientUsername'], 'string'],
+            [['clientUsername', 'workerUsername'], 'string'],
             [['booking_date'], 'safe'],
         ];
     }
@@ -45,10 +46,14 @@ class NutritionBookingSearch extends NutritionBooking
     public function search($params)
     {
         $id = Yii::$app->user->id;
-
-        $query = NutritionBooking::find()->where(['worker_id'=>$id]);
-        $query->joinWith('client.user');
-
+        if (Yii::$app->user->can('funcionario')){
+            $query = NutritionBooking::find()->where(['worker_id'=>$id]);
+            $query->joinWith('client.user');
+        }
+        elseif (Yii::$app->user->can('utilizador')){
+            $query = NutritionBooking::find()->where(['client_id'=>$id]);
+            $query->joinWith('worker.user');
+        }
 
         // add conditions that should always apply here
 
@@ -57,6 +62,11 @@ class NutritionBookingSearch extends NutritionBooking
         ]);
 
         $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['workerUsername'] = [
             'asc' => ['user.username'=>SORT_ASC],
             'desc' => ['user.username'=>SORT_DESC],
         ];
@@ -76,7 +86,8 @@ class NutritionBookingSearch extends NutritionBooking
             'booking_date' => $this->booking_date,
         ]);
 
-        $query->andFilterWhere(['like', 'user.username', $this->clientUsername]);
+        $query->andFilterWhere(['like', 'user.username', $this->clientUsername])
+            ->andFilterWhere(['like', 'user.username', $this->workerUsername]);
 
         return $dataProvider;
     }

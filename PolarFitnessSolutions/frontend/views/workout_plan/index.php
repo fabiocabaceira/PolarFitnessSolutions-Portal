@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 
                 'attribute' => 'workerUsername',
-                'label' => 'Funcionario',
+                'label' => 'Funcionário',
                 'value' => function($model, $index, $dataColumn) {
                     if($model->worker == null){
                         return 'Nao existe';

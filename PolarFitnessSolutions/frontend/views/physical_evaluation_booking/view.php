@@ -6,15 +6,15 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\PhysicalEvaluationBooking $model */
 
-$this->title = 'Consulta de Avaliação Fisíca de: ' . $model->client->user->username;
+$this->title =  $model->client->user->username;
 $this->params['breadcrumbs'][] = ['label' => 'Consultas de Avaliação Fisíca', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="physical-evaluation-booking-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <h1><?= 'Consulta de Avaliação Fisíca de: ' . Html::encode($this->title) ?></h1>
+    <?php if (Yii::$app->user->can('funcionario')){ ?>
     <p>
         <?= Html::a('Alterar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
@@ -25,14 +25,27 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <?php }
+    ?>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'booking_date',
-            'client_id',
-            'worker_id',
+            [
+                'attribute'=>'booking_date',
+                'label'=>'Data',
+                'value'=>$model->booking_date,
+            ],
+            [
+                'attribute' => 'client_id',
+                'label' => 'Cliente ',
+                'value' => $model->client->user->username,
+            ],
+            [
+                'attribute' => 'worker_id',
+                'label' => 'Funcionário',
+                'value' => $model->worker->user->username,
+            ],
         ],
     ]) ?>
 

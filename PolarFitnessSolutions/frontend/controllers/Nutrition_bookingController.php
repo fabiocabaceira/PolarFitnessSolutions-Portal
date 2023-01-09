@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use frontend\models\NutritionBooking;
 use frontend\models\NutritionBookingSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,6 +23,22 @@ class Nutrition_bookingController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['update', 'delete','create'],
+                            'allow' => true,
+                            'roles' => ['funcionario'],
+                        ],
+                        [
+                            'actions' => ['index','view'],
+                            'allow' => true,
+                            'roles' => ['funcionario', 'utilizador'],
+                        ],
+
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -55,9 +73,15 @@ class Nutrition_bookingController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $booking = NutritionBooking::findOne(['id'=>$id]);
+        if(Yii::$app->user->id == $booking->client_id || Yii::$app->user->id == $booking->worker_id){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else{
+            throw new NotFoundHttpException();
+        }
     }
 
     /**

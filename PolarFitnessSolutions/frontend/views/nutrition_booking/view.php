@@ -6,15 +6,15 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var frontend\models\NutritionBooking $model */
 
-$this->title = 'Consulta de Nutrição de: ' . $model->client->user->username;
+$this->title =  $model->client->user->username;
 $this->params['breadcrumbs'][] = ['label' => 'Consultas de Nutrição', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="nutrition-booking-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <h1><?= 'Consulta de Nutrição de: ' . Html::encode($this->title) ?></h1>
+    <?php if (Yii::$app->user->can('funcionario')){ ?>
     <p>
         <?= Html::a('Alterar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Apagar', ['delete', 'id' => $model->id], [
@@ -25,6 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <?php }
+    ?>
 
     <?= DetailView::widget([
         'model' => $model,

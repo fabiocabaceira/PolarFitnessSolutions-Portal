@@ -13,6 +13,7 @@ use frontend\models\PhysicalEvaluationBooking;
 class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
 {
     public $clientUsername;
+    public $workerUsername;
     /**
      * {@inheritdoc}
      */
@@ -20,7 +21,7 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
-            [['clientUsername'], 'string'],
+            [['clientUsername', 'workerUsername'], 'string'],
             [['booking_date'], 'safe'],
         ];
     }
@@ -45,7 +46,14 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     {
         $id = Yii::$app->user->id;
 
-        $query = PhysicalEvaluationBooking::find()->where(['worker_id'=>$id]);
+        if (Yii::$app->user->can('funcionario')){
+            $query = PhysicalEvaluationBooking::find()->where(['worker_id'=>$id]);
+            $query->joinWith('client.user');
+        }
+        elseif (Yii::$app->user->can('utilizador')){
+            $query = PhysicalEvaluationBooking::find()->where(['client_id'=>$id]);
+            $query->joinWith('worker.user');
+        }
 
         // add conditions that should always apply here
 
@@ -54,6 +62,11 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
         ]);
 
         $dataProvider->sort->attributes['clientUsername'] = [
+            'asc' => ['user.username'=>SORT_ASC],
+            'desc' => ['user.username'=>SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['workerUsername'] = [
             'asc' => ['user.username'=>SORT_ASC],
             'desc' => ['user.username'=>SORT_DESC],
         ];
@@ -72,7 +85,8 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
             'booking_date' => $this->booking_date,
         ]);
 
-        $query->andFilterWhere(['like', 'user.username', $this->clientUsername]);
+        $query->andFilterWhere(['like', 'user.username', $this->clientUsername])
+            ->andFilterWhere(['like', 'user.username', $this->workerUsername]);
 
         return $dataProvider;
     }

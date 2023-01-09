@@ -79,8 +79,11 @@ $subscription = \common\models\User::find()->where(['id' => $id])->andwhere(['su
             ['label' => 'Conta', 'url' => ['/user/view?id=' . $id]],
             ['label' => 'Planos de Treino', 'url' => ['/workout_plan/index']],
             ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
+            ['label' => 'Consultas de Avaliação Física', 'url' => ['physical_evaluation_booking/index']],
+            ['label' => 'Consultas de Nutrição', 'url' => ['nutrition_booking/index']],
             ['label' => 'Mensagens', 'url' => ['/site/signup']],
             ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
+
         ];
     }
         }
