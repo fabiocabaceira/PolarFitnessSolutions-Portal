@@ -85,10 +85,18 @@ class Workout_planController extends Controller
             }
             throw new NotFoundHttpException();
         }
-
-
-
-
+        elseif (Yii::$app->user->can('funcionario')){
+            if(Yii::$app->user->id == $this->findModel($id)->worker_id){
+                return $this->render('view', [
+                    'model' => $this->findModel($id),
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                ]);
+            }
+            throw new NotFoundHttpException();
+        }
+        else
+            throw new NotFoundHttpException();
     }
 
     /**
