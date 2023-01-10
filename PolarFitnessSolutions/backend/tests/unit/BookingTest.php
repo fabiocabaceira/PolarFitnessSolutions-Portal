@@ -36,7 +36,7 @@ class BookingTest extends \Codeception\Test\Unit
     public function testFailBookingNoExistingUser(){
         $model = new Booking([
             'booking_date' => '2023-01-25 14:30:00',
-            'user_id'=> 25,
+            'user_id'=> '25',
         ]);
         verify($model->save())->false();
     }

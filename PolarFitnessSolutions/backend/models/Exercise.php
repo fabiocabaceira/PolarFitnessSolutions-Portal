@@ -33,6 +33,7 @@ class Exercise extends \yii\db\ActiveRecord
         return [
             [['exercise_name'], 'required'],
             [['max_rep', 'min_rep', 'sets'], 'integer'],
+            [['max_rep', 'min_rep', 'sets'], 'required'],
             [['exercise_name'], 'string', 'max' => 100],
         ];
     }
