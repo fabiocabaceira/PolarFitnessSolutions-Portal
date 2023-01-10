@@ -86,7 +86,7 @@ $percusersnonadmin = number_format((float)$percusersnonadmin, 0, '.', '');
                 'number' => $percusersnonadmin .'%',
                 'icon' => 'fa-solid fa-users',
                 'progress' => [
-                    'width' => '100%',
+                    'width' => $percusersnonadmin . '%',
                     'description' => 'Taxa de Clientes e Funcionarios'
                 ]
             ]) ?>
