@@ -10,6 +10,12 @@ return [
         'created_at' => '1392559490',
         'updated_at' => '1392559490',
         'email' => 'sfriesen@jenkins.info',
+        'street' => 'Rua de Teste',
+        'zip_code' => '1234-123',
+        'area' => 'Area Teste',
+        'phone_number' => '123456789',
+        'nif' => '987654321',
+        'gender' => 'Outro',
     ],
     [
         'username' => 'test.test',
