@@ -30,7 +30,7 @@ $this->title = $search->booking_date;
                                 'attributes' => [
                                     [
                                         'label' => 'Nome',
-                                        'value' => $search->user_id,
+                                        'value' => $search->user->username,
                                     ],
                                     [
                                         'label' => 'Data de Inscricao',
