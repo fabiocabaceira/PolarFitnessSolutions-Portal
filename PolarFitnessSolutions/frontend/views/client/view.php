@@ -34,11 +34,11 @@ $this->title = $model->user->username;
                                     ],
                                     [
                                         'label' => 'Data de criação da conta',
-                                        'value' => $user->created_at,
+                                        'value' => Yii::$app->formatter->asDatetime($model->user->created_at),
                                     ],
                                     [
                                         'label' => 'Data da última atualização da conta',
-                                        'value' => $user->updated_at,
+                                        'value' => Yii::$app->formatter->asDatetime($model->user->updated_at),
                                     ],
 
                                     [
