@@ -47,14 +47,52 @@ class LoginCest
 
     public function checkWrongPassword(FunctionalTester $I)
     {
-        $I->submitForm('#login-form', $this->formParams('admin', 'wrong'));
+        $user = new User();
+        $user->username = 'pedro';
+        $user->email = 'sfriesen@jenkins.info';
+        $user->street = 'Rua de Teste';
+        $user->zip_code = '1234-123';
+        $user->phone_number = '123456789';
+        $user->area = 'Area Teste';
+        $user->nif = '987654321';
+        $user->gender = 'Outro';
+        $user->status = 10;
+        $user->setPassword('12345678');
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->save();
+
+        $auth = \Yii::$app->authManager;
+        $Role = $auth->getRole('utilizador');
+        $auth->assign($Role, $user->getId());
+
+        $I->submitForm('#login-form', $this->formParams('pedro', 'wrong'));
         $I->seeValidationError('Incorrect username or password.');
     }
 
     public function checkInactiveAccount(FunctionalTester $I)
     {
-        $I->submitForm('#login-form', $this->formParams('test.test', 'Test1234'));
-        $I->seeValidationError('Incorrect username or password');
+        $user = new User();
+        $user->username = 'jose';
+        $user->email = 'sfriesen@jenkins.info';
+        $user->street = 'Rua de Teste';
+        $user->zip_code = '1234-123';
+        $user->phone_number = '123456789';
+        $user->area = 'Area Teste';
+        $user->nif = '987654321';
+        $user->gender = 'Outro';
+        $user->status = 9;
+        $user->setPassword('12345678');
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->save();
+
+        $auth = \Yii::$app->authManager;
+        $Role = $auth->getRole('utilizador');
+        $auth->assign($Role, $user->getId());
+
+        $I->submitForm('#login-form', $this->formParams('jose', '12345678'));
+        $I->seeValidationError('Incorrect username or password.');
     }
 
     public function checkValidLogin(FunctionalTester $I)
