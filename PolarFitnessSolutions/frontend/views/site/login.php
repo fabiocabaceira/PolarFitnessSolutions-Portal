@@ -24,7 +24,7 @@ $this->title = 'Login';
                         <h3 class="text-center">Seja bem-vindo</h3>
 
                         <hr/>
-                        <?php $form = \yii\bootstrap4\ActiveForm::begin() ?>
+                        <?php $form = \yii\bootstrap4\ActiveForm::begin(['id' => 'login-form']) ?>
                         <div class="user-box">
                             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
                         </div>

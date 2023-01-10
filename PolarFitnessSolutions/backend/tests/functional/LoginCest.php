@@ -58,7 +58,12 @@ class LoginCest
         $I->fillField('Username', 'erau');
         $I->fillField('Password', '12345678');
         $I->click('Sign In');
+
         $I->seeInCurrentUrl('/index');
+
+        $I->see('Polar Fitness Solutions');
+        $I->dontSeeLink('Login');
+        $I->dontSeeLink('Signup');
 
     }
 }

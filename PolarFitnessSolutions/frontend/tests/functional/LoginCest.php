@@ -2,6 +2,7 @@
 
 namespace frontend\tests\functional;
 
+use common\models\User;
 use frontend\tests\FunctionalTester;
 use common\fixtures\UserFixture;
 
@@ -58,8 +59,28 @@ class LoginCest
 
     public function checkValidLogin(FunctionalTester $I)
     {
-        $I->submitForm('#login-form', $this->formParams('erau', 'password_0'));
-        $I->see('Logout (erau)', 'form button[type=submit]');
+
+        $user = new User();
+        $user->username = 'pedro';
+        $user->email = 'sfriesen@jenkins.info';
+        $user->street = 'Rua de Teste';
+        $user->zip_code = '1234-123';
+        $user->phone_number = '123456789';
+        $user->area = 'Area Teste';
+        $user->nif = '987654321';
+        $user->gender = 'Outro';
+        $user->status = 10;
+        $user->setPassword('12345678');
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->save();
+
+        $auth = \Yii::$app->authManager;
+        $Role = $auth->getRole('utilizador');
+        $auth->assign($Role, $user->getId());
+
+        $I->submitForm('#login-form', $this->formParams('pedro', '12345678'));
+        $I->see('Logout (pedro)', 'form button[type=submit]');
         $I->dontSeeLink('Login');
         $I->dontSeeLink('Signup');
     }
