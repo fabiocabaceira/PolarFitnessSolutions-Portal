@@ -1,7 +1,7 @@
 <?php
 
 
-namespace frontend\tests\Unit;
+namespace frontend\tests\unit\models;
 
 use frontend\tests\UnitTester;
 use frontend\models\Nutrition_Plan;
@@ -30,12 +30,22 @@ class Nutrition_planTest extends \Codeception\Test\Unit
         verify($plan)->notEmpty();
     }
 
-    public function testFailNutrition_planNoClient(){
+    public function testFailNutrition_planNoExistingClient(){
         $model = new Nutrition_Plan([
             'nutritionname' => 'nutritionnametest example',
             'content'=> 'some long text with nutrition details',
+            'client_id' => '10',
+            'worker_id'=>'3',
+        ]);
+        verify($model->save())->false();
+    }
 
-            'worker_id'=>3,
+    public function testFailNutrition_planNoExistingWorker(){
+        $model = new Nutrition_Plan([
+            'nutritionname' => 'nutritionnametest example',
+            'content'=> 'some long text with nutrition details',
+            'client_id' => '2',
+            'worker_id'=>'10',
         ]);
         verify($model->save())->false();
     }
