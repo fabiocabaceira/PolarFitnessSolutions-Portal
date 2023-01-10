@@ -32,6 +32,7 @@ class Booking extends \yii\db\ActiveRecord
             [['booking_date'], 'required'],
             [['booking_date'], 'safe'],
             [['user_id'], 'integer'],
+            [['user_id'], 'required'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
