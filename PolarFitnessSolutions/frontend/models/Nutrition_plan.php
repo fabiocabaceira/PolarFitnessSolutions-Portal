@@ -44,6 +44,7 @@ class Nutrition_Plan extends \yii\db\ActiveRecord
         return [
             [['nutritionname', 'content'], 'required'],
             [['content'], 'string'],
+            [['client_id' , 'worker_id'], 'reqiored'],
             [['created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
             [['nutritionname'], 'string', 'max' => 30],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],

@@ -45,7 +45,9 @@ class SignupForm extends Model
             ['zip_code', 'required'],
             ['area', 'required'],
             ['phone_number', 'required'],
+            ['phone_number', 'integer', 'min'=>100000000, 'max'=>999999999, 'tooSmall'=>'{attribute} deve conter 9 dígitos'],
             ['nif', 'required'],
+            ['nif', 'integer', 'min'=>100000000, 'max'=>999999999, 'tooSmall'=>'{attribute} deve conter 9 dígitos'],
             ['gender', 'required'],
 
         ];
