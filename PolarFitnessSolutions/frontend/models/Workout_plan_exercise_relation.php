@@ -31,6 +31,7 @@ class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
     {
         return [
             [['workout_plan_id', 'exercise_id'], 'integer'],
+            [['exercise_id'], 'required'],
             [['workout_plan_id'], 'exist', 'skipOnError' => true, 'targetClass' => Workout_plan::class, 'targetAttribute' => ['workout_plan_id' => 'id']],
             [['exercise_id'], 'exist', 'skipOnError' => true, 'targetClass' => Exercise::class, 'targetAttribute' => ['exercise_id' => 'id']],
         ];

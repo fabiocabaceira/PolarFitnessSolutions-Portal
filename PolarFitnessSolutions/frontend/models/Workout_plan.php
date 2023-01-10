@@ -43,6 +43,7 @@ class Workout_plan extends \yii\db\ActiveRecord
     {
         return [
             [['workout_name'], 'required'],
+            [['client_id'], 'required'],
             [['created_at', 'client_id', 'worker_id', 'updated_at'], 'integer'],
             [['workout_name'], 'string', 'max' => 30],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
