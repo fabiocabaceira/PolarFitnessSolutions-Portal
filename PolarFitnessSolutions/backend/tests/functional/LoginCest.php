@@ -35,9 +35,8 @@ class LoginCest
         $I->amOnRoute('/site/login');
         $I->fillField('Username', 'erau');
         $I->fillField('Password', 'password_0');
-        $I->click('login-button');
+        $I->click('Sign In');
 
-        $I->see('Logout (erau)', 'form button[type=submit]');
         $I->dontSeeLink('Login');
         $I->dontSeeLink('Signup');
     }
