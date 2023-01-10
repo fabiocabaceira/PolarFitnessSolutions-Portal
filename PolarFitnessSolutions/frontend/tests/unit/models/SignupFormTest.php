@@ -3,6 +3,7 @@
 namespace frontend\tests\unit\models;
 
 use common\fixtures\UserFixture;
+use common\models\AuthAssignment;
 use frontend\models\SignupForm;
 
 class SignupFormTest extends \Codeception\Test\Unit
@@ -26,9 +27,16 @@ class SignupFormTest extends \Codeception\Test\Unit
     public function testCorrectSignup()
     {
         $model = new SignupForm([
+
             'username' => 'some_username',
             'email' => 'some_email@example.com',
             'password' => 'some_password',
+            'street' => 'Rua de Teste',
+            'zip_code' => '1234-123',
+            'area' => 'Area Teste',
+            'phone_number' => '123456789',
+            'nif' => '987654321',
+            'gender' => 'Outro',
         ]);
 
         $user = $model->signup();
@@ -38,18 +46,14 @@ class SignupFormTest extends \Codeception\Test\Unit
         $user = $this->tester->grabRecord('common\models\User', [
             'username' => 'some_username',
             'email' => 'some_email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
+            'street' => 'Rua de Teste',
+            'zip_code' => '1234-123',
+            'area' => 'Area Teste',
+            'phone_number' => '123456789',
+            'nif' => '987654321',
+            'gender' => 'Outro',
+            'status' => \common\models\User::STATUS_ACTIVE
         ]);
-
-        $this->tester->seeEmailIsSent();
-
-        $mail = $this->tester->grabLastSentEmail();
-
-        verify($mail)->instanceOf('yii\mail\MessageInterface');
-        verify($mail->getTo())->arrayHasKey('some_email@example.com');
-        verify($mail->getFrom())->arrayHasKey(\Yii::$app->params['supportEmail']);
-        verify($mail->getSubject())->equals('Account registration at ' . \Yii::$app->name);
-        verify($mail->toString())->stringContainsString($user->verification_token);
     }
 
     public function testNotCorrectSignup()
@@ -58,6 +62,12 @@ class SignupFormTest extends \Codeception\Test\Unit
             'username' => 'troy.becker',
             'email' => 'nicolas.dianna@hotmail.com',
             'password' => 'some_password',
+            'street' => 'Rua de Teste',
+            'zip_code' => '1234-123',
+            'area' => 'Area Teste',
+            'phone_number' => '123456789',
+            'nif' => '987654321',
+            'gender' => 'Outro',
         ]);
 
         verify($model->signup())->empty();
@@ -68,5 +78,7 @@ class SignupFormTest extends \Codeception\Test\Unit
             ->equals('This username has already been taken.');
         verify($model->getFirstError('email'))
             ->equals('This email address has already been taken.');
+        $authass = AuthAssignment::find()->where(['user_id' => '5'])->one();
+        $authass->delete();
     }
 }

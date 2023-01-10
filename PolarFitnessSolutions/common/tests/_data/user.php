@@ -9,6 +9,12 @@ return [
         'password_reset_token' => 'ExzkCOaYc1L8IOBs4wdTGGbgNiG3Wz1I_1402312317',
         'created_at' => '1402312317',
         'updated_at' => '1402312317',
+        'street' => 'Rua de Teste',
+        'zip_code' => '1234-123',
+        'area' => 'Area Teste',
+        'phone_number' => '123456789',
+        'nif' => '987654321',
+        'gender' => 'Outro',
         'email' => 'nicole.paucek@schultz.info',
     ],
 ];
