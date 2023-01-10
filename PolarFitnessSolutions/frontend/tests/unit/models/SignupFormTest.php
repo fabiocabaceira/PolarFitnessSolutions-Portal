@@ -3,6 +3,7 @@
 namespace frontend\tests\unit\models;
 
 use common\fixtures\UserFixture;
+use common\models\AuthAssignment;
 use frontend\models\SignupForm;
 
 class SignupFormTest extends \Codeception\Test\Unit
@@ -53,7 +54,6 @@ class SignupFormTest extends \Codeception\Test\Unit
             'gender' => 'Outro',
             'status' => \common\models\User::STATUS_ACTIVE
         ]);
-
     }
 
     public function testNotCorrectSignup()
@@ -62,6 +62,12 @@ class SignupFormTest extends \Codeception\Test\Unit
             'username' => 'troy.becker',
             'email' => 'nicolas.dianna@hotmail.com',
             'password' => 'some_password',
+            'street' => 'Rua de Teste',
+            'zip_code' => '1234-123',
+            'area' => 'Area Teste',
+            'phone_number' => '123456789',
+            'nif' => '987654321',
+            'gender' => 'Outro',
         ]);
 
         verify($model->signup())->empty();
@@ -72,5 +78,7 @@ class SignupFormTest extends \Codeception\Test\Unit
             ->equals('This username has already been taken.');
         verify($model->getFirstError('email'))
             ->equals('This email address has already been taken.');
+        $authass = AuthAssignment::find()->where(['user_id' => '5'])->one();
+        $authass->delete();
     }
 }
