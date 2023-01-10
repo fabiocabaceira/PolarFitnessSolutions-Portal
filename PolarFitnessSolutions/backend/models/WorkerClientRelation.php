@@ -31,6 +31,7 @@ class WorkerClientRelation extends \yii\db\ActiveRecord
     {
         return [
             [['client_id', 'worker_id'], 'integer'],
+            [['client_id', 'worker_id'], 'required'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
             [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
         ];

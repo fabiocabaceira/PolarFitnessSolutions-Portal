@@ -5,7 +5,7 @@ namespace backend\tests\unit;
 use backend\tests\UnitTester;
 use backend\models\Exercise;
 
-class BookingTest extends \Codeception\Test\Unit
+class ExerciseTest extends \Codeception\Test\Unit
 {
 
     protected UnitTester $tester;
