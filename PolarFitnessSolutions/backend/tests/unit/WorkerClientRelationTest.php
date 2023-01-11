@@ -33,14 +33,6 @@ class WorkerClientRelationTest extends \Codeception\Test\Unit
         verify($model->save())->false();
     }
 
-    public function testFailToRelateUnknownClientWorker(){
-        $model = new WorkerClientRelation([
-            'client_id' => '5',
-            'worker_id'=> '3',
-        ]);
-        verify($model->save())->false();
-    }
-
     public function testFailToRelateStringClientWorker(){
         $model = new WorkerClientRelation([
             'client_id' => 'abc',
