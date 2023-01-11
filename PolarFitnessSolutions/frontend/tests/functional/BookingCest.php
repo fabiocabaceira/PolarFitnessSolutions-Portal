@@ -32,6 +32,7 @@ class BookingCest
         $auth->assign($Role, $user->getId());
 
         $I->amOnRoute('/site/login');
+        $I->see('Seja bem-vindo');
         $I->fillField('Username', 'erau');
         $I->fillField('Password', '12345678');
         $I->click('Sign In');
