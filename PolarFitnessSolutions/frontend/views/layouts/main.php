@@ -57,20 +57,17 @@ $subscription = \common\models\User::find()->where(['id' => $id])->andwhere(['su
          $menuItems = [
              ['label' => 'Conta', 'url' => ['/user/view?id='.$id]],
              ['label' => 'Clientes', 'url' => ['/worker_client_relation/index']],
-             ['label' => 'Mensagens', 'url' => ['/site/signup']],
              ['label' => 'Planos de treino', 'url' => ['/workout_plan/index']],
              ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
              ['label' => 'Consultas de Avaliação Física', 'url' => ['physical_evaluation_booking/index']],
              ['label' => 'Consultas de Nutrição', 'url' => ['nutrition_booking/index']],
          ];
 
-
         } else if(Yii::$app->user->can('utilizador')) {
     if  (!$subscription) {
         $menuItems = [
             ['label' => 'Conta', 'url' => ['/user/view?id=' . $id]],
             ['label' => 'Inscreva-se', 'url' => ['/site/booking']],
-            ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
             ['label' => 'Visualizar Inscricao', 'url' => ['site/viewbooking']],
         ];
     }
@@ -81,9 +78,6 @@ $subscription = \common\models\User::find()->where(['id' => $id])->andwhere(['su
             ['label' => 'Nutrição', 'url' => ['/nutrition_plan/index']],
             ['label' => 'Consultas de Avaliação Física', 'url' => ['physical_evaluation_booking/index']],
             ['label' => 'Consultas de Nutrição', 'url' => ['nutrition_booking/index']],
-            ['label' => 'Mensagens', 'url' => ['/site/signup']],
-            ['label' => 'Apoio ao Cliente', 'url' => ['/site/contact']],
-
         ];
     }
         }
@@ -118,8 +112,6 @@ $subscription = \common\models\User::find()->where(['id' => $id])->andwhere(['su
         <?= $content ?>
     </div>
 </main>
-
-
 
 <?php $this->endBody() ?>
 </body>
