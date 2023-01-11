@@ -1,11 +1,8 @@
 <?php
 
 namespace backend\models;
-use backend\models\Client;
-use backend\models\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\db\Query;
 
 /**
  * ClientSearch represents the model behind the search form of `app\models\Client`.
@@ -15,7 +12,7 @@ class ClientSearch extends Client
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['client_id'], 'safe'],
@@ -25,7 +22,7 @@ class ClientSearch extends Client
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +35,7 @@ class ClientSearch extends Client
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Client::find()->leftJoin('user','client.client_id=user.id')->with('user');
 

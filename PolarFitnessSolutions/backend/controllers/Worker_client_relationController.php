@@ -11,6 +11,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * Worker_client_relationController implements the CRUD actions for WorkerClientRelation model.
@@ -20,7 +21,7 @@ class Worker_client_relationController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -40,7 +41,7 @@ class Worker_client_relationController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new worker_client_relationSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -57,7 +58,7 @@ class Worker_client_relationController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -67,7 +68,7 @@ class Worker_client_relationController extends Controller
     /**
      * Creates a new WorkerClientRelation model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionCreate()
     {
@@ -87,10 +88,10 @@ class Worker_client_relationController extends Controller
      * Updates an existing WorkerClientRelation model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -107,10 +108,10 @@ class Worker_client_relationController extends Controller
      * Deletes an existing WorkerClientRelation model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
         $this->findModel($id)->delete();
 
@@ -124,7 +125,7 @@ class Worker_client_relationController extends Controller
      * @return WorkerClientRelation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): WorkerClientRelation
     {
         if (($model = WorkerClientRelation::findOne(['id' => $id])) !== null) {
             return $model;

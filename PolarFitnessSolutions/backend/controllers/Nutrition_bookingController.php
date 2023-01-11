@@ -7,6 +7,7 @@ use backend\models\NutritionBookingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * Nutrition_bookingController implements the CRUD actions for NutritionBooking model.
@@ -16,7 +17,7 @@ class Nutrition_bookingController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -36,7 +37,7 @@ class Nutrition_bookingController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new NutritionBookingSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -53,7 +54,7 @@ class Nutrition_bookingController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -63,7 +64,7 @@ class Nutrition_bookingController extends Controller
     /**
      * Creates a new NutritionBooking model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionCreate()
     {
@@ -86,10 +87,10 @@ class Nutrition_bookingController extends Controller
      * Updates an existing NutritionBooking model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -106,10 +107,10 @@ class Nutrition_bookingController extends Controller
      * Deletes an existing NutritionBooking model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id): Response
     {
         $this->findModel($id)->delete();
 
@@ -123,7 +124,7 @@ class Nutrition_bookingController extends Controller
      * @return NutritionBooking the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): NutritionBooking
     {
         if (($model = NutritionBooking::findOne(['id' => $id])) !== null) {
             return $model;

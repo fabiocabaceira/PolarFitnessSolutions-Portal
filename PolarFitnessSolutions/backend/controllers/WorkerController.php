@@ -11,6 +11,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * WorkerController implements the CRUD actions for Worker model.
@@ -20,7 +21,7 @@ class WorkerController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -40,7 +41,7 @@ class WorkerController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new WorkerSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -57,7 +58,7 @@ class WorkerController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($worker_id)
+    public function actionView(int $worker_id): string
     {
         $user = User::findOne($worker_id);
         return $this->render('view', [
@@ -69,7 +70,7 @@ class WorkerController extends Controller
     /**
      * Creates a new Worker model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionCreate()
     {
@@ -88,10 +89,10 @@ class WorkerController extends Controller
      * Updates an existing Worker model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $worker_id Worker ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($worker_id)
+    public function actionUpdate(int $worker_id)
     {
         $model = $this->findModel($worker_id);
         $user = User::findOne($worker_id);
@@ -110,10 +111,10 @@ class WorkerController extends Controller
      * Deletes an existing Worker model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $worker_id Worker ID
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($worker_id)
+    public function actionDelete(int $worker_id): Response
     {
         $this->findModel($worker_id)->delete();
 
@@ -127,7 +128,7 @@ class WorkerController extends Controller
      * @return Worker the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($worker_id)
+    protected function findModel(int $worker_id): Worker
     {
         if (($model = Worker::findOne(['worker_id' => $worker_id])) !== null) {
             return $model;

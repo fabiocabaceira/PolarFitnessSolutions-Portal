@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "worker".
@@ -11,12 +13,12 @@ use Yii;
  *
  * @property User $worker
  */
-class Worker extends \yii\db\ActiveRecord
+class Worker extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'worker';
     }
@@ -24,7 +26,7 @@ class Worker extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['worker_id'], 'required'],
@@ -37,7 +39,7 @@ class Worker extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'worker_id' => 'ID do Funcionário',
@@ -47,9 +49,9 @@ class Worker extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'worker_id']);
     }

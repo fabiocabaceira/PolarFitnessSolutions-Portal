@@ -14,7 +14,7 @@ class WorkerSearch extends Worker
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['worker_id'], 'safe'],
@@ -24,7 +24,7 @@ class WorkerSearch extends Worker
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -37,7 +37,7 @@ class WorkerSearch extends Worker
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Worker::find()->leftJoin('user', 'worker.worker_id=user.id')->with('user');
 
@@ -49,6 +49,7 @@ class WorkerSearch extends Worker
 
         $this->load($params);
 
+        //todo: top level code right here...
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');

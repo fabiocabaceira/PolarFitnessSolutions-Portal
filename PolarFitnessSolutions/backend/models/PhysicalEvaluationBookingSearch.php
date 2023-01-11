@@ -18,7 +18,7 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
@@ -30,7 +30,7 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -43,7 +43,7 @@ class PhysicalEvaluationBookingSearch extends PhysicalEvaluationBooking
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = PhysicalEvaluationBooking::find();
         $query->joinWith('worker.user');

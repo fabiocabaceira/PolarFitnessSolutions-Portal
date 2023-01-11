@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Exercise;
 
 /**
  * ExerciseSearch represents the model behind the search form of `backend\models\Exercise`.
@@ -14,7 +13,7 @@ class ExerciseSearch extends Exercise
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'max_rep', 'min_rep', 'sets'], 'integer'],
@@ -25,7 +24,7 @@ class ExerciseSearch extends Exercise
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +37,7 @@ class ExerciseSearch extends Exercise
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Exercise::find();
 

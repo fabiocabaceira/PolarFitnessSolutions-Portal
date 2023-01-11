@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "workout_plan".
@@ -24,12 +25,12 @@ class WorkoutPlan extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'workout_plan';
     }
 
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             TimestampBehavior::class,
@@ -39,7 +40,7 @@ class WorkoutPlan extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['workout_name'], 'required'],
@@ -53,7 +54,7 @@ class WorkoutPlan extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -68,9 +69,9 @@ class WorkoutPlan extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Client]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getClient()
+    public function getClient(): ActiveQuery
     {
         return $this->hasOne(Client::class, ['client_id' => 'client_id']);
     }
@@ -78,9 +79,9 @@ class WorkoutPlan extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Worker]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getWorker()
+    public function getWorker(): ActiveQuery
     {
         return $this->hasOne(Worker::class, ['worker_id' => 'worker_id']);
     }
@@ -88,9 +89,9 @@ class WorkoutPlan extends \yii\db\ActiveRecord
     /**
      * Gets query for [[WorkoutPlanExerciseRelations]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getWorkoutPlanExerciseRelations()
+    public function getWorkoutPlanExerciseRelations(): ActiveQuery
     {
         return $this->hasMany(WorkoutPlanExerciseRelation::class, ['workout_plan_id' => 'id']);
     }

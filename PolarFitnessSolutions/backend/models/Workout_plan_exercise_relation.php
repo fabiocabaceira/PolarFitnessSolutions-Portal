@@ -2,7 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "workout_plan_exercise_relation".
@@ -14,12 +15,12 @@ use Yii;
  * @property Exercise $exercise
  * @property WorkoutPlan $workoutPlan
  */
-class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
+class Workout_plan_exercise_relation extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'workout_plan_exercise_relation';
     }
@@ -27,7 +28,7 @@ class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['workout_plan_id', 'exercise_id'], 'integer'],
@@ -39,7 +40,7 @@ class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -51,9 +52,9 @@ class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Exercise]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getExercise()
+    public function getExercise(): ActiveQuery
     {
         return $this->hasOne(Exercise::class, ['id' => 'exercise_id']);
     }
@@ -61,9 +62,9 @@ class Workout_plan_exercise_relation extends \yii\db\ActiveRecord
     /**
      * Gets query for [[WorkoutPlan]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getWorkoutPlan()
+    public function getWorkoutPlan(): ActiveQuery
     {
         return $this->hasOne(WorkoutPlan::class, ['id' => 'workout_plan_id']);
     }

@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Workout_plan_exercise_relation;
 
 /**
  * Workout_plan_exercise_relationSearch represents the model behind the search form of `backend\models\Workout_plan_exercise_relation`.
@@ -14,7 +13,7 @@ class Workout_plan_exercise_relationSearch extends Workout_plan_exercise_relatio
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'workout_plan_id', 'exercise_id'], 'integer'],
@@ -24,7 +23,7 @@ class Workout_plan_exercise_relationSearch extends Workout_plan_exercise_relatio
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -37,7 +36,7 @@ class Workout_plan_exercise_relationSearch extends Workout_plan_exercise_relatio
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Workout_plan_exercise_relation::find();
 

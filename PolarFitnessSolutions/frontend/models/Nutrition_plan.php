@@ -29,6 +29,7 @@ class Nutrition_Plan extends \yii\db\ActiveRecord
         return 'nutrition_plan';
     }
 
+    //todo make comment
     public function behaviors()
     {
         return [

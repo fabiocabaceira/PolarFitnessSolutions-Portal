@@ -4,9 +4,11 @@ namespace backend\controllers;
 
 use backend\models\Workout_session;
 use backend\models\Workout_sessionSearch;
+use Throwable;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * Workout_sessionController implements the CRUD actions for Workout_session model.
@@ -16,7 +18,7 @@ class Workout_sessionController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -36,7 +38,7 @@ class Workout_sessionController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new Workout_sessionSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -53,7 +55,7 @@ class Workout_sessionController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -63,7 +65,7 @@ class Workout_sessionController extends Controller
     /**
      * Creates a new Workout_session model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionCreate()
     {
@@ -86,10 +88,10 @@ class Workout_sessionController extends Controller
      * Updates an existing Workout_session model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -106,12 +108,14 @@ class Workout_sessionController extends Controller
      * Deletes an existing Workout_session model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return Response
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
-        $this->findModel($id)->delete();
+        try {
+            $this->findModel($id)->delete();
+        } catch (Throwable $e) {
+        }
 
         return $this->redirect(['index']);
     }
@@ -123,7 +127,7 @@ class Workout_sessionController extends Controller
      * @return Workout_session the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Workout_session
     {
         if (($model = Workout_session::findOne(['id' => $id])) !== null) {
             return $model;

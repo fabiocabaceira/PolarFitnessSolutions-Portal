@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Physical_evaluation;
 
 /**
  * Physical_evaluationSearch represents the model behind the search form of `app\models\Physical_evaluation`.
@@ -14,7 +13,7 @@ class Physical_evaluationSearch extends Physical_evaluation
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'fc_repouso', 'fc_maximo', 'user_id', 'worker_id'], 'integer'],
@@ -25,7 +24,7 @@ class Physical_evaluationSearch extends Physical_evaluation
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +37,7 @@ class Physical_evaluationSearch extends Physical_evaluation
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Physical_evaluation::find();
 

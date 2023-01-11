@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\WorkerClientRelation;
 
 /**
  * worker_client_relationSearch represents the model behind the search form of `backend\models\WorkerClientRelation`.
@@ -14,7 +13,7 @@ class worker_client_relationSearch extends WorkerClientRelation
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
@@ -24,7 +23,7 @@ class worker_client_relationSearch extends WorkerClientRelation
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -37,7 +36,7 @@ class worker_client_relationSearch extends WorkerClientRelation
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = WorkerClientRelation::find();
 

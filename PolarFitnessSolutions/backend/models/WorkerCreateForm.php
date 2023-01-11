@@ -23,7 +23,7 @@ class WorkerCreateForm extends Model
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['username', 'trim'],
@@ -54,8 +54,9 @@ class WorkerCreateForm extends Model
      * Signs user up.
      *
      * @return bool whether the creating new account was successful and email was sent
+     * @throws \Exception
      */
-    public function signup()
+    public function signup(): ?bool
     {
         if (!$this->validate()) {
             return null;
@@ -92,7 +93,7 @@ class WorkerCreateForm extends Model
      * @param User $user user model to with email should be send
      * @return bool whether the email was sent
      */
-    protected function sendEmail($user)
+    protected function sendEmail(User $user): bool
     {
         return Yii::$app
             ->mailer

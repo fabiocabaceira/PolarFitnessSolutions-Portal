@@ -14,7 +14,7 @@ class Workout_sessionSearch extends Workout_session
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'set_id', 'user_id'], 'integer'],
@@ -25,7 +25,7 @@ class Workout_sessionSearch extends Workout_session
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +38,7 @@ class Workout_sessionSearch extends Workout_session
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Workout_session::find();
 

@@ -110,7 +110,7 @@ class Workout_plan_exercise_relationController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): \yii\web\Response
     {
         $model = Workout_plan_exercise_relation::findOne($id);
         $this->findModel($id)->delete();
@@ -125,7 +125,7 @@ class Workout_plan_exercise_relationController extends Controller
      * @return Workout_plan_exercise_relation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Workout_plan_exercise_relation
     {
         if (($model = Workout_plan_exercise_relation::findOne(['id' => $id])) !== null) {
             return $model;

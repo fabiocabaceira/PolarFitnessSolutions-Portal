@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "nutrition_plan".
@@ -16,12 +18,12 @@ use Yii;
  * @property User $user
  * @property User $worker
  */
-class Nutrition_plan extends \yii\db\ActiveRecord
+class Nutrition_plan extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'nutrition_plan';
     }
@@ -29,7 +31,7 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['content', 'createdate'], 'required'],
@@ -44,7 +46,7 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -58,9 +60,9 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
@@ -68,9 +70,9 @@ class Nutrition_plan extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Worker]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getWorker()
+    public function getWorker(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'worker_id']);
     }

@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\User;
 
 /**
  * UserSearch represents the model behind the search form of `backend\models\User`.
@@ -14,7 +13,7 @@ class UserSearch extends User
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'created_at', 'updated_at', 'status', 'phone_number', 'nif'], 'integer'],
@@ -25,7 +24,7 @@ class UserSearch extends User
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +37,7 @@ class UserSearch extends User
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = User::find();
 

@@ -6,9 +6,11 @@ use backend\models\Booking;
 use backend\models\User;
 use frontend\models\BookingSearch;
 use backend\models\Client;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * BookingController implements the CRUD actions for Booking model.
@@ -18,7 +20,7 @@ class BookingController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -38,7 +40,7 @@ class BookingController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new BookingSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -55,7 +57,7 @@ class BookingController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
 
         return $this->render('view', [
@@ -93,7 +95,7 @@ class BookingController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
@@ -111,11 +113,13 @@ class BookingController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
-        $this->findModel($id)->delete();
+        try {
+            $this->findModel($id)->delete();
+        } catch (\Throwable $e) {
+        }
 
         return $this->redirect(['index']);
     }
@@ -127,7 +131,7 @@ class BookingController extends Controller
      * @return Booking the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Booking
     {
         if (($model = Booking::findOne(['id' => $id])) !== null) {
             return $model;
@@ -136,7 +140,12 @@ class BookingController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    protected function findUser($id)
+    //todo make comment (IMPORTANT!)
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    protected function findUser($id): ?User
     {
         $client = new Client();
 
@@ -144,6 +153,7 @@ class BookingController extends Controller
             return $user;
         }
 
+        //todo throw without catch... who will return the ball now?
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

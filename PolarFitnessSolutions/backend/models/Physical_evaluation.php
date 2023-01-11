@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "physical_evaluation".
@@ -31,7 +32,7 @@ class Physical_evaluation extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'physical_evaluation';
     }
@@ -39,7 +40,7 @@ class Physical_evaluation extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['imc', 'peso', 'massa_magra', 'massa_gorda_ideal', 'massa_gorda_normal', 'altura', 'massa_gorda', 'peso_corporal', 'excesso_de_peso', 'percentagem_de_gordura'], 'number'],
@@ -52,7 +53,7 @@ class Physical_evaluation extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -76,9 +77,9 @@ class Physical_evaluation extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
@@ -86,9 +87,9 @@ class Physical_evaluation extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Worker]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getWorker()
+    public function getWorker(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'worker_id']);
     }

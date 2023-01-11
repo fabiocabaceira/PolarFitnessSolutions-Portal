@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Nutrition_plan;
 
 /**
  * Nutrition_planSearch represents the model behind the search form of `app\models\Nutrition_plan`.
@@ -14,7 +13,7 @@ class Nutrition_planSearch extends Nutrition_plan
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'user_id', 'worker_id'], 'integer'],
@@ -25,7 +24,7 @@ class Nutrition_planSearch extends Nutrition_plan
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +37,7 @@ class Nutrition_planSearch extends Nutrition_plan
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Nutrition_plan::find();
 

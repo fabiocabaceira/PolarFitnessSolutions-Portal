@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpMissingFieldTypeInspection */
 
 namespace frontend\modules\api\models;
 
@@ -13,7 +13,9 @@ class LoginForm extends \common\models\LoginForm
 {
     private $_user;
 
-    public function getUserApi(){
+    //todo make comment (IMPORTANT!)
+    public function getUserApi(): ?UserResource
+    {
         if ($this->_user === null) {
             $this->_user = UserResource::findByUsername($this->username);
         }

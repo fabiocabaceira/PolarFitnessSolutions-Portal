@@ -18,7 +18,7 @@ class WorkoutPlanSearch extends WorkoutPlan
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
@@ -43,7 +43,7 @@ class WorkoutPlanSearch extends WorkoutPlan
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = WorkoutPlan::find();
         $query->joinWith('client.user')->joinWith('worker.user');

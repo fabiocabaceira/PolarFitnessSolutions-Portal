@@ -4,7 +4,6 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Booking;
 
 /**
  * BookingSearch represents the model behind the search form of `app\models\Booking`.
@@ -14,7 +13,7 @@ class BookingSearch extends Booking
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'user_id'], 'integer'],
@@ -25,7 +24,7 @@ class BookingSearch extends Booking
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -38,7 +37,7 @@ class BookingSearch extends Booking
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Booking::find()->leftJoin('user', 'booking.user_id=user.id')->with('user');
 

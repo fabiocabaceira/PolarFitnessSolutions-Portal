@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "workout_session".
@@ -16,12 +18,12 @@ use Yii;
  * @property CurrentSet $set
  * @property User $user
  */
-class Workout_session extends \yii\db\ActiveRecord
+class Workout_session extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'workout_session';
     }
@@ -29,7 +31,7 @@ class Workout_session extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['start_time', 'end_time'], 'safe'],
@@ -42,7 +44,7 @@ class Workout_session extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -56,9 +58,9 @@ class Workout_session extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Set]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getSet()
+    public function getSet(): ActiveQuery
     {
         return $this->hasOne(CurrentSet::class, ['id' => 'set_id']);
     }
@@ -66,9 +68,9 @@ class Workout_session extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }

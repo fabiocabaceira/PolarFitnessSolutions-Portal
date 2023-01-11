@@ -10,6 +10,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * ClientController implements the CRUD actions for Client model.
@@ -19,7 +20,7 @@ class ClientController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
@@ -39,7 +40,7 @@ class ClientController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new ClientSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -56,7 +57,7 @@ class ClientController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($client_id)
+    public function actionView(int $client_id): string
     {
         $user = User::findOne($client_id);
         return $this->render('view', [
@@ -68,7 +69,7 @@ class ClientController extends Controller
     /**
      * Creates a new Client model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
+     * @return string|Response
      */
     public function actionCreate()
     {
@@ -88,10 +89,10 @@ class ClientController extends Controller
      * Updates an existing Client model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $client_id Client ID
-     * @return string|\yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($client_id)
+    public function actionUpdate(int $client_id)
     {
         $model = $this->findModel($client_id);
         $user = User::findOne($client_id);
@@ -110,10 +111,10 @@ class ClientController extends Controller
      * Deletes an existing Client model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $client_id Client ID
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($client_id)
+    public function actionDelete(int $client_id): Response
     {
         $this->findModel($client_id)->delete();
 
@@ -127,7 +128,7 @@ class ClientController extends Controller
      * @return Client the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($client_id)
+    protected function findModel(int $client_id): Client
     {
         if (($model = Client::findOne(['client_id' => $client_id])) !== null) {
             return $model;

@@ -16,7 +16,7 @@ class NutritionBookingSearch extends NutritionBooking
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id', 'client_id', 'worker_id'], 'integer'],
@@ -28,7 +28,7 @@ class NutritionBookingSearch extends NutritionBooking
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -41,7 +41,7 @@ class NutritionBookingSearch extends NutritionBooking
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = NutritionBooking::find();
         $query->joinWith('worker.user');

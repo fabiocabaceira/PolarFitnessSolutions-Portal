@@ -55,6 +55,7 @@ class Client extends \yii\db\ActiveRecord
         return $this->hasOne(User::class, ['id' => 'client_id']);
     }
 
+    //todo make comment
     public function getUsername(){
         $ClientUsername = self::find()->select(['id','username'])->all();
         return ArrayHelper::map($ClientUsername, 'id', 'username');

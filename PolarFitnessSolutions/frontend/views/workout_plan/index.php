@@ -24,6 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
+            'tableOptions' => [
+                'table class' => 'table table-bordered border-primary'
+],
+
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
