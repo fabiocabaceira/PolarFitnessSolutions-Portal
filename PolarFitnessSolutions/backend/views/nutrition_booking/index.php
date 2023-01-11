@@ -21,6 +21,9 @@ $this->title = 'Consultas de Nutrição';
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
+        'tableOptions' => [
+            'table class' => 'table table-hover',
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [

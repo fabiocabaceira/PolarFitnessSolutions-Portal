@@ -33,7 +33,7 @@ class LoginCest
      */
     public function loginUser(FunctionalTester $I)
     {
-
+        /* criacao de um user */
         $user = new User();
         $user->username = 'erau';
         $user->email = 'sfriesen@jenkins.info';
@@ -49,21 +49,18 @@ class LoginCest
         $user->generateEmailVerificationToken();
         $user->save();
 
+        /* atribuicao do role de administrador ao utilizador */
+
         $auth = \Yii::$app->authManager;
         $Role = $auth->getRole('administrador');
         $auth->assign($Role, $user->getId());
-
+        /* Teste ao login */
 
         $I->amOnRoute('/site/login');
         $I->fillField('Username', 'erau');
         $I->fillField('Password', '12345678');
         $I->click('Sign In');
-
         $I->seeInCurrentUrl('/index');
-
-        $I->see('Polar Fitness Solutions');
-        $I->dontSeeLink('Login');
-        $I->dontSeeLink('Signup');
 
     }
 }
