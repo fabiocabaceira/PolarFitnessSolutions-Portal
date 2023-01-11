@@ -153,7 +153,7 @@ class BookingController extends Controller
             return $user;
         }
 
-        //todo throw without catch... who will return the ball now?
+
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

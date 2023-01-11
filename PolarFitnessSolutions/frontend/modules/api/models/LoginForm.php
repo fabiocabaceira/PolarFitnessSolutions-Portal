@@ -13,7 +13,7 @@ class LoginForm extends \common\models\LoginForm
 {
     private $_user;
 
-    //todo make comment (IMPORTANT!)
+
     public function getUserApi(): ?UserResource
     {
         if ($this->_user === null) {

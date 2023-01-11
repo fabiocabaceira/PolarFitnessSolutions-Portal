@@ -49,7 +49,7 @@ class WorkerSearch extends Worker
 
         $this->load($params);
 
-        //todo: top level code right here...
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');

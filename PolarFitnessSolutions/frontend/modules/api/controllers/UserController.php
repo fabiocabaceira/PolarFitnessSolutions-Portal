@@ -9,7 +9,7 @@ class UserController extends activeController
 {
     public $modelClass = 'common\models\Users';
 
-    //todo make comment (IMPORTANT!)
+
     public function actionLogin()
     {
         $model = new LoginForm();
@@ -22,7 +22,7 @@ Yii::$app->response->statusCode = 422;
         ];
     }
 
-    //todo make comment (IMPORTANT!)
+
     public function actionSignup(){
 
             $model = new SignupForm();
