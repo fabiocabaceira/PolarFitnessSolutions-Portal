@@ -47,6 +47,7 @@ return [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/user'],
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/workoutplan'],
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/nutrition_plan'],
             ],
         ],
         'urlManagerFrontend' => [
