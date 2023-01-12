@@ -12,7 +12,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -22,7 +21,7 @@ return [
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -55,6 +54,11 @@ return [
             'showScriptName' => false,
         ],
 
+    ],
+    'modules'=> [
+        'api' => [
+            'class' => \backend\modules\api\Module::class
+        ]
     ],
     'params' => $params,
 ];
