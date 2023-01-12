@@ -4,27 +4,28 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use backend\models\Nutrition_plan;
 
 /**
- * Nutrition_planSearch represents the model behind the search form of `app\models\Nutrition_plan`.
+ * Nutrition_planSearch represents the model behind the search form of `backend\models\Nutrition_plan`.
  */
 class Nutrition_planSearch extends Nutrition_plan
 {
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            [['id', 'user_id', 'worker_id'], 'integer'],
-            [['content', 'createdate'], 'safe'],
+            [['id', 'created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
+            [['nutritionname', 'content'], 'safe'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function scenarios(): array
+    public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -37,7 +38,7 @@ class Nutrition_planSearch extends Nutrition_plan
      *
      * @return ActiveDataProvider
      */
-    public function search(array $params): ActiveDataProvider
+    public function search($params)
     {
         $query = Nutrition_plan::find();
 
@@ -58,12 +59,14 @@ class Nutrition_planSearch extends Nutrition_plan
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'createdate' => $this->createdate,
-            'user_id' => $this->user_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'client_id' => $this->client_id,
             'worker_id' => $this->worker_id,
         ]);
 
-        $query->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'nutritionname', $this->nutritionname])
+            ->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;
     }

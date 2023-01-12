@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Nutrition_plan $model */
+/** @var backend\models\Nutrition_plan $model */
 
 $this->title = 'Create Nutrition Plan';
 $this->params['breadcrumbs'][] = ['label' => 'Nutrition Plans', 'url' => ['index']];

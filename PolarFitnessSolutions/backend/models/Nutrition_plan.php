@@ -3,27 +3,28 @@
 namespace backend\models;
 
 use Yii;
-use yii\db\ActiveQuery;
-use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "nutrition_plan".
  *
  * @property int $id
+ * @property string $nutritionname
  * @property string $content
- * @property string $createdate
- * @property int|null $user_id
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int|null $client_id
  * @property int|null $worker_id
  *
- * @property User $user
- * @property User $worker
+ * @property Client $client
+ * @property Worker $worker
  */
-class Nutrition_plan extends ActiveRecord
+class Nutrition_plan extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName(): string
+    public static function tableName()
     {
         return 'nutrition_plan';
     }
@@ -31,49 +32,58 @@ class Nutrition_plan extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            [['content', 'createdate'], 'required'],
+            [['nutritionname', 'content'], 'required'],
             [['content'], 'string'],
-            [['createdate'], 'safe'],
-            [['user_id', 'worker_id'], 'integer'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
-            [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['worker_id' => 'id']],
+            [['created_at', 'updated_at', 'client_id', 'worker_id'], 'integer'],
+            [['nutritionname'], 'string', 'max' => 30],
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['client_id' => 'client_id']],
+            [['worker_id'], 'exist', 'skipOnError' => true, 'targetClass' => Worker::class, 'targetAttribute' => ['worker_id' => 'worker_id']],
         ];
     }
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
+    }
+
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels(): array
+    public function attributeLabels()
     {
         return [
             'id' => 'ID',
+            'nutritionname' => 'Nutritionname',
             'content' => 'Content',
-            'createdate' => 'Createdate',
-            'user_id' => 'User ID',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'client_id' => 'Client ID',
             'worker_id' => 'Worker ID',
         ];
     }
 
     /**
-     * Gets query for [[User]].
+     * Gets query for [[Client]].
      *
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
-    public function getUser(): ActiveQuery
+    public function getClient()
     {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(Client::class, ['client_id' => 'client_id']);
     }
 
     /**
      * Gets query for [[Worker]].
      *
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
-    public function getWorker(): ActiveQuery
+    public function getWorker()
     {
-        return $this->hasOne(User::class, ['id' => 'worker_id']);
+        return $this->hasOne(Worker::class, ['worker_id' => 'worker_id']);
     }
 }
