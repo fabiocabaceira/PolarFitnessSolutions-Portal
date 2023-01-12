@@ -14,7 +14,7 @@ class LoginForm extends \common\models\LoginForm
     private $_user;
 
 
-    public function getUserApi(): ?UserResource
+    public function getUserApi()
     {
         if ($this->_user === null) {
             $this->_user = UserResource::findByUsername($this->username);

@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * Workout_planController implements the CRUD actions for Workout_plan model.
+ * WorkoutplanController implements the CRUD actions for Workout_plan model.
  */
 class Workout_planController extends Controller
 {
