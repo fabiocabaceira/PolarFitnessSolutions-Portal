@@ -15,7 +15,7 @@ class NutritionPlanForm extends Model
     public $client_id;
     public $worker_id;
 
-    public $nutrtionplan;
+    public $nutrition_plan;
 
     public function rules()
     {
@@ -37,17 +37,17 @@ class NutritionPlanForm extends Model
     }
 
     public function create(){
-        $this->nutrtionplan = new Nutrition_plan();
+        $this->nutrition_plan = new Nutrition_plan();
 
         if (!$this->validate()){
             return false;
         }
 
-        $this->nutrtionplan->nutritionname = $this->nutrtionname;
-        $this->nutrtionplan->content = $this->content;
-        $this->nutrtionplan->client_id = $this->client_id;
-        $this->nutrtionplan->worker_id = $this->worker_id;
-        $this->nutrtionplan->save();
+        $this->nutrition_plan->nutritionname = $this->nutrtionname;
+        $this->nutrition_plan->content = $this->content;
+        $this->nutrition_plan->client_id = $this->client_id;
+        $this->nutrition_plan->worker_id = $this->worker_id;
+        $this->nutrition_plan->save();
 
         return true;
     }
