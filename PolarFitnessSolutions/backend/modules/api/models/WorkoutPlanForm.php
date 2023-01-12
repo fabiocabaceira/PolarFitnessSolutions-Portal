@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\api\models;
+namespace backend\modules\api\models;
 
-use frontend\models\Client;
-use frontend\models\Worker;
-use frontend\models\Workout_plan;
+use backend\models\Client;
+use backend\models\Worker;
+use backend\models\WorkoutPlan;
 use Yii;
 use yii\base\Model;
 use common\models\User;
@@ -45,7 +45,7 @@ class WorkoutPlanForm extends Model
 
     public function create()
     {
-        $this->workout= new Workout_plan();
+        $this->workout= new WorkoutPlan();
 
         if (!$this->validate()) {
             return false;
