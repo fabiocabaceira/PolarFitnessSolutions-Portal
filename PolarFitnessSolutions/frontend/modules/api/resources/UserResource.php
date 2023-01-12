@@ -9,6 +9,6 @@ class UserResource extends User
 
     public function fields()
     {
-        return ['id','username','password','email','street','zip_code','area','phone_number','nif','gender'];
+        return ['id','username','password','email','street','zip_code','area','phone_number','nif','gender','subscription'];
     }
 }
