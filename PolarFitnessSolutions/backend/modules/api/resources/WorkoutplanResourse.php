@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\api\resources;
+namespace backend\modules\api\resources;
 
-use frontend\models\Workout_plan;
+use backend\models\WorkoutPlan;
 
-class WorkoutplanResourse extends Workout_plan
+class WorkoutplanResourse extends WorkoutPlan
 {
     public function fields()
     {

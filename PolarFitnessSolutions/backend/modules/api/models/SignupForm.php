@@ -22,8 +22,10 @@ class SignupForm extends Model
     public $gender;
     public $password;
     public $nif;
-    public $_user;
     public $status = 10;
+    public $subscription;
+    public $_user;
+
     /**
      * {@inheritdoc}
      */ public function rules()
@@ -78,6 +80,7 @@ class SignupForm extends Model
         $this->_user->generateAuthKey();
         $this->_user->status = $this->status;
         $this->_user->generateEmailVerificationToken();
+        $this->_user->subscription = 'Inativo';
         $this->_user->save();
 
         $client = new Client();
