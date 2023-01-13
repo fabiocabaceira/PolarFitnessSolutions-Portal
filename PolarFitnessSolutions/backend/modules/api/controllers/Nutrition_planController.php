@@ -2,9 +2,6 @@
 
 namespace backend\modules\api\controllers;
 
-
-use backend\modules\api\models\NutritionPlan;
-use backend\modules\api\models\NutritionPlanForm;
 use yii\rest\ActiveController;
 use Yii;
 
