@@ -2,7 +2,6 @@
 
 namespace backend\modules\api\controllers;
 
-use backend\modules\api\models\WorkoutPlanForm;
 use Yii;
 use backend\models\WorkoutPlan;
 use yii\rest\ActiveController;
@@ -14,6 +13,6 @@ use yii\filters\VerbFilter;
  */
 class WorkoutplanController extends ActiveController
 {
-    public $modelClass = 'frontend\models\Workout_plan';
+    public $modelClass = 'backend\models\WorkoutPlan';
 
 }
