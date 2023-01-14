@@ -53,6 +53,7 @@ return [
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/booking'],
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/physical_evaluation_booking'],
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/worker_client_relation'],
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/workout_plan_exercise_relation'],
 
             ],
         ],
