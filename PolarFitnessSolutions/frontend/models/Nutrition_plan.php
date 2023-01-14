@@ -89,5 +89,18 @@ class Nutrition_Plan extends \yii\db\ActiveRecord
         return $this->hasOne(Worker::class, ['worker_id' => 'worker_id']);
     }
 
+    public function mqttPublish(){
+        $server   = '127.0.0.1';
+        $port = 1883;
+        $id_do_cliente = $this->client_id;
+        $nome_do_cliente = $this->client->user->username;
+        $nome_do_plano_de_nutricao = $this->nutritionname;
+        $payload = '{"id_do_cliente":"'.$id_do_cliente.'", "nome_do_cliente":"'.$nome_do_cliente.'", "nome_do_plano_de_nutricao":"'.$nome_do_plano_de_nutricao.'"}';
+        $mqtt = new \PhpMqtt\Client\MqttClient($server, $port);
+        $mqtt->connect();
+        $mqtt->publish("Planos de nutricao/".$id_do_cliente."/", $payload, 0, true);
+        $mqtt->disconnect();
+    }
+
 
 }

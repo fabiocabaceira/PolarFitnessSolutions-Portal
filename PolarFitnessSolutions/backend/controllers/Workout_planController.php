@@ -82,6 +82,7 @@ class Workout_planController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                $model->mqttPublish();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
