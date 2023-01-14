@@ -48,8 +48,11 @@ return [
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/user'],
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/workoutplan'],
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/nutrition_plan'],
-                ['class' => 'yii\rest\UrlRule','controller' => 'api/physical_evaluation'],
                 ['class' => 'yii\rest\UrlRule','controller' => 'api/nutrition_booking'],
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/physical_evaluation'],
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/booking'],
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/physical_evaluation_booking'],
+                ['class' => 'yii\rest\UrlRule','controller' => 'api/worker_client_relation'],
 
             ],
         ],
