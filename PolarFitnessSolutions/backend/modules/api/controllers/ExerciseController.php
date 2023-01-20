@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\controllers;
+namespace backend\modules\api\controllers;
 
 use backend\models\Exercise;
 use backend\models\ExerciseSearch;
