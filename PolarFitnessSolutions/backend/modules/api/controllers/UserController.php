@@ -16,9 +16,11 @@ class UserController extends ActiveController
 
     public function actionLogin()
     {
+        $success = "{\"success\":{\"valor\":\"yes\"}}";
+
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post(), '') && $model->login()) {
-            return $model->getUser()->toArray(['id','username','email','street','zip_code','area','phone_number','nif','gender', 'subscription']);
+            return json_decode($success);
         }
         Yii::$app->response->statusCode = 422;
         return [
