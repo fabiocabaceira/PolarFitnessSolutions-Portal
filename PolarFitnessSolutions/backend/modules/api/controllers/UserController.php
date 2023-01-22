@@ -20,7 +20,9 @@ class UserController extends ActiveController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post(), '') && $model->login()) {
-            return json_decode($success);
+
+            return $model->getUser()->toArray(['id','username','email','street','zip_code','area','phone_number','nif','gender', 'subscription']);
+
         }
         Yii::$app->response->statusCode = 422;
         return [
