@@ -3,6 +3,11 @@ body {
     position: relative;
     height: 100%;
 }
+.navbar-collapse
+    {
+    background-image: linear-gradient(15deg, #007bff 0%, #00b3ff 100%);
+    text-align: center;
+    }
 
 .swiper {
     width: 80%;
