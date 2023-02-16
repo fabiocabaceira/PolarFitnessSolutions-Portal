@@ -30,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'exercise_name',
+            [
+                   'attribute' =>    'exercise_name',
+                    'label' => 'Nome do exercício',
+],
+
             'max_rep',
             'min_rep',
             'sets',

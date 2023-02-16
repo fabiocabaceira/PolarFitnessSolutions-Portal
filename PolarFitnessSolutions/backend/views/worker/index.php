@@ -36,7 +36,7 @@ $this->title = 'Funcionários';
             // Username
             [
                 'attribute' => 'user.username',
-                'label' => 'Username',
+                'label' => 'Nome',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->user->username;
                 },

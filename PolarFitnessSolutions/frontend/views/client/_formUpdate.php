@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($user, 'nif')->textInput() ?>
 
-    <?= $form->field($user, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
+    <?= $form->field($user, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminino' => 'Feminino', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

@@ -17,7 +17,7 @@ $this->title = 'Consultas de Avaliação Física';
     <h1><?= Html::encode($this->title) ?></h1>
     <?php if (Yii::$app->user->can('funcionario')){ ?>
         <p>
-            <?= Html::a('Criar Consulta de Avaliação Física', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Marcar Consulta', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
     <?php }
     ?>

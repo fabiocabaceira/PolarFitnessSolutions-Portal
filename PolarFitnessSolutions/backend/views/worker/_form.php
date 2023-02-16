@@ -18,23 +18,23 @@ use yii\widgets\ActiveForm;
                     <hr/>
                     <?php $form = ActiveForm::begin() ?>
                     <div class="user-box">
-                        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                        <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Nome') ?>
 
                         <?= $form->field($model, 'email') ?>
 
                         <?= $form->field($model, 'password')->passwordInput() ?>
 
-                        <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'street')->textInput(['maxlength' => true])->label('Rua')  ?>
 
-                        <?= $form->field($model, 'zip_code')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'zip_code')->textInput(['maxlength' => true])->label('Código postal')?>
 
-                        <?= $form->field($model, 'area')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'area')->textInput(['maxlength' => true])->label('Localidade')  ?>
 
-                        <?= $form->field($model, 'phone_number')->textInput() ?>
+                        <?= $form->field($model, 'phone_number')->textInput() ->label('Número de telemóvel') ?>
 
-                        <?= $form->field($model, 'nif')->textInput() ?>
+                        <?= $form->field($model, 'nif')->textInput()->label('NIF')  ?>
 
-                        <?= $form->field($model, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminino' => 'Feminino', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
+                        <?= $form->field($model, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminino' => 'Feminino', 'Outro' => 'Outro', ], ['prompt' => ''])->label('Género')  ?>
 
                     </div>
                     <div class="mt-5 text-center">

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var backend\models\Worker $model */
 
-$this->title = 'Detalhes de: ' . $user->username;
+$this->title = 'Detalhes de: '  .$user->username;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
@@ -14,7 +14,7 @@ $this->title = 'Detalhes de: ' . $user->username;
     <div class="col-md-12 d-flex flex-column justify-content-center">
         <div class="col-md-6 border-right">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="text-right">Detalhes de:  . $user->username</h4>
+                
             </div>
             <div class="row mt-3 ">
                         <span class="col-md-12"><?= DetailView::widget([

@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var frontend\models\NutritionBookingSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Marcações de Consultas de Nutrição';
+$this->title = 'Consultas de Nutrição';
 ?>
 <div class="nutrition-booking-index">
 

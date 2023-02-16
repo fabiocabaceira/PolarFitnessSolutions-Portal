@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($user, 'nif')->textInput() ?>
 
-    <?= $form->field($user, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminimo' => 'Feminimo', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
+    <?= $form->field($user, 'gender')->dropDownList([ 'Masculino' => 'Masculino', 'Feminino' => 'Feminino', 'Outro' => 'Outro', ], ['prompt' => '']) ?>
 
     <?= $form->field($user, 'subscription')->dropDownList([ 'Inativo' => 'Inativo', 'Ativo' => 'Ativo', ], ['prompt' => '']) ?>
     <div class="form-group">

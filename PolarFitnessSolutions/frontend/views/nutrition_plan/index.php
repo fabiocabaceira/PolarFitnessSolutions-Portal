@@ -37,14 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute'=>'nutritionname',
-                'label'=>'Nome',
+                'label'=>'Nome do plano de nutrição',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->nutritionname;
                 },
             ],
             [
                 'attribute' => 'clientUsername',
-                'label' => 'Cliente',
+                'label' => 'Nome do Cliente',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client->user->username;
                 },

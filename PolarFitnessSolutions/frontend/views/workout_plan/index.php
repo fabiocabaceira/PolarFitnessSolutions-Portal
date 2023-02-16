@@ -31,10 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'workout_name',
+            [
+                    'attribute' => 'workout_name',
+                    'label' => 'Nome do plano de treino',
+            ],
             [
                 'attribute' => 'clientUsername',
-                'label' => 'Cliente',
+                'label' => 'Nome do Cliente',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client->user->username;
                 },
@@ -42,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'workerUsername',
-                'label' => 'Funcionário',
+                'label' => 'Nome do Funcionário',
                 'value' => function($model, $index, $dataColumn) {
                     if($model->worker == null){
                         return 'Não existe';

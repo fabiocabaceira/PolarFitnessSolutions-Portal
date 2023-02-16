@@ -30,25 +30,33 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'workout_name',
+            [
+                     'attribute' => 'id',
+                'label' => 'Id do plano de treino',
+
+            ],
+            [
+                'attribute' => 'workout_name',
+                'label' => 'Nome do plano de treino',
+
+            ],
             [
                 'attribute' => 'clientUsername',
-                'label' => 'Cliente',
+                'label' => 'Nome do Cliente',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client->user->username;
                 },
             ],
             [
                 'attribute' => 'client_id',
-                'label' => 'ID Cliente',
+                'label' => 'ID do Cliente',
                 'value' => function($model, $index, $dataColumn) {
                     return $model->client_id;
                 },
             ],
             [
                 'attribute' => 'workerUsername',
-                'label' => 'Funcionário',
+                'label' => 'Nome do Funcionário',
                 'value' => function($model, $index, $dataColumn) {
                     if($model->worker == null){
                         return 'Não existe';
@@ -58,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'worker_id',
-                'label' => 'ID Funcionário',
+                'label' => 'ID do Funcionário',
                 'value' => function($model, $index, $dataColumn) {
                     if ($model->worker_id == null){
                         return 'Não tem funcionário associado';
